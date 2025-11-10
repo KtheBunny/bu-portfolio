@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Skill Tree</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#F59E0B",
+            "background-light": "#F3F4F6",
+            "background-dark": "#111827",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#1F2937",
+            "text-light": "#1F2937",
+            "text-dark": "#E5E7EB",
+            "text-secondary-light": "#6B7280",
+            "text-secondary-dark": "#9CA3AF",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .main-node {
+      width: 120px;
+      height: 48px;
+      border-radius: 4px;
+      border: 2px solid rgba(255,255,255,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,.35);
+    }
+
+    .skill-node {
+      position: relative;
+    }
+
+    .skill-node .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .skill-node:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .line {
+      position: absolute;
+      background-color: #4B5563;
+      z-index: -1;
+    }
+
+    .line-h {
+      height: 2px;
+    }
+
+    .line-v {
+      width: 2px;
+    }
+
+    .line-active {
+      background-color: #F59E0B;
+    }
+
+    /* 新增：隱藏原生游標並定義自訂游標樣式 */
+    #canvas { cursor: none !important; } /* 隱藏原生游標（重要） */
+    #custom-cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      border: 2px solid rgba(255,255,255,0.95); /* 白框圓形 */
+      background: transparent;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform .12s ease, background .12s ease, opacity .12s ease;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0; /* 預設隱藏，mouse enter 時顯示 */
+      box-shadow: 0 6px 14px rgba(0,0,0,.35);
+    }
+    #custom-cursor.cursor-pressed {
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255,255,255,0.95); /* 按下時填滿白色（可選） */
+      border-color: rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-sans antialiased text-text-light dark:text-text-dark">
+  <div class="flex h-screen overflow-hidden">
+    <aside
+      class="w-16 flex-shrink-0 bg-surface-light dark:bg-surface-dark flex flex-col items-center py-4 space-y-6 border-r border-border-light dark:border-border-dark">
+      <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-sm">A
+      </div>
+      <nav class="flex flex-col items-center space-y-4">
+        <a class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700" href="#">
+          <span class="material-icons text-text-light dark:text-text-dark">home</span>
+        </a>
+        <a class="p-2 rounded-lg" href="#">
+          <span class="material-icons text-text-secondary-light dark:text-text-secondary-dark">explore</span>
+        </a>
+        <a class="p-2 rounded-lg" href="#">
+          <span class="material-icons text-text-secondary-light dark:text-text-secondary-dark">bookmark</span>
+        </a>
+        <a class="p-2 rounded-lg" href="#">
+          <span class="material-icons text-text-secondary-light dark:text-text-secondary-dark">settings</span>
+        </a>
+      </nav>
+    </aside>
+    <main class="flex-1 flex flex-col">
+      <header
+        class="flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark">
+        <div>
+          <span class="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">Recommended
+            Path</span>
+        </div>
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-2">
+            <span class="material-icons text-primary">star</span>
+            <span class="font-semibold">MASTER LVL. 3</span>
+          </div>
+          <div class="w-px h-6 bg-border-light dark:bg-border-dark"></div>
+          <div class="flex items-center space-x-2">
+            <span class="material-icons text-primary">layers</span>
+            <span class="font-semibold">18 Coins</span>
+          </div>
+          <img alt="User avatar" class="w-8 h-8 rounded-full"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQQShWLNuqYk6ZHAM50D8OHwV48EYpzDucXqoGame0Ag6JxOvunHxMWCJCmwwAqvVj27t4g5cEK3WDQcMP4YXplPCEJW-P4xSUs_-_CWgJh2EnBM1c4J_fatda3urj4eIu-sTQSKScI8Fqqg9WIxnRC1MZOeTatlvicXmbU4U-CgaGHIK0G3m7qZbUN2l08yEWYygn9w8hY9jWOTYojxqcVJkCUjeijxvH4Qt04pyDmVhyolPvPFDqSWD-7U0BamChilSBz0BztqI7" />
+        </div>
+      </header>
+      <div
+        class="flex-1 relative overflow-auto cursor-grab active:cursor-grabbing bg-background-light dark:bg-background-dark bg-[url('https://www.transparenttextures.com/patterns/washi.png')]"
+        id="canvas">
+        <div class="absolute" id="skill-tree-container" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <div class="line line-h" style="top: 52px; left: 162px; width: 116px;"></div>
+          <div class="line line-v" style="top: 52px; left: 278px; height: 50px;"></div>
+          <div class="line line-h" style="top: 102px; left: 278px; width: 50px;"></div>
+          <div class="line line-h" style="top: 102px; left: 228px; width: 50px;"></div>
+          <div class="line line-h line-active" style="top: 152px; left: 187px; width: 206px;"></div>
+          <div class="line line-h" style="top: 52px; left: 412px; width: 116px;"></div>
+          <div class="line line-v" style="top: 52px; left: 412px; height: 50px;"></div>
+          <div class="line line-h" style="top: 102px; left: 362px; width: 50px;"></div>
+          <div class="line line-h" style="top: 102px; left: 412px; width: 50px;"></div>
+          <div class="line line-v" style="top: 182px; left: 102px; height: 50px;"></div>
+          <div class="line line-h line-active" style="top: 232px; left: 102px; width: 50px;"></div>
+          <div class="line line-h" style="top: 232px; left: 52px; width: 50px;"></div>
+          <div class="line line-v" style="top: 232px; left: 52px; height: 50px;"></div>
+          <div class="line line-v" style="top: 182px; left: 102px; height: 50px;"></div>
+          <div class="line line-v" style="top: 182px; left: 472px; height: 50px;"></div>
+          <div class="line line-h line-active" style="top: 232px; left: 472px; width: 50px;"></div>
+          <div class="line line-h line-active" style="top: 232px; left: 522px; width: 50px;"></div>
+          <div class="line line-v" style="top: 232px; left: 572px; height: 50px;"></div>
+          <div class="absolute" style="top: 40px; left: 150px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Introduction to Web</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Learn the basics of how the web
+                  works.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 40px; left: 270px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">HTML Basics</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Structure your content with HTML.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 90px; left: 220px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">CSS Fundamentals</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Style your web pages with CSS.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 90px; left: 320px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-primary"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">JavaScript Basics</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Add interactivity with JavaScript.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 140px; left: 175px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-primary"></div>
+              </div>
+              <div
+                class="tooltip absolute top-full mt-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Version Control/Git</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Track changes and collaborate with
+                  Git.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 140px; left: 380px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+              </div>
+              <div
+                class="tooltip absolute top-full mt-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Package Managers</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Manage project dependencies with
+                  NPM/Yarn.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: -250px;">
+            <div
+              class="main-node">
+              Frontend
+            </div>
+          </div>
+          <div class="absolute" style="left: -150px;">
+            <div
+              class="main-node">
+              Soft Skills
+            </div>
+          </div>
+          <div class="absolute" style="top: 220px; left: 90px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-primary"></div>
+              </div>
+              <div
+                class="tooltip absolute left-full ml-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Communication</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Effectively convey ideas to your
+                  team.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 220px; left: 40px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute right-full mr-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Teamwork</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Collaborate effectively with others.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 270px; left: 40px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute right-full mr-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Problem Solving</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Develop analytical thinking skills.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 0px; left: 150px;">
+            <div
+              class="main-node">
+              Backend
+            </div>
+          </div>
+          <div class="absolute" style="top: 220px; left: 460px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+              </div>
+              <div
+                class="tooltip absolute right-full mr-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Node.js</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Build server-side applications with
+                  JavaScript.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 220px; left: 560px;">
+            <div class="skill-node">
+              <div class="w-6 h-6 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+              </div>
+              <div
+                class="tooltip absolute left-full ml-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Databases</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Learn about SQL and NoSQL databases.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 270px; left: 560px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute left-full ml-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">APIs</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Design and build RESTful APIs.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 40px; left: 400px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Pick a Framework</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Choose between React, Vue, or
+                  Angular.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 90px; left: 450px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">Build Tools</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Learn about Webpack, Vite, etc.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute" style="top: 90px; left: 350px;">
+            <div class="skill-node">
+              <div
+                class="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+              </div>
+              <div
+                class="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
+                <h4 class="font-bold text-text-light dark:text-text-dark">CSS Preprocessors</h4>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark">Use Sass or Less for more powerful
+                  CSS.</p>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div class="flex flex-col items-center space-y-4">
+              <img alt="Ryan Torres's profile picture"
+                class="w-20 h-20 rounded-full border-4 border-surface-light dark:border-surface-dark shadow-lg"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCNZmTPEIMy7VpZ3_GAtXp9C-i9nhQdMcgD-2UaDiHgCwf-2Dy43eGVcNWkcNJ1g0XsOhRna3eiWbr3Ty0ib4mOE1yp1PvMD0PeOpG8FF58RjYvmMhgnbeKIHb6ZgW8BaNkPaDS8vANosoVeTaLcL8CfdIsQzrVSUVjfYKQD4aSzP0o_KLoRZ-dfSKNPRsjfcW9DQ1C-Ii_qK-eysGRDMBIJdzEx-yzZ2Grw7SKUGmJTmRdxJl8xEr_pSkf5hE2MYYo8D-pvI3FEwD" />
+              <div class="text-center">
+                <h3 class="font-bold text-lg text-text-light dark:text-text-dark">Ryan Torres</h3>
+                <p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Jr. Developer</p>
+                <p class="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">Climbing towards Mid
+                  Developer</p>
+              </div>
+              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                <div class="bg-green-500 h-1.5 rounded-full" style="width: 60%"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- 自訂游標元素（放在 canvas 外，使用 fixed） -->
+      <div id="custom-cursor" aria-hidden="true"></div>
+    </main>
+  </div>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const container = document.getElementById('skill-tree-container');
+    let isDragging = false;
+    let startX, startY, scrollLeft, scrollTop;
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      canvas.classList.add('active:cursor-grabbing');
+      startX = e.pageX - canvas.offsetLeft;
+      startY = e.pageY - canvas.offsetTop;
+      scrollLeft = canvas.scrollLeft;
+      scrollTop = canvas.scrollTop;
+    });
+    canvas.addEventListener('mouseleave', () => {
+      isDragging = false;
+      canvas.classList.remove('active:cursor-grabbing');
+    });
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+      canvas.classList.remove('active:cursor-grabbing');
+    });
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - canvas.offsetLeft;
+      const y = e.pageY - canvas.offsetTop;
+      const walkX = (x - startX) * 2; // Adjust scroll speed
+      const walkY = (y - startY) * 2; // Adjust scroll speed
+      canvas.scrollLeft = scrollLeft - walkX;
+      canvas.scrollTop = scrollTop - walkY;
+    });
+
+    /* ---------- 自訂游標行為 ---------- */
+    const customCursor = document.getElementById('custom-cursor');
+    // 跟著滑鼠移動（只在 canvas 上移動時顯示）
+    canvas.addEventListener('mousemove', (e) => {
+      customCursor.style.left = e.clientX + 'px';
+      customCursor.style.top = e.clientY + 'px';
+      customCursor.style.opacity = '1';
+    });
+    canvas.addEventListener('mouseenter', () => {
+      customCursor.style.opacity = '1';
+    });
+    canvas.addEventListener('mouseleave', () => {
+      customCursor.style.opacity = '0';
+    });
+    // 按下/放開效果
+    canvas.addEventListener('mousedown', () => customCursor.classList.add('cursor-pressed'));
+    window.addEventListener('mouseup', () => customCursor.classList.remove('cursor-pressed'));
+    /* 如果你也想在拖動期間隱藏游標（不顯示自訂游標），可以在 isDragging 條件下做判斷 */
+  </script>
+
+</body>
+
+</html>

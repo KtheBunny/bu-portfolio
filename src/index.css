@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgb(255, 255, 255);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-node {
+  width: 120px;
+  height: 48px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  text-align: center;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.skill-node {
+  position: relative;
+}
+
+.skill-node .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skill-node:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.line {
+  position: absolute;
+  background-color: #4b5563;
+  z-index: -1;
+}
+
+.line-h {
+  height: 2px;
+}
+
+.line-v {
+  width: 2px;
+}
+
+.line-active {
+  background-color: #f59e0b;
+}
+
+/* 新增：隱藏原生游標並定義自訂游標樣式 */
+#canvas {
+  cursor: none !important;
+} /* 隱藏原生游標（重要） */
+#custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.95); /* 白框圓形 */
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0; /* 預設隱藏，mouse enter 時顯示 */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+#custom-cursor.cursor-pressed {
+  transform: translate(-50%, -50%) scale(0.8);
+  background: rgba(255, 255, 255, 0.95); /* 按下時填滿白色（可選） */
+  border-color: rgba(0, 0, 0, 0.1);
+}

@@ -88,6 +88,30 @@ export default function SkillTreeCanvas() {
 
     console.log("事件已註冊");
 
+    // 初始置中：將 container 的中心對齊到 canvas (viewport) 的中心
+    const centerContainerInCanvas = () => {
+      if (!canvas || !container) return;
+      // 等待 layout 穩定 (例如圖片載入、字型等)，使用 rAF
+      window.requestAnimationFrame(() => {
+        try {
+          const left = -56 + container.offsetLeft + container.offsetWidth / 2 - canvas.clientWidth / 2;
+          const top = container.offsetTop + container.offsetHeight / 2 - canvas.clientHeight / 2;
+          // 防止負值
+          canvas.scrollLeft = Math.max(0, Math.round(left));
+          canvas.scrollTop = Math.max(0, Math.round(top));
+        } catch (err) {
+          console.warn('Centering failed:', err);
+        }
+      });
+    };
+
+    // 只在初始載入時置中一次
+    centerContainerInCanvas();
+
+    // 可選：視窗大小改變時再次調整（可依需求移除）
+    const onResize = () => centerContainerInCanvas();
+    window.addEventListener('resize', onResize);
+
     // cleanup
     return () => {
       canvas.removeEventListener("mousedown", onMouseDown);
@@ -95,21 +119,28 @@ export default function SkillTreeCanvas() {
       canvas.removeEventListener("mousemove", onMouseMove);
       canvas.removeEventListener("mouseenter", onMouseEnter);
       window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
-      <div className="w-screen h-screen overflow-hidden">
+      <div className="w-screen h-screen overflow-hidden"
+        style={{
+              // 可視區背景
+              background:
+                "url('https://images.pexels.com/photos/937980/pexels-photo-937980.jpeg')",
+            }}
+      >
         <div
           ref={canvasRef}
           id="canvas"
-          className="relative w-full h-full overflow-auto cursor-none"
+          className="relative w-full h-full overflow-auto cursor-none backdrop-blur-lg bg-"
           style={{
             // 可視區背景
             background:
-              "url('https://www.transparenttextures.com/patterns/washi.png')",
+              "url('https://www.transparenttextures.com/patterns/graphy.png')",
           }}
         >
           {/* 內部內容: 設為比 viewport 大 (minWidth/minHeight) */}
@@ -452,8 +483,8 @@ export default function SkillTreeCanvas() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="flex flex-col items-center space-y-4">
                   <img
-                    alt="Ryan Torres's profile picture"
-                    className="w-20 h-20 rounded-lg border-4 border-surface-light dark:border-surface-dark shadow-lg"
+                    alt="BunnyK Icon"
+                    className="max-w-20 rounded-lg border-4 border-surface-light dark:border-surface-dark shadow-lg"
                     src="images/new bu.png"
                   />
                   <div className="text-center w-28">

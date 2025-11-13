@@ -94,7 +94,7 @@ export default function SkillTreeCanvas() {
       // 等待 layout 穩定 (例如圖片載入、字型等)，使用 rAF
       window.requestAnimationFrame(() => {
         try {
-          const left = -56 + container.offsetLeft + container.offsetWidth / 2 - canvas.clientWidth / 2;
+          const left = -28 + container.offsetLeft + container.offsetWidth / 2 - canvas.clientWidth / 2;
           const top = container.offsetTop + container.offsetHeight / 2 - canvas.clientHeight / 2;
           // 防止負值
           canvas.scrollLeft = Math.max(0, Math.round(left));
@@ -331,13 +331,13 @@ export default function SkillTreeCanvas() {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{ top: "-200px" }}
               >
-                <div className="main-node">Frontend</div>
+                <div className="main-node">資訊工程</div>
               </div>
               <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{ left: "-150px" }}
               >
-                <div className="main-node">Soft Skills</div>
+                <div className="main-node">視覺設計</div>
               </div>
               <div className="absolute" style={{ top: 220, left: 90 }}>
                 <div className="skill-node">
@@ -388,7 +388,7 @@ export default function SkillTreeCanvas() {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{ top: 0, left: 150 }}
               >
-                <div className="main-node">Backend</div>
+                <div className="main-node">遊戲開發</div>
               </div>
               <div className="absolute" style={{ top: 220, left: 460 }}>
                 <div className="skill-node">

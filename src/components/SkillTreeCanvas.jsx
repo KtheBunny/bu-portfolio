@@ -177,7 +177,7 @@ export default function SkillTreeCanvas() {
               <div
                 className="absolute bg-white -z-10
                   h-[2px]"
-                style={{ top: 0, left: 221, width: 55 }}
+                style={{ top: 0, left: 271, width: 55 }}
               />
 
               <div
@@ -268,7 +268,7 @@ export default function SkillTreeCanvas() {
 
               {/* 主分支標題 */}
               <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 top-[-200px]
+                className="absolute -translate-x-1/2 -translate-y-1/2 top-[-150px]
                   w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
               >
                 <span className="material-symbols-outlined">select_window</span>
@@ -276,7 +276,7 @@ export default function SkillTreeCanvas() {
               </div>
 
               <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[-150px]
+                className="absolute -translate-x-1/2 -translate-y-1/2 left-[-200px]
                   w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
               >
                 <span className="material-symbols-outlined">brush</span>
@@ -284,78 +284,205 @@ export default function SkillTreeCanvas() {
               </div>
 
               <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[150px]
+                className="absolute -translate-x-1/2 -translate-y-1/2 left-[200px]
                   w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
               >
-                <span className="material-symbols-outlined">Stadia_Controller</span>
+                <span className="material-symbols-outlined">
+                  Stadia_Controller
+                </span>
                 遊戲開發
               </div>
 
               {/* 技能節點 */}
-              <div className="absolute -translate-x-1/2 -translate-y-1/2 left-[300px]">
+              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ top: 0, left: 350 }}>
                 <div className="relative group">
-
                   <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-gray-500">Stadia_Controller</span>
+                    <span className="material-symbols-outlined text-gray-500">
+                      Assignment
+                    </span>
                   </div>
 
-                  <div className="absolute opacity-0 invisible
+                  <div
+                    className="absolute opacity-0 invisible
                     group-hover:opacity-100 group-hover:visible
                     transition-opacity duration-300
-                    bottom-full w-48 bg-surface-light dark:bg-surface-dark p-3 rounded shadow-lg z-10 text-sm">
-                    <h4 className="font-bold text-text-light dark:text-text-dark text-center">
-                      遊戲企劃
-                    </h4>
+                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
+                  >
+                    <div className="flex w-full items-center gap-3">
+                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                        Assignment
+                      </span>
+                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                        企劃能力 已解鎖 / 未選擇
+                      </h4>
+                    </div>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      熟練度: 中等
+                      被動技能
                     </p>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      + 學習如何設計有趣的遊戲機制與故事情節。
+                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      相關作品
                     </p>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      熟練度: 中等
+                      - 2023 gamejam
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      - 2024 畢製
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      熟練度: 中級
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      + （中級）具有數次開發小型遊戲的經驗，能夠獨立完成基本的遊戲設計與實現。
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      EXP 200 / 255
                     </p>
                     <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
                       <div
                         className="bg-green-500 h-1.5 rounded-full"
-                        style={{ width: "60%" }}
+                        style={{ width: "78%" }}
                       />
                     </div>
                   </div>
-
                 </div>
               </div>
 
-              <div className="absolute" style={{ top: 40, left: 270 }}>
-                <div className="skill-node">
-                  <div className="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500" />
+              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ top: -250, left: 0 }}>
+                <div className="relative group">
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-gray-500">
+                      Assignment
+                    </span>
                   </div>
-                  <div className="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
-                    <h4 className="font-bold text-text-light dark:text-text-dark">
-                      HTML Basics
-                    </h4>
+
+                  <div
+                    className="absolute opacity-0 invisible
+                    group-hover:opacity-100 group-hover:visible
+                    transition-opacity duration-300
+                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
+                  >
+                    <div className="flex w-full items-center gap-3">
+                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                        Assignment
+                      </span>
+                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                        企劃能力 已解鎖 / 未選擇
+                      </h4>
+                    </div>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      Structure your content with HTML.
+                      被動技能
                     </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      相關作品
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      - 2023 gamejam
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      - 2024 畢製
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      熟練度: 中級
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      + （中級）具有數次開發小型遊戲的經驗，能夠獨立完成基本的遊戲設計與實現。
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      EXP 200 / 255
+                    </p>
+                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                      <div
+                        className="bg-green-500 h-1.5 rounded-full"
+                        style={{ width: "78%" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute" style={{ top: 90, left: 220 }}>
-                <div className="skill-node">
-                  <div className="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500" />
+
+              <div className="absolute -translate-x-1/2 -translate-y-1/2" style={{ top: 0, left: -350 }}>
+                <div className="relative group">
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-gray-500">
+                      Assignment
+                    </span>
                   </div>
-                  <div className="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
-                    <h4 className="font-bold text-text-light dark:text-text-dark">
-                      CSS Fundamentals
-                    </h4>
+
+                  <div
+                    className="absolute opacity-0 invisible
+                    group-hover:opacity-100 group-hover:visible
+                    transition-opacity duration-300
+                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
+                  >
+                    <div className="flex w-full items-center gap-3">
+                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                        Assignment
+                      </span>
+                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                        企劃能力 已解鎖 / 未選擇
+                      </h4>
+                    </div>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      Style your web pages with CSS.
+                      被動技能
                     </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      相關作品
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      - 2023 gamejam
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      - 2024 畢製
+                    </p>
+
+                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      熟練度: 中級
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      + （中級）具有數次開發小型遊戲的經驗，能夠獨立完成基本的遊戲設計與實現。
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      EXP 200 / 255
+                    </p>
+                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                      <div
+                        className="bg-green-500 h-1.5 rounded-full"
+                        style={{ width: "78%" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+
               <div className="absolute" style={{ top: 90, left: 320 }}>
                 <div className="skill-node">
                   <div className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
@@ -538,13 +665,13 @@ export default function SkillTreeCanvas() {
                 </div>
               </div>
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="flex flex-col items-center space-y-4">
+                <div className="flex flex-col items-center">
                   <img
                     alt="BunnyK Icon"
-                    className="max-w-20 rounded-lg border-4 border-surface-light dark:border-surface-dark shadow-lg"
-                    src="images/new bu.png"
+                    className="max-w-20 z-10 rounded-lg border-[1px] shadow-lg"
+                    src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t39.30808-6/570274599_122154692420718555_5659794563334834264_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EBvDTnXsfBEQ7kNvwFjc5VP&_nc_oc=Admk4bqNP3T-t5B1sQKNvbil0RsBGoWrSDA-pU9hPYaEVNYzJQ_grZAl6xmOqxTm3KE&_nc_zt=23&_nc_ht=scontent.ftpe8-3.fna&_nc_gid=IHaAWkBDgGurrMWYA4HJmQ&oh=00_AfiPErQAbuoT5Chr6_t1_LXQQDplPKVp_MPnzJ4hetF-WQ&oe=691A3701"
                   />
-                  <div className="text-center w-28">
+                  <div className="border-[1px] mt-[-32px] rounded pt-10 text-center w-40 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[rgba(255,255,255,0.5)] px-3 pb-3">
                     <h3 className="font-bold text-lg text-text-light dark:text-text-dark">
                       BunnyK
                     </h3>
@@ -554,12 +681,6 @@ export default function SkillTreeCanvas() {
                     <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
                       前網頁美術設計師
                     </p>
-                  </div>
-                  <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                    <div
-                      className="bg-green-500 h-1.5 rounded-full"
-                      style={{ width: "60%" }}
-                    />
                   </div>
                 </div>
               </div>

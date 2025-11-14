@@ -6,22 +6,22 @@ export default function NavSideBar() {
           className="flex p-3 rounded-lg bg-gray-600"
           href="#"
         >
-          <span className="material-icons text-white">
-            home
+          <span className="material-symbols-outlined text-white">
+            graph_1
           </span>
         </a>
         <a className="flex p-3 rounded-lg" href="#">
-          <span className="material-icons text-gray-500">
+          <span className="material-symbols-outlined text-gray-500">
             explore
           </span>
         </a>
         <a className="flex p-3 rounded-lg" href="#">
-          <span className="material-icons text-gray-500">
+          <span className="material-symbols-outlined text-gray-500">
             bookmark
           </span>
         </a>
         <a className="flex p-3 rounded-lg" href="#">
-          <span className="material-icons text-gray-500">
+          <span className="material-symbols-outlined text-gray-500">
             settings
           </span>
         </a>

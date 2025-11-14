@@ -4,16 +4,16 @@ export default function SkillTreeTopBar() {
       <header className="fixed top-0 left-0 z-40 w-screen flex items-center justify-between pl-20 p-4">
         <div>
           <span className="text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">
-            ...
+            © Ian Keefe / Unsplash
           </span>
         </div>
         <div className="flex items-center space-x-4">
-          <div className="w-fit p-4 h-12 rounded-[4px] border-[1px] border-[rgba(255,255,255,0.25)] flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark text-center backdrop-blur-[2px] shadow-lg">
-            <span className="material-icons text-text-secondary-light dark:text-text-secondary-dark mr-1">star</span>
+          <div className="w-fit p-4 h-12 rounded-[4px] border-[1px] border-[rgba(255,255,255,0.25)] flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark text-center backdrop-blur-[1.5px] shadow-lg">
+            <span className="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark mr-1">star</span>
             <span className="font-semibold">學歷 - 研究生</span>
           </div>
-          <div className="w-fit p-4 h-12 rounded-[4px] border-[1px] border-[rgba(255,255,255,0.25)] flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark text-center backdrop-blur-[2px] shadow-lg">
-            <span className="material-icons text-text-secondary-light dark:text-text-secondary-dark mr-1">layers</span>
+          <div className="w-fit p-4 h-12 rounded-[4px] border-[1px] border-[rgba(255,255,255,0.25)] flex items-center justify-center text-text-secondary-light dark:text-text-secondary-dark text-center backdrop-blur-[1.5px] shadow-lg">
+            <span className="material-symbols-outlined text-text-secondary-light dark:text-text-secondary-dark mr-1">layers</span>
             <span className="font-semibold">工作分支選擇</span>
           </div>
           <img

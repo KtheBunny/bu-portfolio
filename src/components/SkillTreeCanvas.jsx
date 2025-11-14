@@ -94,13 +94,20 @@ export default function SkillTreeCanvas() {
       // 等待 layout 穩定 (例如圖片載入、字型等)，使用 rAF
       window.requestAnimationFrame(() => {
         try {
-          const left = -28 + container.offsetLeft + container.offsetWidth / 2 - canvas.clientWidth / 2;
-          const top = container.offsetTop + container.offsetHeight / 2 - canvas.clientHeight / 2;
+          const left =
+            -28 +
+            container.offsetLeft +
+            container.offsetWidth / 2 -
+            canvas.clientWidth / 2;
+          const top =
+            container.offsetTop +
+            container.offsetHeight / 2 -
+            canvas.clientHeight / 2;
           // 防止負值
           canvas.scrollLeft = Math.max(0, Math.round(left));
           canvas.scrollTop = Math.max(0, Math.round(top));
         } catch (err) {
-          console.warn('Centering failed:', err);
+          console.warn("Centering failed:", err);
         }
       });
     };
@@ -110,7 +117,7 @@ export default function SkillTreeCanvas() {
 
     // 可選：視窗大小改變時再次調整（可依需求移除）
     const onResize = () => centerContainerInCanvas();
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     // cleanup
     return () => {
@@ -119,24 +126,25 @@ export default function SkillTreeCanvas() {
       canvas.removeEventListener("mousemove", onMouseMove);
       canvas.removeEventListener("mouseenter", onMouseEnter);
       window.removeEventListener("mouseup", onMouseUp);
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
-      <div className="w-screen h-screen overflow-hidden"
+      <div
+        className="w-screen h-screen overflow-hidden"
         style={{
-              // 可視區背景
-              background:
-                "url('https://images.pexels.com/photos/937980/pexels-photo-937980.jpeg')",
-            }}
+          // 可視區背景
+          background:
+            "url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1194&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+        }}
       >
         <div
           ref={canvasRef}
           id="canvas"
-          className="relative w-full h-full overflow-auto cursor-none backdrop-blur-lg bg-"
+          className="relative w-full h-full overflow-auto cursor-none backdrop-blur-lg"
           style={{
             // 可視區背景
             background:
@@ -150,7 +158,7 @@ export default function SkillTreeCanvas() {
             style={{
               position: "relative",
               // 調整為比 viewport 大，例如 2000x1400；視需求改數值或使用內部元素決定大小
-              minWidth: 1800,
+              minWidth: 2000,
               minHeight: 1400,
               // 將內容置中（可改）
               margin: "0 auto",
@@ -165,93 +173,159 @@ export default function SkillTreeCanvas() {
                 transform: "translate(-50%, -50%)",
               }}
             >
+              {/* 連接線 */}
               <div
-                className="line line-h"
-                style={{ top: 52, left: 162, width: 116 }}
+                className="absolute bg-white -z-10
+                  h-[2px]"
+                style={{ top: 0, left: 221, width: 55 }}
               />
+
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 52, left: 278, height: 50 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 102, left: 278, width: 50 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 102, left: 228, width: 50 }}
               />
               <div
-                className="line line-h line-active"
+                className="absolute bg-amber-500 -z-10
+                  h-[2px]"
                 style={{ top: 152, left: 187, width: 206 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 52, left: 412, width: 116 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 52, left: 412, height: 50 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 102, left: 362, width: 50 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 102, left: 412, width: 50 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 182, left: 102, height: 50 }}
               />
               <div
-                className="line line-h line-active"
+                className="absolute bg-amber-500 -z-10
+                  h-[2px]"
                 style={{ top: 232, left: 102, width: 50 }}
               />
               <div
-                className="line line-h"
+                className="absolute bg-gray-600 -z-10
+                  h-[2px]"
                 style={{ top: 232, left: 52, width: 50 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 232, left: 52, height: 50 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 182, left: 102, height: 50 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 182, left: 472, height: 50 }}
               />
               <div
-                className="line line-h line-active"
+                className="absolute bg-amber-500 -z-10
+                  h-[2px]"
                 style={{ top: 232, left: 472, width: 50 }}
               />
               <div
-                className="line line-h line-active"
+                className="absolute bg-amber-500 -z-10
+                  h-[2px]"
                 style={{ top: 232, left: 522, width: 50 }}
               />
               <div
-                className="line line-v"
+                className="absolute bg-gray-600 -z-10
+                  w-[2px]"
                 style={{ top: 232, left: 572, height: 50 }}
               />
-              <div className="absolute" style={{ top: 40, left: 150 }}>
-                <div className="skill-node">
-                  <div className="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500" />
+
+              {/* 主分支標題 */}
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2 top-[-200px]
+                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
+              >
+                <span className="material-symbols-outlined">select_window</span>
+                互動設計
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2 left-[-150px]
+                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
+              >
+                <span className="material-symbols-outlined">brush</span>
+                數位藝術
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2 left-[150px]
+                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
+              >
+                <span className="material-symbols-outlined">Stadia_Controller</span>
+                遊戲開發
+              </div>
+
+              {/* 技能節點 */}
+              <div className="absolute -translate-x-1/2 -translate-y-1/2 left-[300px]">
+                <div className="relative group">
+
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-gray-500">Stadia_Controller</span>
                   </div>
-                  <div className="tooltip absolute bottom-full mb-2 w-48 bg-surface-light dark:bg-surface-dark p-3 rounded-lg shadow-lg z-10 text-sm">
-                    <h4 className="font-bold text-text-light dark:text-text-dark">
-                      Introduction to Web
+
+                  <div className="absolute opacity-0 invisible
+                    group-hover:opacity-100 group-hover:visible
+                    transition-opacity duration-300
+                    bottom-full w-48 bg-surface-light dark:bg-surface-dark p-3 rounded shadow-lg z-10 text-sm">
+                    <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                      遊戲企劃
                     </h4>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      Learn the basics of how the web works.
+                      熟練度: 中等
                     </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      + 學習如何設計有趣的遊戲機制與故事情節。
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                      熟練度: 中等
+                    </p>
+                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                      <div
+                        className="bg-green-500 h-1.5 rounded-full"
+                        style={{ width: "60%" }}
+                      />
+                    </div>
                   </div>
+
                 </div>
               </div>
+
               <div className="absolute" style={{ top: 40, left: 270 }}>
                 <div className="skill-node">
                   <div className="w-6 h-6 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-border-light dark:border-border-dark flex items-center justify-center">
@@ -327,18 +401,7 @@ export default function SkillTreeCanvas() {
                   </div>
                 </div>
               </div>
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ top: "-200px" }}
-              >
-                <div className="main-node">資訊工程</div>
-              </div>
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ left: "-150px" }}
-              >
-                <div className="main-node">視覺設計</div>
-              </div>
+
               <div className="absolute" style={{ top: 220, left: 90 }}>
                 <div className="skill-node">
                   <div className="w-6 h-6 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
@@ -383,12 +446,6 @@ export default function SkillTreeCanvas() {
                     </p>
                   </div>
                 </div>
-              </div>
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ top: 0, left: 150 }}
-              >
-                <div className="main-node">遊戲開發</div>
               </div>
               <div className="absolute" style={{ top: 220, left: 460 }}>
                 <div className="skill-node">
@@ -492,13 +549,10 @@ export default function SkillTreeCanvas() {
                       BunnyK
                     </h3>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                      Jr. Developer
+                      研究所畢業生
                     </p>
                     <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
-                      Climbing towards
-                    </p>
-                    <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
-                      Mid Developer
+                      前網頁美術設計師
                     </p>
                   </div>
                   <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">

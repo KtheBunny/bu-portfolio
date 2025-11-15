@@ -380,7 +380,7 @@ export default function SkillTreeCanvas() {
                         deployed_code</span>
                       <div className="flex flex-col items-start">
                         <h4 className="font-bold text-purple-400">
-                          美術能力</h4>
+                          程式能力</h4>
                         <p className="text-xs text-gray-400">
                           被動技能</p>
                       </div>

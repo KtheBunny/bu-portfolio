@@ -1,6 +1,9 @@
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 
+import skills from "../data/skills";
+import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
+
 export default function SkillTreeCanvas() {
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
   const containerRef = useRef(null); // 內部實際比 viewport 大的內容
@@ -17,10 +20,6 @@ export default function SkillTreeCanvas() {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     const cursor = cursorRef.current;
-
-    // 檢查 ref 是否有成功取得元素
-    console.log("Canvas:", canvas);
-    console.log("Cursor:", cursor);
 
     if (!canvas || !cursor) {
       console.error("Canvas 或 Cursor ref 未正確綁定");
@@ -215,6 +214,18 @@ export default function SkillTreeCanvas() {
               </div>
 
               {/* 遊戲開發技能節點 */}
+              {skills.map(s => (
+                <SkillTreeCanvasNode key={s.id} {...s} />
+              ))}
+
+
+
+
+
+
+
+
+
               <div
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: -200, left: 350 }}

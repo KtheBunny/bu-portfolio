@@ -160,7 +160,7 @@ export default function SkillTreeCanvas() {
               position: "relative",
               // 調整為比 viewport 大，例如 2000x1400；視需求改數值或使用內部元素決定大小
               minWidth: 2000,
-              minHeight: 1400,
+              minHeight: 1600,
               // 將內容置中（可改）
               margin: "0 auto",
             }}
@@ -215,16 +215,18 @@ export default function SkillTreeCanvas() {
               </div>
 
               {/* 遊戲開發技能節點 */}
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: 0, left: 350 }}
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -200, left: 350 }}
               >
-                <motion.div className="relative group"
+                <motion.div
+                  className="relative group"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
                     <span className="material-symbols-outlined text white">
-                      Assignment
+                      Tools_power_drill
                     </span>
                   </div>
 
@@ -236,137 +238,470 @@ export default function SkillTreeCanvas() {
                   >
                     <div className="flex w-full items-center gap-3">
                       <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        Assignment</span>
+                        Tools_power_drill
+                      </span>
                       <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-blue-400">
-                          企劃能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
+                        <h4 className="font-bold text-purple-400">
+                          Unity 實作能力
+                        </h4>
+                        <p className="text-xs text-gray-400">被動技能</p>
                       </div>
                     </div>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
+                    <p className="text-white">技能說明：</p>
                     <p className="text-gray-400">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。</p>
+                      擁有操作Unity的能力以及對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、關卡設計等。
+                    </p>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
+                    <p className="text-white">相關作品</p>
+                    <p className="text-gray-400">- [2021] Path of Ghost</p>
+                    <p className="text-gray-400">- [2022] Eminence</p>
+                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                      查看作品
+                    </button>
+
+                    <hr className="my-2 border-t border-gray-600" />
+                    <p className="text-purple-400">熟練度: 高級</p>
                     <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
+                      ＋大多的小型遊戲開發的經驗均是使用Unity，能夠獨立完成基本的遊戲構想、設計與實現。
+                    </p>
+                    <p className="text-white mt-2 text-xs">EXP 700 / 1000</p>
+                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                      <div
+                        className="bg-purple-400 h-1.5 rounded-full"
+                        style={{ width: "70%" }}
+                      />
+                    </div>
+                    <div className="flex items-center mt-1 gap-2">
+                      <span className="material-symbols-outlined text-sm text-white">
+                        lock_open_right
+                      </span>
+                      <p className="text-white text-xs">
+                        已解鎖，點擊選擇此技能
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 0, left: 350 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      deployed_code
+                    </span>
+                  </div>
+
+                  <div
+                    className="absolute opacity-0 invisible
+                    group-hover:opacity-100 group-hover:visible
+                    transition-opacity duration-300
+                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
+                  >
+                    <div className="flex w-full items-center gap-3">
+                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                        deployed_code
+                      </span>
+                      <div className="flex flex-col items-start">
+                        <h4 className="font-bold text-blue-400">程式能力</h4>
+                        <p className="text-xs text-gray-400">被動技能</p>
+                      </div>
+                    </div>
+
+                    <hr className="my-2 border-t border-gray-600" />
+                    <p className="text-white">技能說明：</p>
                     <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
+                      擁有基本編程能力，提升數學邏輯。
+                    </p>
+
+                    <hr className="my-2 border-t text-bold border-gray-600" />
+                    <p className="text-white">相關作品</p>
+                    <p className="text-gray-400">- [2021] Path of Ghost</p>
+                    <p className="text-gray-400">- [2021] MoonWalk</p>
+                    <p className="text-gray-400">- [2022] Eminence</p>
+                    <p className="text-gray-400">以及更多...</p>
+                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                      查看作品
+                    </button>
 
                     <hr className="my-2 border-t border-gray-600" />
                     <p className="text-blue-400">熟練度: 中級</p>
                     <p className="text-gray-400">
-                      ＋具有多次開發小型遊戲的經驗，能夠獨立完成基本的遊戲構想、設計與實現。
+                      ＋單人開發小型遊戲時，負責大部分程式撰寫工作，理解遊戲開發中程式邏輯與架構設計。
                     </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 500 / 1000
-                    </p>
+                    <p className="text-white mt-2 text-xs">EXP 550 / 1000</p>
                     <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
                       <div
                         className="bg-blue-400 h-1.5 rounded-full"
-                        style={{ width: "50%" }}
+                        style={{ width: "55%" }}
                       />
                     </div>
                     <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
+                      <span className="material-symbols-outlined text-sm text-white">
+                        lock_open_right
+                      </span>
+                      <p className="text-white text-xs">
+                        已解鎖，點擊選擇此技能
+                      </p>
                     </div>
                   </div>
                 </motion.div>
               </div>
 
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: -200, left: 350 }}
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -200, left: 500 }}
               >
-                <motion.div className="relative group"
+                <motion.div
+                  className="relative group"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
                     <span className="material-symbols-outlined text white">
-                      wall_art</span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        wall_art</span>
-                      <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-purple-400">
-                          美術能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
-                      </div>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
-                    <p className="text-gray-400">
-                      擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材等。
-                      </p>
-
-                    <hr className="my-2 border-t text-bold border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2021] MoonWalk</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <p className="text-gray-400">
-                      以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-purple-400">熟練度: 高級</p>
-                    <p className="text-gray-400">
-                      ＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。
-                    </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 750 / 1000
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-purple-400 h-1.5 rounded-full"
-                        style={{ width: "75%" }}
-                      />
-                    </div>
-                    <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
-                    </div>
+                      wall_art
+                    </span>
                   </div>
                 </motion.div>
               </div>
 
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -300, left: 500 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -100, left: 500 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 0, left: 450 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 100, left: 450 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 200, left: 500 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 300, left: 500 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -400, left: 650 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -300, left: 650 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -200, left: 650 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -100, left: 700 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 0, left: 700 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 100, left: 700 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 300, left: 650 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 400, left: 650 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+              
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: -200, left: 800 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 0, left: 800 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 200, left: 800 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
+                style={{ top: 300, left: 800 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                    <span className="material-symbols-outlined text white">
+                      wall_art
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: 200, left: 350 }}
               >
-                <motion.div className="relative group"
+                <motion.div
+                  className="relative group"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
                     <span className="material-symbols-outlined text white">
-                      deployed_code</span>
+                      wall_art
+                    </span>
                   </div>
 
                   <div
@@ -377,62 +712,53 @@ export default function SkillTreeCanvas() {
                   >
                     <div className="flex w-full items-center gap-3">
                       <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        deployed_code</span>
+                        wall_art
+                      </span>
                       <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-purple-400">
-                          程式能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
+                        <h4 className="font-bold text-amber-400">美術能力</h4>
+                        <p className="text-xs text-gray-400">被動技能</p>
                       </div>
                     </div>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
+                    <p className="text-white">技能說明：</p>
                     <p className="text-gray-400">
                       擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材等。
-                      </p>
+                    </p>
 
                     <hr className="my-2 border-t text-bold border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2021] MoonWalk</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <p className="text-gray-400">
-                      以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
+                    <p className="text-white">相關作品</p>
+                    <p className="text-gray-400">- [2021] Path of Ghost</p>
+                    <p className="text-gray-400">- [2021] MoonWalk</p>
+                    <p className="text-gray-400">- [2022] Eminence</p>
+                    <p className="text-gray-400">以及更多...</p>
+                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                      查看作品
+                    </button>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-purple-400">熟練度: 高級</p>
+                    <p className="text-amber-400">熟練度: 特級</p>
                     <p className="text-gray-400">
                       ＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。
                     </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 750 / 1000
-                    </p>
+                    <p className="text-white mt-2 text-xs">EXP 800 / 1000</p>
                     <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
                       <div
-                        className="bg-purple-400 h-1.5 rounded-full"
-                        style={{ width: "75%" }}
+                        className="bg-amber-400 h-1.5 rounded-full"
+                        style={{ width: "80%" }}
                       />
                     </div>
                     <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
+                      <span className="material-symbols-outlined text-sm text-white">
+                        lock_open_right
+                      </span>
+                      <p className="text-white text-xs">
+                        已解鎖，點擊選擇此技能
+                      </p>
                     </div>
                   </div>
                 </motion.div>
               </div>
-
-
-
-
 
               {/* UI技能節點 */}
               <div
@@ -505,13 +831,15 @@ export default function SkillTreeCanvas() {
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: -250, left: 200 }}
               >
-                <motion.div className="relative group"
+                <motion.div
+                  className="relative group"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
                     <span className="material-symbols-outlined text white">
-                      wall_art</span>
+                      wall_art
+                    </span>
                   </div>
 
                   <div
@@ -522,38 +850,34 @@ export default function SkillTreeCanvas() {
                   >
                     <div className="flex w-full items-center gap-3">
                       <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        wall_art</span>
+                        wall_art
+                      </span>
                       <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-white">
-                          企劃能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
+                        <h4 className="font-bold text-white">企劃能力</h4>
+                        <p className="text-xs text-gray-400">被動技能</p>
                       </div>
                     </div>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
+                    <p className="text-white">技能說明：</p>
                     <p className="text-gray-400">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。</p>
+                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
+                    </p>
 
                     <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
+                    <p className="text-white">相關作品</p>
+                    <p className="text-gray-400">- [2021] Path of Ghost</p>
+                    <p className="text-gray-400">- [2022] Eminence</p>
+                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                      查看作品
+                    </button>
 
                     <hr className="my-2 border-t border-gray-600" />
                     <p className="text-blue-400">熟練度: 中級</p>
                     <p className="text-gray-400">
                       ＋具有多次開發小型遊戲的經驗，能夠獨立完成基本的遊戲構想、設計與實現。
                     </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 600 / 1000
-                    </p>
+                    <p className="text-white mt-2 text-xs">EXP 600 / 1000</p>
                     <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
                       <div
                         className="bg-blue-400 h-1.5 rounded-full"
@@ -561,19 +885,16 @@ export default function SkillTreeCanvas() {
                       />
                     </div>
                     <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
+                      <span className="material-symbols-outlined text-sm text-white">
+                        lock_open_right
+                      </span>
+                      <p className="text-white text-xs">
+                        已解鎖，點擊選擇此技能
+                      </p>
                     </div>
                   </div>
                 </motion.div>
               </div>
-
-
-
-
-
 
               <div
                 className="absolute -translate-x-1/2 -translate-y-1/2"
@@ -663,7 +984,6 @@ export default function SkillTreeCanvas() {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

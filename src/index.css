@@ -31,7 +31,10 @@
   border: 2px solid rgba(255, 255, 255, 0.95); /* 白框圓形 */
   background: transparent;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    opacity 0.12s ease;
   pointer-events: none;
   z-index: 9999;
   opacity: 0; /* 預設隱藏，mouse enter 時顯示 */

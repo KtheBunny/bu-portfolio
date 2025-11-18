@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
@@ -134,7 +134,7 @@ export default function SkillTreeCanvas() {
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
       <div
-        className="w-screen h-screen overflow-hidden"
+        className="h-screen w-screen overflow-hidden"
         style={{
           // 可視區背景
           background:
@@ -144,7 +144,7 @@ export default function SkillTreeCanvas() {
         <div
           ref={canvasRef}
           id="canvas"
-          className="relative w-full h-full overflow-auto cursor-none backdrop-blur-lg"
+          className="relative h-full w-full cursor-none overflow-auto backdrop-blur-lg"
           style={{
             // 可視區背景
             background:
@@ -175,38 +175,27 @@ export default function SkillTreeCanvas() {
             >
               {/* 連接線 */}
               <div
-                className="absolute bg-white -z-10
-                  h-[2px]"
+                className="absolute -z-10 h-[2px] bg-white"
                 style={{ top: 0, left: 271, width: 55 }}
               />
 
               <div
-                className="absolute bg-gray-600 -z-10
-                  w-[2px]"
+                className="absolute -z-10 w-[2px] bg-gray-600"
                 style={{ top: 52, left: 278, height: 50 }}
               />
 
               {/* 主分支標題 */}
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 top-[-150px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute top-[-150px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">select_window</span>
                 互動設計
               </div>
 
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[-200px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute left-[-200px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">brush</span>
                 數位藝術
               </div>
 
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[200px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute left-[200px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">
                   Stadia_Controller
                 </span>
@@ -214,41 +203,28 @@ export default function SkillTreeCanvas() {
               </div>
 
               {/* 遊戲開發技能節點 */}
-              {skills.map(s => (
+              {skills.map((s) => (
                 <SkillTreeCanvasNode key={s.id} {...s} />
               ))}
-
-
-
-
-
-
-
-
 
               <div
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: -200, left: 350 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       Tools_power_drill
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 flex w-52 flex-col rounded border-[1px] border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         Tools_power_drill
                       </span>
                       <div className="flex flex-col items-start">
@@ -269,7 +245,7 @@ export default function SkillTreeCanvas() {
                     <p className="text-white">相關作品</p>
                     <p className="text-gray-400">- [2021] Path of Ghost</p>
                     <p className="text-gray-400">- [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                    <button className="mt-2 cursor-none rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-sm text-white hover:bg-gray-500">
                       查看作品
                     </button>
 
@@ -278,18 +254,18 @@ export default function SkillTreeCanvas() {
                     <p className="text-gray-400">
                       ＋大多的小型遊戲開發的經驗均是使用Unity，能夠獨立完成基本的遊戲構想、設計與實現。
                     </p>
-                    <p className="text-white mt-2 text-xs">EXP 700 / 1000</p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <p className="mt-2 text-xs text-white">EXP 700 / 1000</p>
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-purple-400 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-purple-400"
                         style={{ width: "70%" }}
                       />
                     </div>
-                    <div className="flex items-center mt-1 gap-2">
+                    <div className="mt-1 flex items-center gap-2">
                       <span className="material-symbols-outlined text-sm text-white">
                         lock_open_right
                       </span>
-                      <p className="text-white text-xs">
+                      <p className="text-xs text-white">
                         已解鎖，點擊選擇此技能
                       </p>
                     </div>
@@ -302,24 +278,19 @@ export default function SkillTreeCanvas() {
                 style={{ top: 0, left: 350 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       deployed_code
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 flex w-52 flex-col rounded border-[1px] border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         deployed_code
                       </span>
                       <div className="flex flex-col items-start">
@@ -334,13 +305,13 @@ export default function SkillTreeCanvas() {
                       擁有基本編程能力，提升數學邏輯。
                     </p>
 
-                    <hr className="my-2 border-t text-bold border-gray-600" />
+                    <hr className="text-bold my-2 border-t border-gray-600" />
                     <p className="text-white">相關作品</p>
                     <p className="text-gray-400">- [2021] Path of Ghost</p>
                     <p className="text-gray-400">- [2021] MoonWalk</p>
                     <p className="text-gray-400">- [2022] Eminence</p>
                     <p className="text-gray-400">以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                    <button className="mt-2 cursor-none rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-sm text-white hover:bg-gray-500">
                       查看作品
                     </button>
 
@@ -349,18 +320,18 @@ export default function SkillTreeCanvas() {
                     <p className="text-gray-400">
                       ＋單人開發小型遊戲時，負責大部分程式撰寫工作，理解遊戲開發中程式邏輯與架構設計。
                     </p>
-                    <p className="text-white mt-2 text-xs">EXP 550 / 1000</p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <p className="mt-2 text-xs text-white">EXP 550 / 1000</p>
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-blue-400 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-blue-400"
                         style={{ width: "55%" }}
                       />
                     </div>
-                    <div className="flex items-center mt-1 gap-2">
+                    <div className="mt-1 flex items-center gap-2">
                       <span className="material-symbols-outlined text-sm text-white">
                         lock_open_right
                       </span>
-                      <p className="text-white text-xs">
+                      <p className="text-xs text-white">
                         已解鎖，點擊選擇此技能
                       </p>
                     </div>
@@ -373,11 +344,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -200, left: 500 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -390,11 +361,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -300, left: 500 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -407,11 +378,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -100, left: 500 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -424,11 +395,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 0, left: 450 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -441,11 +412,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 100, left: 450 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -458,11 +429,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 200, left: 500 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -475,11 +446,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 300, left: 500 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -492,11 +463,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -400, left: 650 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -509,11 +480,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -300, left: 650 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -526,11 +497,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -200, left: 650 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -543,11 +514,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: -100, left: 700 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -560,11 +531,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 0, left: 700 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -577,11 +548,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 100, left: 700 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -594,11 +565,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 300, left: 650 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -611,28 +582,28 @@ export default function SkillTreeCanvas() {
                 style={{ top: 400, left: 650 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
                   </div>
                 </motion.div>
               </div>
-              
+
               <div
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: -200, left: 800 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -645,11 +616,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 0, left: 800 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -662,11 +633,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 200, left: 800 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -679,11 +650,11 @@ export default function SkillTreeCanvas() {
                 style={{ top: 300, left: 800 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
@@ -691,38 +662,24 @@ export default function SkillTreeCanvas() {
                 </motion.div>
               </div>
 
-
-
-
-
-
-
-
-
-
               <div
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: 200, left: 350 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 flex w-52 flex-col rounded border-[1px] border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         wall_art
                       </span>
                       <div className="flex flex-col items-start">
@@ -737,13 +694,13 @@ export default function SkillTreeCanvas() {
                       擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材等。
                     </p>
 
-                    <hr className="my-2 border-t text-bold border-gray-600" />
+                    <hr className="text-bold my-2 border-t border-gray-600" />
                     <p className="text-white">相關作品</p>
                     <p className="text-gray-400">- [2021] Path of Ghost</p>
                     <p className="text-gray-400">- [2021] MoonWalk</p>
                     <p className="text-gray-400">- [2022] Eminence</p>
                     <p className="text-gray-400">以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                    <button className="mt-2 cursor-none rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-sm text-white hover:bg-gray-500">
                       查看作品
                     </button>
 
@@ -752,18 +709,18 @@ export default function SkillTreeCanvas() {
                     <p className="text-gray-400">
                       ＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。
                     </p>
-                    <p className="text-white mt-2 text-xs">EXP 800 / 1000</p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <p className="mt-2 text-xs text-white">EXP 800 / 1000</p>
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-amber-400 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-amber-400"
                         style={{ width: "80%" }}
                       />
                     </div>
-                    <div className="flex items-center mt-1 gap-2">
+                    <div className="mt-1 flex items-center gap-2">
                       <span className="material-symbols-outlined text-sm text-white">
                         lock_open_right
                       </span>
-                      <p className="text-white text-xs">
+                      <p className="text-xs text-white">
                         已解鎖，點擊選擇此技能
                       </p>
                     </div>
@@ -776,24 +733,19 @@ export default function SkillTreeCanvas() {
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: -250, left: 0 }}
               >
-                <div className="relative group">
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
+                <div className="group relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-500 bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text-gray-500">
                       Assignment
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 w-48 rounded border-[1px] border-[rgba(255,255,255,1)] bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         Assignment
                       </span>
-                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                      <h4 className="text-center font-bold text-text-light dark:text-text-dark">
                         企劃能力 已解鎖 / 未選擇
                       </h4>
                     </div>
@@ -829,9 +781,9 @@ export default function SkillTreeCanvas() {
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
                       EXP 200 / 255
                     </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-green-500 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-green-500"
                         style={{ width: "78%" }}
                       />
                     </div>
@@ -843,24 +795,19 @@ export default function SkillTreeCanvas() {
                 style={{ top: -250, left: 200 }}
               >
                 <motion.div
-                  className="relative group"
+                  className="group relative"
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text white">
                       wall_art
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 flex w-52 flex-col rounded border-[1px] border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         wall_art
                       </span>
                       <div className="flex flex-col items-start">
@@ -879,7 +826,7 @@ export default function SkillTreeCanvas() {
                     <p className="text-white">相關作品</p>
                     <p className="text-gray-400">- [2021] Path of Ghost</p>
                     <p className="text-gray-400">- [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">
+                    <button className="mt-2 cursor-none rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-sm text-white hover:bg-gray-500">
                       查看作品
                     </button>
 
@@ -888,18 +835,18 @@ export default function SkillTreeCanvas() {
                     <p className="text-gray-400">
                       ＋具有多次開發小型遊戲的經驗，能夠獨立完成基本的遊戲構想、設計與實現。
                     </p>
-                    <p className="text-white mt-2 text-xs">EXP 600 / 1000</p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <p className="mt-2 text-xs text-white">EXP 600 / 1000</p>
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-blue-400 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-blue-400"
                         style={{ width: "60%" }}
                       />
                     </div>
-                    <div className="flex items-center mt-1 gap-2">
+                    <div className="mt-1 flex items-center gap-2">
                       <span className="material-symbols-outlined text-sm text-white">
                         lock_open_right
                       </span>
-                      <p className="text-white text-xs">
+                      <p className="text-xs text-white">
                         已解鎖，點擊選擇此技能
                       </p>
                     </div>
@@ -911,24 +858,19 @@ export default function SkillTreeCanvas() {
                 className="absolute -translate-x-1/2 -translate-y-1/2"
                 style={{ top: 0, left: -350 }}
               >
-                <div className="relative group">
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
+                <div className="group relative">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gray-500 bg-[rgba(0,0,0,0.25)]">
                     <span className="material-symbols-outlined text-gray-500">
                       Assignment
                     </span>
                   </div>
 
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
-                  >
+                  <div className="invisible absolute bottom-full z-10 w-48 rounded border-[1px] border-[rgba(255,255,255,1)] bg-[rgba(0,0,0,0.5)] p-3 text-sm opacity-0 shadow-lg transition-opacity duration-300 group-hover:visible group-hover:opacity-100">
                     <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
+                      <span className="material-symbols-outlined rounded border-[1px] p-3">
                         Assignment
                       </span>
-                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
+                      <h4 className="text-center font-bold text-text-light dark:text-text-dark">
                         企劃能力 已解鎖 / 未選擇
                       </h4>
                     </div>
@@ -964,9 +906,9 @@ export default function SkillTreeCanvas() {
                     <p className="text-text-secondary-light dark:text-text-secondary-dark">
                       EXP 200 / 255
                     </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
+                    <div className="h-1.5 w-full rounded-full bg-gray-300 dark:bg-gray-700">
                       <div
-                        className="bg-green-500 h-1.5 rounded-full"
+                        className="h-1.5 rounded-full bg-green-500"
                         style={{ width: "78%" }}
                       />
                     </div>
@@ -975,21 +917,21 @@ export default function SkillTreeCanvas() {
               </div>
 
               {/* 中心角色卡片 */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="flex flex-col items-center">
                   <img
                     alt="BunnyK Icon"
-                    className="max-w-20 z-10 rounded-lg border-[1px] shadow-lg"
+                    className="z-10 max-w-20 rounded-lg border-[1px] shadow-lg"
                     src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t39.30808-6/570274599_122154692420718555_5659794563334834264_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EBvDTnXsfBEQ7kNvwFjc5VP&_nc_oc=Admk4bqNP3T-t5B1sQKNvbil0RsBGoWrSDA-pU9hPYaEVNYzJQ_grZAl6xmOqxTm3KE&_nc_zt=23&_nc_ht=scontent.ftpe8-3.fna&_nc_gid=IHaAWkBDgGurrMWYA4HJmQ&oh=00_AfiPErQAbuoT5Chr6_t1_LXQQDplPKVp_MPnzJ4hetF-WQ&oe=691A3701"
                   />
-                  <div className="border-[1px] mt-[-32px] rounded pt-10 text-center w-40 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[rgba(255,255,255,0.5)] px-3 pb-3">
-                    <h3 className="font-bold text-lg text-text-light dark:text-text-dark">
+                  <div className="mt-[-32px] w-40 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
+                    <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
                       BunnyK
                     </h3>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
                       研究所畢業生
                     </p>
-                    <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                    <p className="mt-1 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                       前網頁美術設計師
                     </p>
                   </div>
@@ -1002,7 +944,7 @@ export default function SkillTreeCanvas() {
       {/* 自訂游標 */}
       <div
         ref={cursorRef}
-        className="fixed w-8 h-8 rounded-full border-2 border-white pointer-events-none z-50 opacity-0 shadow-lg"
+        className="pointer-events-none fixed z-50 h-8 w-8 rounded-full border-2 border-white opacity-0 shadow-lg"
         style={{
           borderColor: "rgba(255,255,255,0.95)",
           background: "transparent",

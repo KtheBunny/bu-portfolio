@@ -1,10 +1,9 @@
-import '../index.css'
-import NavSideBar from "../components/NavSideBar"
-import SkillTreeTopBar from "../components/SkillTreeTopBar"
-import SkillTreeCanvas from "../components/SkillTreeCanvas"
+import NavSideBar from "../components/NavSideBar";
+import SkillTreeCanvas from "../components/SkillTreeCanvas";
+import SkillTreeTopBar from "../components/SkillTreeTopBar";
+import "../index.css";
 
 function Tree({}) {
-
   return (
     <>
       <NavSideBar />

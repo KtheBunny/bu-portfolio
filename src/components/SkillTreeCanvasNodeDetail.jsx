@@ -1,4 +1,5 @@
 import { FloatingPortal } from "@floating-ui/react";
+import { motion } from "motion/react";
 import { forwardRef } from "react";
 
 function getMasteryInfo(mastery) {
@@ -32,7 +33,6 @@ function getMasteryInfo(mastery) {
 const SkillTreeCanvasNodeDetail = forwardRef(
   (
     {
-      open,
       style = {},
       icon,
       title,
@@ -42,14 +42,11 @@ const SkillTreeCanvasNodeDetail = forwardRef(
       workLink,
       mastery,
       masteryDescriptions = [],
+      ...props
     },
-    ref
+    ref,
   ) => {
     const { masterText, textColor, barColor } = getMasteryInfo(mastery);
-
-    if (!open) return null;
-
-    console.log(style);
 
     return (
       <FloatingPortal>
@@ -59,78 +56,86 @@ const SkillTreeCanvasNodeDetail = forwardRef(
             ...style,
             zIndex: 9999,
           }}
-          className="flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border border-white p-3 rounded shadow-lg text-sm"
+          {...props}
         >
-          {/* 頭部 */}
-          <div className="flex gap-3 items-center">
-            <span className="material-symbols-outlined p-3 rounded border">
-              {icon}
-            </span>
-            <div>
-              <h4 className={`font-bold ${textColor}`}>{title}</h4>
-              <p className="text-xs text-gray-400">{type}</p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="flex w-52 flex-col rounded border border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm shadow-lg backdrop-blur-sm"
+          >
+            {/* 頭部 */}
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined rounded border p-3">
+                {icon}
+              </span>
+              <div>
+                <h4 className={`font-bold ${textColor}`}>{title}</h4>
+                <p className="text-xs text-gray-400">{type}</p>
+              </div>
             </div>
-          </div>
 
-          <hr className="my-2 border-gray-600" />
+            <hr className="my-2 border-gray-600" />
 
-          {/* 技能說明 */}
-          <p className="text-white mb-1">技能說明：</p>
-          <p className="text-gray-400">{description}</p>
+            {/* 技能說明 */}
+            <p className="mb-1 text-white">技能說明：</p>
+            <p className="text-gray-400">{description}</p>
 
-          {/* 相關作品（動態可隱藏） */}
-          {works.length > 0 && (
-            <>
-              <hr className="my-2 border-gray-600" />
-              <p className="text-white mb-1">相關作品</p>
-              {works.map((w, i) => (
-                <p key={i} className="text-gray-400">
-                  - {w}
-                </p>
-              ))}
+            {/* 相關作品（動態可隱藏） */}
+            {works.length > 0 && (
+              <>
+                <hr className="my-2 border-gray-600" />
+                <p className="mb-1 text-white">相關作品</p>
+                {works.map((w, i) => (
+                  <p key={i} className="text-gray-400">
+                    - {w}
+                  </p>
+                ))}
 
-              {workLink && (
-                <a
-                  href={workLink}
-                  target="_blank"
-                  className="flex justify-center mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none"
-                >
-                  查看作品
-                </a>
-              )}
-            </>
-          )}
+                {workLink && (
+                  <a
+                    href={workLink}
+                    target="_blank"
+                    className="mt-2 flex justify-center rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-white hover:bg-gray-500"
+                  >
+                    查看作品
+                  </a>
+                )}
+              </>
+            )}
 
-          {/* 熟練度 */}
-          <hr className="my-2 border-gray-600" />
+            {/* 熟練度 */}
+            <hr className="my-2 border-gray-600" />
 
-          <p className={`${textColor} mb-1`}>熟練度: {masterText}</p>
-          {masteryDescriptions.map((w, i) => (
-            <p key={i} className="text-gray-400">
-              {w}
+            <p className={`${textColor} mb-1`}>熟練度: {masterText}</p>
+            {masteryDescriptions.map((w, i) => (
+              <p key={i} className="text-gray-400">
+                {w}
+              </p>
+            ))}
+            <p className="mt-2 text-xs text-gray-400">
+              EXP {mastery * 10} / 1000
             </p>
-          ))}
-          <p className="text-gray-400 mt-2 text-xs">
-            EXP {mastery * 10} / 1000
-          </p>
 
-          <div className="w-full bg-gray-700 rounded-full h-1.5">
-            <div
-              className={`${barColor} h-1.5 rounded-full`}
-              style={{ width: `${mastery}%` }}
-            />
-          </div>
+            <div className="h-1.5 w-full rounded-full bg-gray-700">
+              <div
+                className={`${barColor} h-1.5 rounded-full`}
+                style={{ width: `${mastery}%` }}
+              />
+            </div>
 
-          <div className="flex items-center mt-2 gap-2">
-            <span className="material-symbols-outlined text-sm text-white">
-              lock_open_right
-            </span>
-            <p className="text-white text-xs">已解鎖，點擊選擇此技能</p>
-          </div>
+            <div className="mt-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm text-white">
+                lock_open_right
+              </span>
+              <p className="text-xs text-white">已解鎖，點擊選擇此技能</p>
+            </div>
+          </motion.div>
         </div>
       </FloatingPortal>
     );
-  }
+  },
 );
 
 export default SkillTreeCanvasNodeDetail;

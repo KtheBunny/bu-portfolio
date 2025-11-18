@@ -89,7 +89,7 @@ const SkillTreeCanvasNodeDetail = forwardRef(
                 <p className="mb-1 text-white">相關作品</p>
                 {works.map((w, i) => (
                   <p key={i} className="text-gray-400">
-                    - {w}
+                    {w}
                   </p>
                 ))}
 

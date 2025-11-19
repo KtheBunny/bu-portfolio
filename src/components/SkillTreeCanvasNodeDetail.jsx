@@ -15,7 +15,7 @@ function getMasteryInfo(mastery) {
       textColor: "text-purple-400",
       barColor: "bg-purple-400",
     };
-  } else if (mastery >= 25) {
+  } else if (mastery >= 30) {
     return {
       masterText: "中級",
       textColor: "text-blue-400",

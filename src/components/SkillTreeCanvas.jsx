@@ -16,6 +16,9 @@ export default function SkillTreeCanvas() {
     scrollTop: 0,
   });
 
+  const canvasWidth = 2000;
+  const canvasHeight = 1600;
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -143,7 +146,6 @@ export default function SkillTreeCanvas() {
       >
         <div
           ref={canvasRef}
-          id="canvas"
           className="relative h-full w-full cursor-none overflow-auto backdrop-blur-lg"
           style={{
             // 可視區背景
@@ -154,36 +156,23 @@ export default function SkillTreeCanvas() {
           {/* 內部內容: 設為比 viewport 大 (minWidth/minHeight) */}
           <div
             ref={containerRef}
-            id="skill-tree-container"
             style={{
               position: "relative",
               // 調整為比 viewport 大，例如 2000x1400；視需求改數值或使用內部元素決定大小
-              minWidth: 2000,
-              minHeight: 1600,
+              minWidth: `${canvasWidth}px`,
+              minHeight: `${canvasHeight}px`,
               // 將內容置中（可改）
               margin: "0 auto",
             }}
           >
             <div
               className="absolute"
-              id="skill-tree-container"
               style={{
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
               }}
             >
-              {/* 連接線 */}
-              <div
-                className="absolute -z-10 h-[2px] bg-white"
-                style={{ top: 0, left: 271, width: 55 }}
-              />
-
-              <div
-                className="absolute -z-10 w-[2px] bg-gray-600"
-                style={{ top: 52, left: 278, height: 50 }}
-              />
-
               {/* 主分支標題 */}
               <div className="absolute top-[-150px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">select_window</span>
@@ -201,6 +190,67 @@ export default function SkillTreeCanvas() {
                 </span>
                 遊戲開發
               </div>
+
+              {/* 連接線 */}
+
+              <svg
+                className="absolute -z-10"
+                width={canvasWidth}
+                height={canvasHeight}
+                style={{
+                  left: `-${canvasWidth / 2}`,
+                  top: `-${canvasHeight / 2}`,
+                  pointerEvents: "none",
+                }}
+              >
+                {/* 下層 */}
+                <g
+                  transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
+                >
+                  <polyline
+                    points="271,0 326,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="271,0 301,0 301,200 326,200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="271,0 301,0 301,-200 326,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="374,-200 476,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="374,-200 425,-200 425,-300 476,-300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="374,-200 425,-200 425,-100 476,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                </g>
+
+                {/* 上層 */}
+                <g
+                  transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
+                ></g>
+              </svg>
 
               {/* 所有技能節點 */}
               {skills.map((s) => (

@@ -233,13 +233,90 @@ export default function SkillTreeCanvas() {
                     fill="none"
                   />
                   <polyline
-                    points="374,-200 425,-200 425,-300 476,-300"
+                    points="374,-200 450,-200 450,-300 476,-300"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
                   />
                   <polyline
-                    points="374,-200 425,-200 425,-100 476,-100"
+                    points="374,-200 450,-200 450,-100 476,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="374,0 426,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="374,0 400,0 400,100 426,100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="374,200 476,200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="374,200 450,200 450,300 476,300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="524,-200 626,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="524,-200 600,-200 600,-300 626,-300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="474,0 625,0 625,-100 676,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="474,0 676,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="474,0 625,0 625,100 676,100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="724,0 776,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="524,300 776,300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="524,300 600,300 600,400 626,400"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"

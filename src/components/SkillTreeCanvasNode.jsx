@@ -8,6 +8,7 @@ import {
   useInteractions,
 } from "@floating-ui/react";
 import { motion } from "motion/react";
+import { Icon } from "@iconify/react";
 import { useState } from "react";
 
 import SkillTreeCanvasNodeDetail from "./SkillTreeCanvasNodeDetail";
@@ -56,7 +57,7 @@ export default function SkillTreeCanvasNode({
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
-            <span className="material-symbols-outlined">{icon}</span>
+            <Icon icon={icon} width="24" height="24" />
           </div>
         </motion.div>
       </div>

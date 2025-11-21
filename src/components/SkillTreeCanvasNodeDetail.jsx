@@ -1,4 +1,5 @@
 import { FloatingPortal } from "@floating-ui/react";
+import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
 import { forwardRef } from "react";
 
@@ -15,7 +16,7 @@ function getMasteryInfo(mastery) {
       textColor: "text-purple-400",
       barColor: "bg-purple-400",
     };
-  } else if (mastery >= 30) {
+  } else if (mastery >= 40) {
     return {
       masterText: "中級",
       textColor: "text-blue-400",
@@ -63,13 +64,13 @@ const SkillTreeCanvasNodeDetail = forwardRef(
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="flex w-52 flex-col rounded border border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm shadow-lg backdrop-blur-sm"
+            className="flex w-56 flex-col rounded border border-white bg-[rgba(0,0,0,0.5)] p-3 text-sm shadow-lg backdrop-blur-sm"
           >
             {/* 頭部 */}
             <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined rounded border p-3">
-                {icon}
-              </span>
+              <div className="rounded border p-3">
+                <Icon icon={icon} width="24" height="24" />
+              </div>
               <div>
                 <h4 className={`font-bold ${textColor}`}>{title}</h4>
                 <p className="text-xs text-gray-400">{type}</p>
@@ -126,9 +127,11 @@ const SkillTreeCanvasNodeDetail = forwardRef(
             </div>
 
             <div className="mt-2 flex items-center gap-2">
-              <span className="material-symbols-outlined text-sm text-white">
-                lock_open_right
-              </span>
+              <Icon
+                icon="material-symbols:lock-open-right-outline-rounded"
+                width="16"
+                height="16"
+              />
               <p className="text-xs text-white">已解鎖，點擊選擇此技能</p>
             </div>
           </motion.div>

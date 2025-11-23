@@ -22,11 +22,17 @@ function getMasteryInfo(mastery) {
       textColor: "text-blue-400",
       barColor: "bg-blue-400",
     };
-  } else {
+  } else if (mastery >= 20) {
     return {
       masterText: "初級",
       textColor: "text-green-400",
       barColor: "bg-green-400",
+    };
+  } else {
+    return {
+      masterText: "入門",
+      textColor: "text-gray-400",
+      barColor: "bg-gray-400",
     };
   }
 }

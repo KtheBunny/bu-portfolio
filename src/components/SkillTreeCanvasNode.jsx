@@ -57,7 +57,12 @@ export default function SkillTreeCanvasNode({
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
-            <Icon icon={icon} width="24" height="24" />
+            <Icon
+              icon={icon}
+              width="24"
+              height="24"
+              color={mastery >= 20 ? "white" : "gray"}
+            />
           </div>
         </motion.div>
       </div>

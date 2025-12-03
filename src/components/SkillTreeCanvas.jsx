@@ -321,6 +321,117 @@ export default function SkillTreeCanvas() {
                     strokeWidth="2"
                     fill="none"
                   />
+
+                  <polyline
+                    points="0,-174 0,-226"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-174 0,-200 -200,-200 -200,-226"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-174 0,-200 200,-200 200,-226"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="200,-274 200,-376"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="200,-424 200,-576"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="0,-274 0,-326"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-274 0,-300 100,-300 100,-326"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-274 0,-300 -100,-300 -100,-326"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="0,-374 0,-526"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-374 0,-500 100,-500 100,-526"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="0,-574 0,-676"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="0,-574 0,-650 -100,-650 -100,-676"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-100,-374 -100,-576"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-100,-374 -100,-576"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-200,-274 -200,-376"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-200,-274 -200,-350 -300,-350 -300,-376"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-200,-424 -200,-576"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
                 </g>
 
                 {/* 上層 */}
@@ -340,7 +451,7 @@ export default function SkillTreeCanvas() {
                   <img
                     alt="BunnyK Icon"
                     className="z-10 max-w-20 rounded-lg border-[1px] shadow-lg"
-                    src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t39.30808-6/570274599_122154692420718555_5659794563334834264_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EBvDTnXsfBEQ7kNvwFjc5VP&_nc_oc=Admk4bqNP3T-t5B1sQKNvbil0RsBGoWrSDA-pU9hPYaEVNYzJQ_grZAl6xmOqxTm3KE&_nc_zt=23&_nc_ht=scontent.ftpe8-3.fna&_nc_gid=IHaAWkBDgGurrMWYA4HJmQ&oh=00_AfiPErQAbuoT5Chr6_t1_LXQQDplPKVp_MPnzJ4hetF-WQ&oe=691A3701"
+                    src="./images/icon.jpg"
                   />
                   <div className="mt-[-32px] w-40 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                     <h3 className="text-lg font-bold text-text-light dark:text-text-dark">

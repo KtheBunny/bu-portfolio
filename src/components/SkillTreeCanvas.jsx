@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
+import Iridescence from "./ui/iridescence";
+
 export default function SkillTreeCanvas() {
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
   const containerRef = useRef(null); // 內部實際比 viewport 大的內容
@@ -16,7 +18,7 @@ export default function SkillTreeCanvas() {
     scrollTop: 0,
   });
 
-  const canvasWidth = 2000;
+  const canvasWidth = 2200;
   const canvasHeight = 1600;
 
   useEffect(() => {
@@ -136,6 +138,7 @@ export default function SkillTreeCanvas() {
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
+
       <div
         className="h-screen w-screen overflow-hidden"
         style={{
@@ -166,10 +169,8 @@ export default function SkillTreeCanvas() {
             }}
           >
             <div
-              className="absolute"
+              className="absolute left-1/2 top-1/2"
               style={{
-                top: "50%",
-                left: "50%",
                 transform: "translate(-50%, -50%)",
               }}
             >
@@ -208,19 +209,19 @@ export default function SkillTreeCanvas() {
                   transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
                 >
                   <polyline
-                    points="271,0 326,0"
+                    points="272,0 326,0"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
                   />
                   <polyline
-                    points="271,0 301,0 301,200 326,200"
+                    points="272,0 301,0 301,200 326,200"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
                   />
                   <polyline
-                    points="271,0 301,0 301,-200 326,-200"
+                    points="272,0 301,0 301,-200 326,-200"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
@@ -310,17 +311,19 @@ export default function SkillTreeCanvas() {
                   />
 
                   <polyline
-                    points="524,300 626,300"
+                    points="524,200 626,200"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
                   />
                   <polyline
-                    points="524,300 600,300 600,400 626,400"
+                    points="524,200 600,200 600,300 626,300"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"
                   />
+
+                  {/* 中心分支 */}
 
                   <polyline
                     points="0,-174 0,-226"
@@ -407,13 +410,6 @@ export default function SkillTreeCanvas() {
                   />
 
                   <polyline
-                    points="-100,-374 -100,-576"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
                     points="-200,-274 -200,-376"
                     stroke="white"
                     strokeWidth="2"
@@ -428,6 +424,120 @@ export default function SkillTreeCanvas() {
 
                   <polyline
                     points="-200,-424 -200,-576"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  {/* 左分支 */}
+
+                  <polyline
+                    points="-272,0 -326,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-272,0 -300,0 -300,-200 -326,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-272,0 -300,0 -300,200 -326,200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-374,-200 -426,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-374,-200 -400,-200 -400,-300 -426,-300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-474,-200 -676,-200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-374,0 -476,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-374,0 -450,0 -450,-100 -476,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-524,-100 -626,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-674,-100 -776,-100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-524,0 -676,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-524,0 -650,0 -650,100 -676,100"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-724,0 -776,0"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-374,200 -426,200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <polyline
+                    points="-374,200 -400,200 -400,300 -426,300"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-474,200 -626,200"
+                    stroke="white"
+                    strokeWidth="2"
+                    fill="none"
+                  />
+
+                  <polyline
+                    points="-674,200 -776,200"
                     stroke="white"
                     strokeWidth="2"
                     fill="none"

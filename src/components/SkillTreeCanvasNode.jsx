@@ -41,6 +41,9 @@ export default function SkillTreeCanvasNode({
   mastery,
   masteryDescriptions,
   prerequisites,
+
+  selected = false,
+  onSelect,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -57,12 +60,21 @@ export default function SkillTreeCanvasNode({
 
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
 
+  // 把 onClick 放進 getReferenceProps 以保留 floating-ui 的互動 props
+  const referenceProps = getReferenceProps({
+    onClick: (e) => {
+      e.stopPropagation(); // 避免觸發 canvas 的 drag
+      onSelect && onSelect(id);
+      console.log("debug");
+    },
+  });
+
   return (
     <>
       {/* 技能節點本體 */}
       <div
         ref={refs.setReference}
-        {...getReferenceProps()}
+        {...referenceProps}
         className="absolute -translate-x-1/2 -translate-y-1/2"
         style={{ top: y, left: x }}
       >
@@ -71,7 +83,14 @@ export default function SkillTreeCanvasNode({
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)]">
+          <div
+            className="flex h-12 w-12 items-center justify-center rounded-full border-2 bg-[rgba(0,0,0,0.25)]"
+            style={
+              selected
+                ? { borderColor: "#f59e0b" }
+                : { borderColor: "rgba(255,255,255,0.5)" }
+            }
+          >
             <Icon
               icon={icon}
               width="24"
@@ -95,6 +114,8 @@ export default function SkillTreeCanvasNode({
           workLink={workLink}
           mastery={mastery}
           masteryDescriptions={masteryDescriptions}
+          isSelected={selected}
+          onSelect={() => onSelect && onSelect(id)}
           {...getFloatingProps()}
         />
       )}

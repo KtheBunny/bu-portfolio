@@ -49,6 +49,8 @@ const SkillTreeCanvasNodeDetail = forwardRef(
       workLink,
       mastery,
       masteryDescriptions = [],
+      isSelected = false,
+      onSelect,
       ...props
     },
     ref,
@@ -138,7 +140,19 @@ const SkillTreeCanvasNodeDetail = forwardRef(
                 width="16"
                 height="16"
               />
-              <p className="text-xs text-white">已解鎖，點擊選擇此技能</p>
+              {isSelected ? (
+                <p className="text-xs text-amber-500">已選取</p>
+              ) : (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelect && onSelect();
+                  }}
+                  className="text-xs text-white hover:text-amber-300"
+                >
+                  已解鎖，點擊選擇此技能
+                </button>
+              )}
             </div>
           </motion.div>
         </div>

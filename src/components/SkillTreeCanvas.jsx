@@ -1,12 +1,10 @@
-import { motion } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
-import Iridescence from "./ui/iridescence";
-
 export default function SkillTreeCanvas() {
+  const [selectedIds, setSelectedIds] = useState(() => new Set());
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
   const containerRef = useRef(null); // 內部實際比 viewport 大的內容
   const cursorRef = useRef(null);
@@ -20,6 +18,16 @@ export default function SkillTreeCanvas() {
 
   const canvasWidth = 2200;
   const canvasHeight = 1600;
+
+  // 切換選取（加入或移除 id）
+  const toggleSelect = (id) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -135,6 +143,9 @@ export default function SkillTreeCanvas() {
     };
   }, []);
 
+  // 供給 view 使用的 helper（便於 render）
+  const isSelected = (id) => selectedIds.has(id);
+
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
@@ -208,351 +219,48 @@ export default function SkillTreeCanvas() {
                 <g
                   transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
                 >
-                  <polyline
-                    points="272,0 326,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="272,0 301,0 301,200 326,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="272,0 301,0 301,-200 326,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="374,-200 476,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="374,-200 450,-200 450,-300 476,-300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="374,-200 450,-200 450,-100 476,-100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="374,0 426,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="374,0 400,0 400,100 426,100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="374,200 476,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="374,200 450,200 450,300 476,300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="524,-200 626,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="524,-200 600,-200 600,-300 626,-300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="474,0 650,0 650,-100 676,-100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="474,0 676,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="474,0 650,0 650,100 676,100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="724,0 776,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="524,200 626,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="524,200 600,200 600,300 626,300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  {/* 中心分支 */}
-
-                  <polyline
-                    points="0,-174 0,-226"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-174 0,-200 -200,-200 -200,-226"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-174 0,-200 200,-200 200,-226"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="200,-274 200,-376"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="200,-424 200,-576"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="0,-274 0,-326"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-274 0,-300 100,-300 100,-326"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-274 0,-300 -100,-300 -100,-326"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="0,-374 0,-526"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-374 0,-500 100,-500 100,-526"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="0,-574 0,-676"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="0,-574 0,-650 -100,-650 -100,-676"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-100,-374 -100,-576"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-200,-274 -200,-376"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-200,-274 -200,-350 -300,-350 -300,-376"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-200,-424 -200,-576"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  {/* 左分支 */}
-
-                  <polyline
-                    points="-272,0 -326,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-272,0 -300,0 -300,-200 -326,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-272,0 -300,0 -300,200 -326,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-374,-200 -426,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-374,-200 -400,-200 -400,-300 -426,-300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-474,-200 -676,-200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-374,0 -476,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-374,0 -450,0 -450,-100 -476,-100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-524,-100 -626,-100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-674,-100 -776,-100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-524,0 -676,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-524,0 -650,0 -650,100 -676,100"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-724,0 -776,0"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-374,200 -426,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-                  <polyline
-                    points="-374,200 -400,200 -400,300 -426,300"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-474,200 -626,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
-
-                  <polyline
-                    points="-674,200 -776,200"
-                    stroke="white"
-                    strokeWidth="2"
-                    fill="none"
-                  />
+                  {/* 渲染所有 polyline */}
+                  {skills.map((s) =>
+                    s.polyline ? (
+                      <polyline
+                        key={`base-${s.id}`}
+                        points={s.polyline}
+                        stroke="rgba(255,255,255,0.5)"
+                        strokeWidth="2"
+                        fill="none"
+                      />
+                    ) : null,
+                  )}
                 </g>
 
                 {/* 上層 */}
                 <g
                   transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
-                ></g>
+                >
+                  {skills
+                    .filter((s) => selectedIds.has(s.id) && s.polyline)
+                    .map((s) => (
+                      <polyline
+                        key={`sel-${s.id}`}
+                        points={s.polyline}
+                        stroke="#f59e0b" // amber-500
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                    ))}
+                </g>
               </svg>
 
               {/* 所有技能節點 */}
               {skills.map((s) => (
-                <SkillTreeCanvasNode key={s.id} {...s} />
+                <SkillTreeCanvasNode
+                  key={s.id}
+                  {...s}
+                  selected={isSelected(s.id)}
+                  onSelect={toggleSelect}
+                />
               ))}
 
               {/* 中心角色卡片 */}

@@ -15,6 +15,7 @@ const skills = [
       "＋熟悉 Unity 引擎的基本操作與功能，能夠獨立完成小型遊戲專案。",
     ],
     prerequisites: [],
+    polyline: "272,0 301,0 301,-200 326,-200",
   },
   {
     id: 2,
@@ -32,6 +33,7 @@ const skills = [
       "＋具備單人開發小型遊戲經驗，能完成程式撰寫工作，理解遊戲開發中程式邏輯與架構設計，多人合作時也能支援遊戲系統的開發與擴充。",
     ],
     prerequisites: [],
+    polyline: "272,0 326,0",
   },
   {
     id: 3,
@@ -49,6 +51,7 @@ const skills = [
       "＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。",
     ],
     prerequisites: [],
+    polyline: "272,0 301,0 301,200 326,200",
   },
   {
     id: 4,
@@ -67,6 +70,7 @@ const skills = [
       "＋具有舊版 Input Manger 以及新版 Input System 的應用經驗。",
     ],
     prerequisites: [],
+    polyline: "374,-200 450,-200 450,-300 476,-300",
   },
   {
     id: 5,
@@ -85,6 +89,7 @@ const skills = [
       "＋在高難度的關卡設計亦可以設計出挑戰玩家能力的關卡，或者利用關卡設計去表現創意。",
     ],
     prerequisites: [],
+    polyline: "374,-200 476,-200",
   },
   {
     id: 6,
@@ -100,6 +105,7 @@ const skills = [
     mastery: 55,
     masteryDescriptions: ["＋具備相關觀念，並在參與的GameJam活動中實踐。"],
     prerequisites: [],
+    polyline: "374,-200 450,-200 450,-100 476,-100",
   },
   {
     id: 7,
@@ -118,6 +124,7 @@ const skills = [
       "＋優化部份具體相關觀念，但實踐機會不多。",
     ],
     prerequisites: [],
+    polyline: "374,0 400,0 400,100 426,100",
   },
   {
     id: 8,
@@ -135,6 +142,7 @@ const skills = [
       "＋能把想法轉換成實際遊戲中的功能，製作遊戲的 prototype 甚至成品。",
     ],
     prerequisites: [],
+    polyline: "374,0 426,0",
   },
   {
     id: 9,
@@ -153,6 +161,7 @@ const skills = [
       "＋另外有 Cinemachine 鏡頭運鏡調整經驗，對 2D 遊戲運鏡有一定程度理解。",
     ],
     prerequisites: [],
+    polyline: "374,200 450,200 450,300 476,300",
   },
   {
     id: 10,
@@ -168,6 +177,7 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋熟悉圖檔在 Unity 中的處理，也有很多應用經驗。"],
     prerequisites: [],
+    polyline: "374,200 476,200",
   },
   {
     id: 11,
@@ -185,6 +195,7 @@ const skills = [
       "＋大部份 2D 遊戲開發經驗中都使用 Tilemap，除了基本關卡設計，亦能利用它加入前後景製作 Parallex 效果。",
     ],
     prerequisites: [],
+    polyline: "524,-200 600,-200 600,-300 626,-300",
   },
   {
     id: 12,
@@ -202,6 +213,7 @@ const skills = [
       "＋曾用在模擬 Source Engine 的 rocket jump 玩法的 3D 遊戲中製作關卡。",
     ],
     prerequisites: [],
+    polyline: "524,-200 626,-200",
   },
   {
     id: 13,
@@ -219,6 +231,7 @@ const skills = [
       "＋2D 遊戲經驗為主，具備實作如 Coyote Time 跳躍緩衝等更細緻的操作體驗調整能力。",
     ],
     prerequisites: [],
+    polyline: "474,0 676,0",
   },
   {
     id: 14,
@@ -234,6 +247,7 @@ const skills = [
     mastery: 25,
     masteryDescriptions: ["＋具備相關概念，但實作次數不多"],
     prerequisites: [],
+    polyline: "474,0 650,0 650,-100 676,-100",
   },
   {
     id: 15,
@@ -249,6 +263,7 @@ const skills = [
     mastery: 30,
     masteryDescriptions: ["＋曾在練習用的小專案中製作"],
     prerequisites: [],
+    polyline: "474,0 650,0 650,100 676,100",
   },
   {
     id: 16,
@@ -264,6 +279,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋具備多次 UI 設計和實作經驗。"],
     prerequisites: [],
+    polyline: "524,200 600,200 600,300 626,300",
   },
   {
     id: 17,
@@ -282,6 +298,7 @@ const skills = [
       "＋曾實作 3D 遊戲模擬 Source Engine 的 rocket jump 玩法的經驗，該專案中需要計算不同爆炸位置對火箭跳動力的影響。",
     ],
     prerequisites: [],
+    polyline: "724,0 776,0",
   },
   {
     id: 18,
@@ -299,6 +316,7 @@ const skills = [
       "＋具匯入和處理動畫，並設定 state，parameter 和 condition 等能力和經驗。",
     ],
     prerequisites: [],
+    polyline: "524,200 626,200",
   },
   {
     id: 19,
@@ -313,6 +331,7 @@ const skills = [
     mastery: 70,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-174 0,-200 200,-200 200,-226",
   },
   {
     id: 20,
@@ -327,6 +346,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-174 0,-200 -200,-200 -200,-226",
   },
   {
     id: 21,
@@ -341,6 +361,7 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-174 0,-226",
   },
   {
     id: 22,
@@ -355,6 +376,7 @@ const skills = [
     mastery: 20,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-200,-274 -200,-350 -300,-350 -300,-376",
   },
   {
     id: 23,
@@ -369,6 +391,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-200,-274 -200,-376",
   },
   {
     id: 24,
@@ -383,6 +406,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-200,-424 -200,-576",
   },
   {
     id: 25,
@@ -397,6 +421,7 @@ const skills = [
     mastery: 70,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "200,-274 200,-376",
   },
   {
     id: 26,
@@ -411,6 +436,7 @@ const skills = [
     mastery: 70,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "200,-424 200,-576",
   },
   {
     id: 27,
@@ -425,13 +451,14 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-274 0,-326",
   },
   {
     id: 28,
     x: -100,
     y: -350,
     icon: "bxl:javascript",
-    title: "Js",
+    title: "JavaScript",
     type: "被動技能",
     description: null,
     works: [],
@@ -439,6 +466,7 @@ const skills = [
     mastery: 60,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-274 0,-300 -100,-300 -100,-326",
   },
   {
     id: 29,
@@ -453,6 +481,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-274 0,-300 100,-300 100,-326",
   },
   {
     id: 30,
@@ -467,6 +496,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-374 0,-526",
   },
   {
     id: 31,
@@ -481,6 +511,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-374 0,-500 100,-500 100,-526",
   },
   {
     id: 32,
@@ -495,6 +526,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-100,-374 -100,-576",
   },
   {
     id: 33,
@@ -509,6 +541,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-574 0,-650 -100,-650 -100,-676",
   },
   {
     id: 34,
@@ -523,6 +556,7 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "0,-574 0,-676",
   },
   {
     id: 35,
@@ -537,6 +571,7 @@ const skills = [
     mastery: 60,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-272,0 -300,0 -300,-200 -326,-200",
   },
   {
     id: 36,
@@ -551,6 +586,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-272,0 -326,0",
   },
   {
     id: 37,
@@ -565,6 +601,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-272,0 -300,0 -300,200 -326,200",
   },
   {
     id: 38,
@@ -579,6 +616,7 @@ const skills = [
     mastery: 60,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,-200 -400,-200 -400,-300 -426,-300",
   },
   {
     id: 39,
@@ -593,6 +631,7 @@ const skills = [
     mastery: 70,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,-200 -426,-200",
   },
   {
     id: 40,
@@ -607,6 +646,7 @@ const skills = [
     mastery: 10,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-474,-200 -676,-200",
   },
   {
     id: 41,
@@ -621,6 +661,7 @@ const skills = [
     mastery: 75,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,0 -450,0 -450,-100 -476,-100",
   },
   {
     id: 42,
@@ -635,6 +676,7 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-524,-100 -626,-100",
   },
   {
     id: 43,
@@ -649,13 +691,14 @@ const skills = [
     mastery: 50,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-674,-100 -776,-100",
   },
   {
     id: 44,
     x: -500,
     y: 0,
     icon: "material-symbols:animation-outline",
-    title: "動畫繪製",
+    title: "動畫繪製能力",
     type: "被動技能",
     description: null,
     works: [],
@@ -663,6 +706,7 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,0 -476,0",
   },
   {
     id: 45,
@@ -677,6 +721,7 @@ const skills = [
     mastery: 80,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-524,0 -676,0",
   },
   {
     id: 46,
@@ -691,6 +736,7 @@ const skills = [
     mastery: 60,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-724,0 -776,0",
   },
   {
     id: 47,
@@ -705,6 +751,7 @@ const skills = [
     mastery: 60,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-524,0 -650,0 -650,100 -676,100",
   },
   {
     id: 48,
@@ -719,6 +766,7 @@ const skills = [
     mastery: 70,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,200 -400,200 -400,300 -426,300",
   },
   {
     id: 49,
@@ -733,6 +781,7 @@ const skills = [
     mastery: 40,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-374,200 -426,200",
   },
   {
     id: 50,
@@ -747,6 +796,7 @@ const skills = [
     mastery: 25,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-474,200 -626,200",
   },
   {
     id: 51,
@@ -761,6 +811,7 @@ const skills = [
     mastery: 10,
     masteryDescriptions: ["＋"],
     prerequisites: [],
+    polyline: "-674,200 -776,200",
   },
 ];
 

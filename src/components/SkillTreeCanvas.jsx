@@ -23,11 +23,56 @@ export default function SkillTreeCanvas() {
   const toggleSelect = (id) => {
     setSelectedIds((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+      const isSelected = next.has(id);
+
+      // 找到此 node
+      const skill = skills.find((s) => s.id === id);
+
+      // ---------- 1. 如果是要選取 ----------
+      if (!isSelected) {
+        // 如果有 prerequisites → 檢查每個前置是否已被選取
+        const allPrereqsSelected = skill.prerequisites.every((preId) => next.has(preId));
+
+        if (!allPrereqsSelected) {
+          console.log("❌ 前置技能未全部選取，不能選這個。");
+          return next; // 不更新
+        }
+
+        // 允許選取
+        next.add(id);
+        return next;
+      }
+
+      // ---------- 2. 如果是要取消 ----------
+      next.delete(id);
+
+      // 取得所有子孫 node
+      const descendants = getAllDescendants(id);
+
+      // 把所有後續 node 全部強制取消
+      descendants.forEach((childId) => next.delete(childId));
+
       return next;
     });
   };
+
+  // 供給 view 使用的 helper（便於 render）
+  const isSelected = (id) => selectedIds.has(id);
+
+  function getAllDescendants(skillId) {
+    const result = [];
+  
+    function dfs(id) {
+      const children = skills.filter(s => s.prerequisites.includes(id));
+      for (const child of children) {
+        result.push(child.id);
+        dfs(child.id);
+      }
+    }
+
+    dfs(skillId);
+    return result;
+  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -143,9 +188,6 @@ export default function SkillTreeCanvas() {
     };
   }, []);
 
-  // 供給 view 使用的 helper（便於 render）
-  const isSelected = (id) => selectedIds.has(id);
-
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
@@ -225,7 +267,7 @@ export default function SkillTreeCanvas() {
                       <polyline
                         key={`base-${s.id}`}
                         points={s.polyline}
-                        stroke="rgba(255,255,255,0.5)"
+                        stroke="gray"
                         strokeWidth="2"
                         fill="none"
                       />

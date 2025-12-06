@@ -65,7 +65,6 @@ export default function SkillTreeCanvasNode({
     onClick: (e) => {
       e.stopPropagation(); // 避免觸發 canvas 的 drag
       onSelect && onSelect(id);
-      console.log("debug");
     },
   });
 
@@ -87,8 +86,8 @@ export default function SkillTreeCanvasNode({
             className="flex h-12 w-12 items-center justify-center rounded-full border-2 bg-[rgba(0,0,0,0.25)]"
             style={
               selected
-                ? { borderColor: "#f59e0b" }
-                : { borderColor: "rgba(255,255,255,0.5)" }
+                ? { borderColor: "#f59e0b", borderWidth: "3px" }
+                : { borderColor: "rgba(255,255,255,0.5)", borderWidth: "2px" }
             }
           >
             <Icon

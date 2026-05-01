@@ -1,12 +1,7 @@
-import NavSideBar from "../components/NavSideBar";
 import "../index.css";
 
 function Home({}) {
-  return (
-    <>
-      <NavSideBar />
-    </>
-  );
+  return <></>;
 }
 
 export default Home;

@@ -1,4 +1,3 @@
-import NavSideBar from "../components/NavSideBar";
 import SkillTreeCanvas from "../components/SkillTreeCanvas";
 import SkillTreeTopBar from "../components/SkillTreeTopBar";
 import "../index.css";
@@ -6,7 +5,6 @@ import "../index.css";
 function Tree({}) {
   return (
     <>
-      <NavSideBar />
       <SkillTreeTopBar />
       <SkillTreeCanvas />
     </>

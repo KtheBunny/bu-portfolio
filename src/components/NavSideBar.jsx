@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { motion } from "motion/react";
 
 const navItems = [
   {
@@ -29,12 +30,17 @@ const navItems = [
   },
 ];
 
+// 每個導航項目的高度 (h-10 = 40px) + space-y-4 (16px) = 56px
+const ITEM_HEIGHT = 56;
+// 4個項目的總高度 = 4 * 56 = 224px
+// 從 nav 頂部到第一個項目的偏移量 (居中計算)
+const FIRST_ITEM_OFFSET = -76; // = 84px from top
+
 export default function NavSideBar() {
   const location = useLocation();
   const [buttonHovered, setButtonHovered] = useState(null);
   const [navHovered, setIsNavHovered] = useState(false);
 
-  // 找到當前 active 的項目索引
   const activeIndex = navItems.findIndex(
     (item) => item.path === location.pathname,
   );
@@ -43,9 +49,34 @@ export default function NavSideBar() {
     <>
       <nav
         className={`fixed left-0 top-0 z-50 flex h-screen w-14 flex-col items-center justify-center space-y-4 border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
-        onMouseEnter={() => setIsNavHovered(true)}
-        onMouseLeave={() => setIsNavHovered(false)}
+        onMouseEnter={() => {
+          setIsNavHovered(true);
+          setButtonHovered(activeIndex);
+        }}
+        onMouseLeave={() => {
+          setIsNavHovered(false);
+          setButtonHovered(null);
+        }}
       >
+        {/* 動畫背景方塊 */}
+        {/* 動畫背景方塊 - 改用 absolute 定位，相對於 nav */}
+        {navHovered && (
+          <motion.div
+            className="absolute w-full rounded-md bg-gray-700/50"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              y: FIRST_ITEM_OFFSET + buttonHovered * ITEM_HEIGHT,
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            style={{
+              height: "2.5rem",
+              left: 0,
+            }}
+          />
+        )}
+
         {navItems.map((item, index) => {
           const isActive = location.pathname === item.path;
 
@@ -53,9 +84,9 @@ export default function NavSideBar() {
             <Link
               key={item.path}
               to={item.path}
-              className="group relative ml-1 flex h-10 w-full items-center justify-center rounded-md transition-all ease-in-out"
+              className="group relative ml-1 mt-0 flex h-10 w-full items-center justify-center rounded-md transition-all ease-in-out"
               onMouseEnter={() => setButtonHovered(index)}
-              onMouseLeave={() => setButtonHovered(null)}
+              onMouseLeave={() => setButtonHovered(index)}
             >
               {/* 圖標 */}
               {/*

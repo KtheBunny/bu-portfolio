@@ -34,7 +34,7 @@ const navItems = [
 const ITEM_HEIGHT = 56;
 // 4個項目的總高度 = 4 * 56 = 224px
 // 從 nav 頂部到第一個項目的偏移量 (居中計算)
-const FIRST_ITEM_OFFSET = -76; // = 84px from top
+const FIRST_ITEM_OFFSET = -84; // = 84px from top
 
 export default function NavSideBar() {
   const location = useLocation();
@@ -48,7 +48,7 @@ export default function NavSideBar() {
   return (
     <>
       <nav
-        className={`fixed left-0 top-0 z-50 flex h-screen w-14 flex-col items-center justify-center space-y-4 border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
+        className={`fixed left-0 top-0 z-50 flex h-screen w-14 flex-col items-center justify-center border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
         onMouseEnter={() => {
           setIsNavHovered(true);
           setButtonHovered(activeIndex);
@@ -77,6 +77,7 @@ export default function NavSideBar() {
           />
         )}
 
+        <div className="relative flex flex-col items-center w-full justify-center space-y-4">
         {navItems.map((item, index) => {
           const isActive = location.pathname === item.path;
 
@@ -88,14 +89,6 @@ export default function NavSideBar() {
               onMouseEnter={() => setButtonHovered(index)}
               onMouseLeave={() => setButtonHovered(index)}
             >
-              {/* 圖標 */}
-              {/*
-              <span
-                className={`material-symbols-outlined absolute left-3 pl-1 transition-all ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"}`}
-              >
-                {item.icon}
-              </span>
-              */}
               <Icon
                 icon={isActive ? item.fill : item.outline}
                 className={`absolute left-3 pl-1 transition-all duration-300 ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"}`}
@@ -112,6 +105,7 @@ export default function NavSideBar() {
             </Link>
           );
         })}
+        </div>
       </nav>
     </>
   );

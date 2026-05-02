@@ -1,7 +1,12 @@
 import "../index.css";
+import HomeCanvas from "../components/HomeCanvas";
 
 function Home({}) {
-  return <></>;
+  return (
+    <>
+      <HomeCanvas />
+    </>
+  );
 }
 
 export default Home;

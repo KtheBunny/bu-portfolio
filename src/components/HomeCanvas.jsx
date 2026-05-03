@@ -7,8 +7,8 @@ export default function HomeCanvas() {
   const left = useSpring(0.33, { stiffness: 120, damping: 20 });
   const right = useSpring(0.66, { stiffness: 120, damping: 20 });
 
-  const leftPx = useTransform(left, v => v * window.innerWidth);
-  const rightPx = useTransform(right, v => v * window.innerWidth);
+  const leftPx = useTransform(left, (v) => v * window.innerWidth);
+  const rightPx = useTransform(right, (v) => v * window.innerWidth);
 
   useEffect(() => {
     const handleMove = (e) => {
@@ -24,8 +24,8 @@ export default function HomeCanvas() {
       left.set(l);
       right.set(r);
 
-      leftPx = useTransform(left, v => v * window.innerWidth);
-      rightPx = useTransform(right, v => v * window.innerWidth);
+      leftPx = useTransform(left, (v) => v * window.innerWidth);
+      rightPx = useTransform(right, (v) => v * window.innerWidth);
     };
 
     window.addEventListener("mousemove", handleMove);
@@ -33,13 +33,14 @@ export default function HomeCanvas() {
   }, []);
 
   return (
-    <div className="w-screen h-screen relative overflow-hidden">
+    <div className="relative h-screen w-screen overflow-hidden">
       {/* Left Image */}
       <motion.div
-        className="absolute top-0 left-0 h-full"
+        className="absolute left-0 top-0 h-full"
         style={{
           width: leftPx,
-          backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSARy92buJi10IoE0rkPff3TSyea70gs6p_A&s')",
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -51,7 +52,8 @@ export default function HomeCanvas() {
         style={{
           left: left.get() * window.innerWidth,
           width: (right.get() - left.get()) * window.innerWidth,
-          backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5LyLOEgzHI_DUyT9ZZZ8f_2v5wxARxThc_g&s')",
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -59,10 +61,11 @@ export default function HomeCanvas() {
 
       {/* Right Image */}
       <motion.div
-        className="absolute top-0 right-0 h-full"
+        className="absolute right-0 top-0 h-full"
         style={{
           width: (1 - right.get()) * window.innerWidth,
-          backgroundImage: "url('https://moegirl.uk/images/b/ba/%E9%A6%99%E8%95%89%E5%90%9B%E9%AB%98%E6%B8%85.jpg')",
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -71,14 +74,13 @@ export default function HomeCanvas() {
       {/* Divider lines */}
       <motion.div
         className="absolute top-0 h-full w-[2px] bg-white"
-        style={{ left: leftPx}}
+        style={{ left: leftPx }}
       />
 
       <motion.div
         className="absolute top-0 h-full w-[2px] bg-white"
-        style={{ left: rightPx}}
+        style={{ left: rightPx }}
       />
     </div>
   );
-
 }

@@ -5,7 +5,7 @@ export default function HomeCanvas() {
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0)
   const currentX = useRef(0.5); // normalized 0~1
-
+  
   const mouseX = useMotionValue(0.5); // normalized 0~1
 
   const left = useSpring(0.33, { stiffness: 120, damping: 20 });

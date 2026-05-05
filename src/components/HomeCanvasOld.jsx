@@ -1,11 +1,11 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-export default function HomeCanvasTest() {
+export default function HomeCanvasOld() {
   const containerRef = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0)
+  const [containerWidth, setContainerWidth] = useState(0);
   const currentX = useRef(0.5); // normalized 0~1
-  
+
   const mouseX = useMotionValue(0.5); // normalized 0~1
 
   const left = useSpring(0.33, { stiffness: 120, damping: 20 });
@@ -30,7 +30,10 @@ export default function HomeCanvasTest() {
   const leftPx = useTransform(left, (v) => v * containerWidth);
   const rightPx = useTransform(right, (v) => v * containerWidth);
   const leftWidth = useTransform(left, (v) => v * containerWidth);
-  const midWidth = useTransform([left, right], ([l, r]) => (r - l) * containerWidth);
+  const midWidth = useTransform(
+    [left, right],
+    ([l, r]) => (r - l) * containerWidth,
+  );
   const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
   const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
 
@@ -50,11 +53,11 @@ export default function HomeCanvasTest() {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
-      const rect = containerRef.current.getBoundingClientRect();  // 獲取容器的位置和尺寸
+      const rect = containerRef.current.getBoundingClientRect(); // 獲取容器的位置和尺寸
 
-      const relativeX = e.clientX - rect.left;  // 滑鼠 x 減去容器左邊緣
-      const x = Math.max(0, Math.min(1, relativeX / rect.width));  // 歸一化到 0-1，確保不超出範圍
-      
+      const relativeX = e.clientX - rect.left; // 滑鼠 x 減去容器左邊緣
+      const x = Math.max(0, Math.min(1, relativeX / rect.width)); // 歸一化到 0-1，確保不超出範圍
+
       currentX.current = x;
       mouseX.set(x);
       updateSeparators(x);
@@ -66,17 +69,16 @@ export default function HomeCanvasTest() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("resize", handleResize);
     };
-    
   }, []);
 
   return (
-    <div 
-    ref={containerRef}
-    className="relative h-screen w-screen overflow-hidden home-canvas-container"
-    style={{ 
-    left: '3.5rem',  // 向右偏移 navBar 的寬度
-    width: 'calc(100vw - 3.5rem)'  // 寬度減去 navBar 的寬度
-  }}
+    <div
+      ref={containerRef}
+      className="home-canvas-container relative h-screen w-screen overflow-hidden"
+      style={{
+        left: "3.5rem", // 向右偏移 navBar 的寬度
+        width: "calc(100vw - 3.5rem)", // 寬度減去 navBar 的寬度
+      }}
     >
       {/* Left Image */}
       <motion.div
@@ -89,14 +91,16 @@ export default function HomeCanvasTest() {
           backgroundPosition: "center",
           //WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
           //maskImage: "linear-gradient(to right, black 85%, transparent)"
-        }}>
+        }}
+      >
         {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-black text-4xl font-bold whitespace-nowrap"
+        <h1
+          className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-black"
           style={{
             left: `calc(50vw - ${0}px)`,
-            transform: 'translate(-50%, -50%)',
-          }}>
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           Welcome to My Portfolio
         </h1>
       </motion.div>
@@ -112,17 +116,19 @@ export default function HomeCanvasTest() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           //WebkitMaskImage:
-            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           //maskImage:
-            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
-        }}>
+          //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+        }}
+      >
         {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-white text-4xl font-bold whitespace-nowrap"
+        <h1
+          className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-white"
           style={{
             left: centerX,
-            transform: 'translate(-50%, -50%)',
-          }}>
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           Welcome to My Portfolio
         </h1>
       </motion.div>
@@ -138,18 +144,32 @@ export default function HomeCanvasTest() {
           backgroundPosition: "center",
           //WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
           //maskImage: "linear-gradient(to right, transparent, black 15%)"
-        }}>
+        }}
+      >
         {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-red-500 text-4xl font-bold whitespace-nowrap"
+        <h1
+          className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-4xl font-bold text-red-500"
           style={{
             left: centerX,
-            transform: 'translate(-50%, -50%)',
-          }}>
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           Welcome to My Portfolio
         </h1>
       </motion.div>
 
+      {/* Divider lines */}
+      {/*}
+      <motion.div
+        className="absolute top-0 h-full w-[2px] bg-white"
+        style={{ left: leftPx }}
+      />
+
+      <motion.div
+        className="absolute top-0 h-full w-[2px] bg-white"
+        style={{ left: rightPx }}
+      />
+      */}
     </div>
   );
 }

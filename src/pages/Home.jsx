@@ -1,11 +1,11 @@
 import "../index.css";
+import HomeCanvasOld from "../components/HomeCanvasOld";
 import HomeCanvas from "../components/HomeCanvas";
-import HomeCanvasTest from "../components/HomeCanvasTest";
 
 function Home({}) {
   return (
     <>
-      <HomeCanvasTest />
+      <HomeCanvas />
     </>
   );
 }

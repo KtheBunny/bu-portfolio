@@ -1,11 +1,12 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { MouseParallax } from "react-just-parallax";
 import { useState, useEffect, useRef } from "react";
 
 export default function HomeCanvas() {
   const containerRef = useRef(null);
-  const [containerWidth, setContainerWidth] = useState(0)
+  const [containerWidth, setContainerWidth] = useState(0);
   const currentX = useRef(0.5); // normalized 0~1
-  
+
   const mouseX = useMotionValue(0.5); // normalized 0~1
 
   const left = useSpring(0.33, { stiffness: 120, damping: 20 });
@@ -27,10 +28,13 @@ export default function HomeCanvas() {
     right.set(r);
   };
 
-  const leftPx = useTransform(left, (v) => v * containerWidth);
+  const leftPx = useTransform(left, (v) => v * containerWidth - 200);
   const rightPx = useTransform(right, (v) => v * containerWidth);
   const leftWidth = useTransform(left, (v) => v * containerWidth);
-  const midWidth = useTransform([left, right], ([l, r]) => (r - l) * containerWidth);
+  const midWidth = useTransform(
+    [left, right],
+    ([l, r]) => (r - l) * containerWidth + 400,
+  );
   const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
   const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
 
@@ -50,11 +54,11 @@ export default function HomeCanvas() {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
-      const rect = containerRef.current.getBoundingClientRect();  // 獲取容器的位置和尺寸
+      const rect = containerRef.current.getBoundingClientRect(); // 獲取容器的位置和尺寸
 
-      const relativeX = e.clientX - rect.left;  // 滑鼠 x 減去容器左邊緣
-      const x = Math.max(0, Math.min(1, relativeX / rect.width));  // 歸一化到 0-1，確保不超出範圍
-      
+      const relativeX = e.clientX - rect.left; // 滑鼠 x 減去容器左邊緣
+      const x = Math.max(0, Math.min(1, relativeX / rect.width)); // 歸一化到 0-1，確保不超出範圍
+
       currentX.current = x;
       mouseX.set(x);
       updateSeparators(x);
@@ -66,103 +70,123 @@ export default function HomeCanvas() {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("resize", handleResize);
     };
-    
   }, []);
 
   return (
-    <div 
-    ref={containerRef}
-    className="relative h-screen w-screen overflow-hidden home-canvas-container"
-    style={{ 
-    left: '3.5rem',  // 向右偏移 navBar 的寬度
-    width: 'calc(100vw - 3.5rem)'  // 寬度減去 navBar 的寬度
-  }}
+    <div
+      ref={containerRef}
+      className="home-canvas-container relative h-screen w-screen overflow-hidden"
+      style={{
+        left: "3.5rem",
+        width: "calc(100vw - 3.5rem)",
+      }}
     >
-      {/* Left Image */}
+      {/* Left Part */}
       <motion.div
-        className="absolute left-0 top-0 h-full overflow-hidden"
+        className="absolute left-0 top-0 z-10 h-full overflow-hidden"
         style={{
           width: leftWidth,
-          backgroundImage:
-            "url('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          //WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
-          //maskImage: "linear-gradient(to right, black 85%, transparent)"
-        }}>
-        {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-black text-4xl font-bold whitespace-nowrap"
+          WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
+          maskImage: "linear-gradient(to right, black 85%, transparent)",
+        }}
+      >
+        <div
+          className="fixed left-[3.5rem] top-0 h-full"
           style={{
-            left: `calc(50vw - ${0}px)`,
-            transform: 'translate(-50%, -50%)',
-          }}>
-          Welcome to My Portfolio
-        </h1>
+            backgroundImage:
+              "url('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "calc(100vw - 3.5rem)",
+          }}
+        >
+          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+            <h2 className="font-gugi flex w-full justify-between text-2xl font-bold text-red-700">
+              {"Game       Dev".split("").map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </h2>
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-red-700">
+              PORTFOLIO
+            </h1>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Middle Image */}
+      {/* Middle Part */}
       <motion.div
         className="absolute top-0 h-full overflow-hidden"
         style={{
           left: leftPx,
           width: midWidth,
-          backgroundImage:
-            "url('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          //WebkitMaskImage:
-            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          //maskImage:
-            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
-        }}>
-        {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-white text-4xl font-bold whitespace-nowrap"
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          maskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        }}
+      >
+        <div
+          className="fixed left-[3.5rem] top-0 h-full"
           style={{
-            left: centerX,
-            transform: 'translate(-50%, -50%)',
-          }}>
-          Welcome to My Portfolio
-        </h1>
+            backgroundImage:
+              "url('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "calc(100vw - 3.5rem)",
+          }}
+        >
+          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+            <h2 className="font-gugi flex w-full justify-between text-2xl font-bold text-yellow-100">
+              {"UI/UX   Design".split("").map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </h2>
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-yellow-100">
+              PORTFOLIO
+            </h1>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Right Image */}
+      {/* Right Part */}
       <motion.div
         className="absolute right-0 top-0 h-full overflow-hidden"
         style={{
           width: rightWidth,
-          backgroundImage:
-            "url('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          //WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
-          //maskImage: "linear-gradient(to right, transparent, black 15%)"
-        }}>
-        {/* 畫面中心標題 */}
-        <h1 
-          className="absolute top-1/2 -translate-y-1/2 text-red-500 text-4xl font-bold whitespace-nowrap"
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
+          maskImage: "linear-gradient(to right, transparent, black 15%)",
+        }}
+      >
+        <div
+          className="fixed left-[3.5rem] top-0 h-full"
           style={{
-            left: centerX,
-            transform: 'translate(-50%, -50%)',
-          }}>
-          Welcome to My Portfolio
-        </h1>
+            backgroundImage:
+              "url('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "calc(100vw - 3.5rem)",
+          }}
+        >
+          <MouseParallax
+            isAbsolutelyPositioned
+            strength={0.1}
+            zIndex={1}
+            shouldPause={false}
+            enableOnTouchDevice={true}
+          >
+            <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+              <h2 className="font-gugi flex w-full justify-between text-2xl font-normal text-white">
+                {"Illustration".split("").map((c, i) => (
+                  <span key={i}>{c}</span>
+                ))}
+              </h2>
+              <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
+                PORTFOLIO
+              </h1>
+            </div>
+          </MouseParallax>
+        </div>
       </motion.div>
-      
-
-      {/* Divider lines */}
-      {/*}
-      <motion.div
-        className="absolute top-0 h-full w-[2px] bg-white"
-        style={{ left: leftPx }}
-      />
-
-      <motion.div
-        className="absolute top-0 h-full w-[2px] bg-white"
-        style={{ left: rightPx }}
-      />
-      */}
     </div>
   );
 }

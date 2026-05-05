@@ -1,86 +1,155 @@
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useTexture, Line } from '@react-three/drei';
-import { useRef, useState, useCallback } from 'react';
-
-function Scene({ leftVal, rightVal }) {
-  const leftTexture = useTexture('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large');
-  const midTexture = useTexture('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large');
-  const rightTexture = useTexture('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096');
-
-  const smoothLeft = useRef(leftVal);
-  const smoothRight = useRef(rightVal);
-
-  useFrame((state, delta) => {
-    const factor = 1 - Math.exp(-delta * 5);
-    smoothLeft.current += (leftVal - smoothLeft.current) * factor;
-    smoothRight.current += (rightVal - smoothRight.current) * factor;
-  });
-
-  return (
-    <>
-      <ambientLight intensity={1} />
-      <mesh position={[-2, 0, 0]} scale={[smoothLeft.current * 4, 2, 1]}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial map={leftTexture} />
-      </mesh>
-      <mesh position={[0, 0, 0]} scale={[(smoothRight.current - smoothLeft.current) * 4, 2, 1]}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial map={midTexture} />
-      </mesh>
-      <mesh position={[2, 0, 0]} scale={[(1 - smoothRight.current) * 4, 2, 1]}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial map={rightTexture} />
-      </mesh>
-      <Line
-        points={[[smoothLeft.current * 4 - 2, -1, 0], [smoothLeft.current * 4 - 2, 1, 0]]}
-        color="white"
-        lineWidth={2}
-      />
-      <Line
-        points={[[smoothRight.current * 4 - 2, -1, 0], [smoothRight.current * 4 - 2, 1, 0]]}
-        color="white"
-        lineWidth={2}
-      />
-    </>
-  );
-}
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export default function HomeCanvasTest() {
-  const [leftVal, setLeftVal] = useState(0.33);
-  const [rightVal, setRightVal] = useState(0.66);
+  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0)
+  const currentX = useRef(0.5); // normalized 0~1
+  
+  const mouseX = useMotionValue(0.5); // normalized 0~1
 
-  const updateSeparators = useCallback((x) => {
+  const left = useSpring(0.33, { stiffness: 120, damping: 20 });
+  const right = useSpring(0.66, { stiffness: 120, damping: 20 });
+
+  const updateSeparators = (x) => {
     let l, r;
     if (x < 0.33) {
-      l = 0.8; r = 0.9;
-    } else if (x <= 0.66) {
-      l = 0.1; r = 0.9;
+      l = 0.8;
+      r = 0.9;
+    } else if (x >= 0.33 && x <= 0.66) {
+      l = 0.1;
+      r = 0.9;
     } else {
-      l = 0.1; r = 0.2;
+      l = 0.1;
+      r = 0.2;
     }
-    setLeftVal(l);
-    setRightVal(r);
+    left.set(l);
+    right.set(r);
+  };
+
+  const leftPx = useTransform(left, (v) => v * containerWidth);
+  const rightPx = useTransform(right, (v) => v * containerWidth);
+  const leftWidth = useTransform(left, (v) => v * containerWidth);
+  const midWidth = useTransform([left, right], ([l, r]) => (r - l) * containerWidth);
+  const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
+  const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerWidth(containerRef.current.getBoundingClientRect().width);
+    }
+
+    const handleResize = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.getBoundingClientRect().width);
+      }
+      updateSeparators(currentX.current);
+    };
+
+    const handleMove = (e) => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.getBoundingClientRect().width);
+      }
+      const rect = containerRef.current.getBoundingClientRect();  // 獲取容器的位置和尺寸
+
+      const relativeX = e.clientX - rect.left;  // 滑鼠 x 減去容器左邊緣
+      const x = Math.max(0, Math.min(1, relativeX / rect.width));  // 歸一化到 0-1，確保不超出範圍
+      
+      currentX.current = x;
+      mouseX.set(x);
+      updateSeparators(x);
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("resize", handleResize);
+    };
+    
   }, []);
 
-  const handlePointerMove = useCallback((e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-    updateSeparators(x);
-  }, [updateSeparators]);
-
   return (
-    <Canvas
-      camera={{ position: [0, 0, 5], fov: 50 }}
-      onPointerMove={handlePointerMove}
-      style={{
-        position: 'absolute',
-        left: '3.5rem',
-        width: 'calc(100vw - 3.5rem)',
-        height: '100vh',
-        background: '#000'
-      }}
+    <div 
+    ref={containerRef}
+    className="relative h-screen w-screen overflow-hidden home-canvas-container"
+    style={{ 
+    left: '3.5rem',  // 向右偏移 navBar 的寬度
+    width: 'calc(100vw - 3.5rem)'  // 寬度減去 navBar 的寬度
+  }}
     >
-      <Scene leftVal={leftVal} rightVal={rightVal} />
-    </Canvas>
+      {/* Left Image */}
+      <motion.div
+        className="absolute left-0 top-0 h-full overflow-hidden"
+        style={{
+          width: leftWidth,
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          //WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
+          //maskImage: "linear-gradient(to right, black 85%, transparent)"
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-black text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: `calc(50vw - ${0}px)`,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
+
+      {/* Middle Image */}
+      <motion.div
+        className="absolute top-0 h-full overflow-hidden"
+        style={{
+          left: leftPx,
+          width: midWidth,
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          //WebkitMaskImage:
+            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          //maskImage:
+            //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-white text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: centerX,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
+
+      {/* Right Image */}
+      <motion.div
+        className="absolute right-0 top-0 h-full overflow-hidden"
+        style={{
+          width: rightWidth,
+          backgroundImage:
+            "url('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          //WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
+          //maskImage: "linear-gradient(to right, transparent, black 15%)"
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-red-500 text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: centerX,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
+
+    </div>
   );
 }

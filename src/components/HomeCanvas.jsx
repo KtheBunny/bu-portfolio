@@ -32,6 +32,7 @@ export default function HomeCanvas() {
   const leftWidth = useTransform(left, (v) => v * containerWidth);
   const midWidth = useTransform([left, right], ([l, r]) => (r - l) * containerWidth);
   const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
+  const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -79,7 +80,7 @@ export default function HomeCanvas() {
     >
       {/* Left Image */}
       <motion.div
-        className="absolute left-0 top-0 h-full"
+        className="absolute left-0 top-0 h-full overflow-hidden"
         style={{
           width: leftWidth,
           backgroundImage:
@@ -88,12 +89,21 @@ export default function HomeCanvas() {
           backgroundPosition: "center",
           //WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
           //maskImage: "linear-gradient(to right, black 85%, transparent)"
-        }}
-      />
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-black text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: `calc(50vw - ${0}px)`,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
 
       {/* Middle Image */}
       <motion.div
-        className="absolute top-0 h-full"
+        className="absolute top-0 h-full overflow-hidden"
         style={{
           left: leftPx,
           width: midWidth,
@@ -105,12 +115,21 @@ export default function HomeCanvas() {
             //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           //maskImage:
             //"linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
-        }}
-      />
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-white text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: centerX,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
 
       {/* Right Image */}
       <motion.div
-        className="absolute right-0 top-0 h-full"
+        className="absolute right-0 top-0 h-full overflow-hidden"
         style={{
           width: rightWidth,
           backgroundImage:
@@ -119,8 +138,18 @@ export default function HomeCanvas() {
           backgroundPosition: "center",
           //WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
           //maskImage: "linear-gradient(to right, transparent, black 15%)"
-        }}
-      />
+        }}>
+        {/* 畫面中心標題 */}
+        <h1 
+          className="absolute top-1/2 -translate-y-1/2 text-red-500 text-4xl font-bold whitespace-nowrap"
+          style={{
+            left: centerX,
+            transform: 'translate(-50%, -50%)',
+          }}>
+          Welcome to My Portfolio
+        </h1>
+      </motion.div>
+      
 
       {/* Divider lines */}
       {/*}

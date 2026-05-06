@@ -1,6 +1,7 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { MouseParallax } from "react-just-parallax";
 import { useState, useEffect, useRef } from "react";
+
+import HomeParaArt from "./HomeParaArt";
 
 export default function HomeCanvas() {
   const containerRef = useRef(null);
@@ -101,7 +102,7 @@ export default function HomeCanvas() {
           }}
         >
           <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="font-gugi flex w-full justify-between text-2xl font-bold text-red-700">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-red-700">
               {"Game       Dev".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
@@ -136,7 +137,7 @@ export default function HomeCanvas() {
           }}
         >
           <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="font-gugi flex w-full justify-between text-2xl font-bold text-yellow-100">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-yellow-100">
               {"UI/UX   Design".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
@@ -159,32 +160,20 @@ export default function HomeCanvas() {
       >
         <div
           className="fixed left-[3.5rem] top-0 h-full"
-          style={{
-            backgroundImage:
-              "url('https://pbs.twimg.com/media/G5I_zoNasAAJql_?format=jpg&name=large')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            width: "calc(100vw - 3.5rem)",
-          }}
+          style={{ width: "calc(100vw - 3.5rem)" }}
         >
-          <MouseParallax
-            isAbsolutelyPositioned
-            strength={0.1}
-            zIndex={1}
-            shouldPause={false}
-            enableOnTouchDevice={true}
-          >
-            <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-              <h2 className="font-gugi flex w-full justify-between text-2xl font-normal text-white">
-                {"Illustration".split("").map((c, i) => (
-                  <span key={i}>{c}</span>
-                ))}
-              </h2>
-              <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
-                PORTFOLIO
-              </h1>
-            </div>
-          </MouseParallax>
+          <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white">
+              {"Illustration".split("").map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </h2>
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
+              PORTFOLIO
+            </h1>
+          </div>
+
+          <HomeParaArt />
         </div>
       </motion.div>
     </div>

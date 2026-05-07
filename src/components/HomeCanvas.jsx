@@ -1,7 +1,10 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
+import { MouseParallax } from "react-just-parallax";
+
 import HomeParaArt from "./HomeParaArt";
+import HomeParaGame from "./HomeParaGame";
 
 export default function HomeCanvas() {
   const containerRef = useRef(null);
@@ -94,23 +97,21 @@ export default function HomeCanvas() {
         <div
           className="fixed left-[3.5rem] top-0 h-full"
           style={{
-            backgroundImage:
-              "url('https://pbs.twimg.com/media/Gwx9TqXbsAAczsJ?format=jpg&name=large')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             width: "calc(100vw - 3.5rem)",
           }}
         >
-          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-red-700">
+          <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200">
               {"Game       Dev".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-red-700">
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-cyan-200">
               PORTFOLIO
             </h1>
           </div>
+
+          <HomeParaGame />
         </div>
       </motion.div>
 

@@ -5,7 +5,7 @@ export default function HomeParaArt() {
     <>
       <img
         className="absolute h-full w-full object-cover object-center"
-        src=".\src\assets\home\home_illustration-z101.webp"
+        src=".\src\assets\art\home_illustration-z101.webp"
       />
 
       <MouseParallax
@@ -17,7 +17,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[101%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z102.webp"
+          src=".\src\assets\art\home_illustration-z102.webp"
         />
       </MouseParallax>
 
@@ -30,7 +30,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[103%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z103.webp"
+          src=".\src\assets\art\home_illustration-z103.webp"
         />
       </MouseParallax>
 
@@ -43,7 +43,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[104%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z104.webp"
+          src=".\src\assets\art\home_illustration-z104.webp"
         />
       </MouseParallax>
 
@@ -56,7 +56,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[105%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z105.webp"
+          src=".\src\assets\art\home_illustration-z105.webp"
         />
       </MouseParallax>
 
@@ -69,7 +69,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[110%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z106.webp"
+          src=".\src\assets\art\home_illustration-z106.webp"
         />
       </MouseParallax>
 
@@ -82,7 +82,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[110%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z107.webp"
+          src=".\src\assets\art\home_illustration-z107.webp"
         />
       </MouseParallax>
 
@@ -95,7 +95,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[115%] object-cover object-center"
-          src=".\src\assets\home\home_illustration-z108.webp"
+          src=".\src\assets\art\home_illustration-z108.webp"
         />
       </MouseParallax>
 
@@ -108,7 +108,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full object-cover object-center"
-          src=".\src\assets\home\home_illustration-z109.webp"
+          src=".\src\assets\art\home_illustration-z109.webp"
         />
       </MouseParallax>
     </>

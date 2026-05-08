@@ -5,6 +5,7 @@ import { MouseParallax } from "react-just-parallax";
 
 import HomeParaArt from "./HomeParaArt";
 import HomeParaGame from "./HomeParaGame";
+import HomeParaUI from "./HomeParaUI";
 
 export default function HomeCanvas() {
   const containerRef = useRef(null);
@@ -130,23 +131,22 @@ export default function HomeCanvas() {
         <div
           className="fixed left-[3.5rem] top-0 h-full"
           style={{
-            backgroundImage:
-              "url('https://pbs.twimg.com/media/G79dW35agAcWrP0?format=jpg&name=4096x4096')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundColor: "#FFF",
             width: "calc(100vw - 3.5rem)",
           }}
         >
           <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-yellow-100">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500">
               {"UI/UX   Design".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-yellow-100">
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-orange-500">
               PORTFOLIO
             </h1>
           </div>
+
+          <HomeParaUI />
         </div>
       </motion.div>
 

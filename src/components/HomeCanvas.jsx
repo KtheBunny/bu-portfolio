@@ -1,13 +1,15 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-
-import { MouseParallax } from "react-just-parallax";
+import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 import HomeParaArt from "./HomeParaArt";
 import HomeParaGame from "./HomeParaGame";
 import HomeParaUI from "./HomeParaUI";
 
 export default function HomeCanvas() {
+  const [isLeaving, setIsLeaving] = useState(false);
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const currentX = useRef(0.5); // normalized 0~1
@@ -69,13 +71,27 @@ export default function HomeCanvas() {
       updateSeparators(x);
     };
 
+    const handleWheel = (e) => {
+      // 往下滾
+      if (e.deltaY > 0 && !isLeaving) {
+        setIsLeaving(true);
+
+        // 等動畫播完再跳頁
+        setTimeout(() => {
+          navigate("/Skills");
+        }, 800);
+      }
+    };
+
     window.addEventListener("mousemove", handleMove);
     window.addEventListener("resize", handleResize);
+    window.addEventListener("wheel", handleWheel);
     return () => {
       window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("wheel", handleWheel);
     };
-  }, []);
+  }, [isLeaving, navigate]);
 
   return (
     <div
@@ -86,6 +102,14 @@ export default function HomeCanvas() {
         width: "calc(100vw - 3.5rem)",
       }}
     >
+      {/* Guide */}
+      <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-white">
+        <span className="animate-bounce text-center font-gugi">
+          Scroll to see more
+        </span>
+        <Icon icon="mdi:mouse" className="h-6 w-6 animate-bounce" />
+      </div>
+
       {/* Left Part */}
       <motion.div
         className="absolute left-0 top-0 z-10 h-full overflow-hidden"
@@ -111,6 +135,14 @@ export default function HomeCanvas() {
               PORTFOLIO
             </h1>
           </div>
+
+          <Icon
+            icon="streamline-logos:youtube-clip-logo-solid"
+            className="absolute bottom-10 left-10 z-20 h-6 w-6 cursor-pointer text-white"
+            onClick={() =>
+              window.open("https://youtu.be/YxCVZVR6xT4", "_blank").focus()
+            }
+          />
 
           <HomeParaGame />
         </div>
@@ -172,6 +204,18 @@ export default function HomeCanvas() {
             <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
               PORTFOLIO
             </h1>
+          </div>
+
+          <div
+            className="absolute bottom-10 right-10 z-10 cursor-pointer"
+            style={{ filter: "brightness(0) invert(1)" }}
+            onClick={() =>
+              window
+                .open("https://www.pixiv.net/artworks/137194516", "_blank")
+                .focus()
+            }
+          >
+            <img src="./src/assets/logo/pixiv.svg" className="mask h-6 w-6" />
           </div>
 
           <HomeParaArt />

@@ -44,7 +44,7 @@ export default function HomeParaUI() {
 
       <MouseParallax
         isAbsolutelyPositioned
-        strength={0.12}
+        strength={0.125}
         zIndex={4}
         shouldPause={false}
         enableOnTouchDevice={true}
@@ -57,7 +57,7 @@ export default function HomeParaUI() {
 
       <MouseParallax
         isAbsolutelyPositioned
-        strength={0.12}
+        strength={0.125}
         zIndex={2}
         shouldPause={false}
         enableOnTouchDevice={true}
@@ -70,7 +70,7 @@ export default function HomeParaUI() {
 
       <MouseParallax
         isAbsolutelyPositioned
-        strength={0.02}
+        strength={0.05}
         zIndex={1}
         shouldPause={false}
         enableOnTouchDevice={true}

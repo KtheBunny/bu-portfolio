@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gugi&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,39 +20,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.skill-node {
-  position: relative;
-}
-
-.skill-node .tooltip {
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.skill-node:hover .tooltip {
-  visibility: visible;
-  opacity: 1;
-}
-
-.line {
-  position: absolute;
-  background-color: #4b5563;
-  z-index: -1;
-}
-
-.line-h {
-  height: 2px;
-}
-
-.line-v {
-  width: 2px;
-}
-
-.line-active {
-  background-color: #f59e0b;
-}
-
 /* 新增：隱藏原生游標並定義自訂游標樣式 */
 #canvas {
   cursor: none !important;
@@ -64,7 +34,10 @@
   border: 2px solid rgba(255, 255, 255, 0.95); /* 白框圓形 */
   background: transparent;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform 0.12s ease, background 0.12s ease, opacity 0.12s ease;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    opacity 0.12s ease;
   pointer-events: none;
   z-index: 9999;
   opacity: 0; /* 預設隱藏，mouse enter 時顯示 */

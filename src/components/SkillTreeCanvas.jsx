@@ -1,7 +1,12 @@
-import { useEffect, useRef } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+
+import { motion } from "framer-motion";
+
+import skills from "../data/skills";
+import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
 export default function SkillTreeCanvas() {
+  const [selectedIds, setSelectedIds] = useState(() => new Set());
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
   const containerRef = useRef(null); // 內部實際比 viewport 大的內容
   const cursorRef = useRef(null);
@@ -13,14 +18,70 @@ export default function SkillTreeCanvas() {
     scrollTop: 0,
   });
 
+  const canvasWidth = 2200;
+  const canvasHeight = 1600;
+
+  // 切換選取（加入或移除 id）
+  const toggleSelect = (id) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      const isSelected = next.has(id);
+
+      // 找到此 node
+      const skill = skills.find((s) => s.id === id);
+
+      // ---------- 1. 如果是要選取 ----------
+      if (!isSelected) {
+        // 如果有 prerequisites → 檢查每個前置是否已被選取
+        const allPrereqsSelected = skill.prerequisites.every((preId) =>
+          next.has(preId),
+        );
+
+        if (!allPrereqsSelected) {
+          console.log("❌ 前置技能未全部選取，不能選這個。");
+          return next; // 不更新
+        }
+
+        // 允許選取
+        next.add(id);
+        return next;
+      }
+
+      // ---------- 2. 如果是要取消 ----------
+      next.delete(id);
+
+      // 取得所有子孫 node
+      const descendants = getAllDescendants(id);
+
+      // 把所有後續 node 全部強制取消
+      descendants.forEach((childId) => next.delete(childId));
+
+      return next;
+    });
+  };
+
+  // 供給 view 使用的 helper（便於 render）
+  const isSelected = (id) => selectedIds.has(id);
+
+  function getAllDescendants(skillId) {
+    const result = [];
+
+    function dfs(id) {
+      const children = skills.filter((s) => s.prerequisites.includes(id));
+      for (const child of children) {
+        result.push(child.id);
+        dfs(child.id);
+      }
+    }
+
+    dfs(skillId);
+    return result;
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     const cursor = cursorRef.current;
-
-    // 檢查 ref 是否有成功取得元素
-    console.log("Canvas:", canvas);
-    console.log("Cursor:", cursor);
 
     if (!canvas || !cursor) {
       console.error("Canvas 或 Cursor ref 未正確綁定");
@@ -134,8 +195,9 @@ export default function SkillTreeCanvas() {
   return (
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
+
       <div
-        className="w-screen h-screen overflow-hidden"
+        className="h-screen w-screen overflow-hidden"
         style={{
           // 可視區背景
           background:
@@ -144,8 +206,7 @@ export default function SkillTreeCanvas() {
       >
         <div
           ref={canvasRef}
-          id="canvas"
-          className="relative w-full h-full overflow-auto cursor-none backdrop-blur-lg"
+          className="relative h-full w-full cursor-none overflow-auto backdrop-blur-lg"
           style={{
             // 可視區背景
             background:
@@ -153,525 +214,139 @@ export default function SkillTreeCanvas() {
           }}
         >
           {/* 內部內容: 設為比 viewport 大 (minWidth/minHeight) */}
-          <div
+          <motion.div
             ref={containerRef}
-            id="skill-tree-container"
             style={{
               position: "relative",
               // 調整為比 viewport 大，例如 2000x1400；視需求改數值或使用內部元素決定大小
-              minWidth: 2000,
-              minHeight: 1400,
+              minWidth: `${canvasWidth}px`,
+              minHeight: `${canvasHeight}px`,
               // 將內容置中（可改）
               margin: "0 auto",
             }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.5,
+              type: "spring",
+              stiffness: 400,
+              damping: 30,
+              mass: 2.5,
+            }}
           >
             <div
-              className="absolute"
-              id="skill-tree-container"
+              className="absolute left-1/2 top-1/2"
               style={{
-                top: "50%",
-                left: "50%",
                 transform: "translate(-50%, -50%)",
               }}
             >
-              {/* 連接線 */}
-              <div
-                className="absolute bg-white -z-10
-                  h-[2px]"
-                style={{ top: 0, left: 271, width: 55 }}
-              />
-
-              <div
-                className="absolute bg-gray-600 -z-10
-                  w-[2px]"
-                style={{ top: 52, left: 278, height: 50 }}
-              />
-
               {/* 主分支標題 */}
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 top-[-150px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute top-[-150px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">select_window</span>
                 互動設計
               </div>
 
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[-200px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute left-[-200px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">brush</span>
                 數位藝術
               </div>
 
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 left-[200px]
-                  w-36 h-12 rounded-[4px] flex items-center justify-center gap-2 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[1px] border-solid border-[rgba(255,255,255,0.5)]"
-              >
+              <div className="absolute left-[200px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                 <span className="material-symbols-outlined">
                   Stadia_Controller
                 </span>
                 遊戲開發
               </div>
 
-              {/* 遊戲開發技能節點 */}
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: 0, left: 350 }}
+              {/* 連接線 */}
+
+              <svg
+                className="absolute -z-10"
+                width={canvasWidth}
+                height={canvasHeight}
+                style={{
+                  left: `-${canvasWidth / 2}`,
+                  top: `-${canvasHeight / 2}`,
+                  pointerEvents: "none",
+                }}
               >
-                <motion.div className="relative group"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                {/* 下層 */}
+                <g
+                  transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
-                    <span className="material-symbols-outlined text white">
-                      Assignment
-                    </span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        Assignment</span>
-                      <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-blue-400">
-                          企劃能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
-                      </div>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
-                    <p className="text-gray-400">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。</p>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-blue-400">熟練度: 中級</p>
-                    <p className="text-gray-400">
-                      ＋具有多次開發小型遊戲的經驗，能夠獨立完成基本的遊戲構想、設計與實現。
-                    </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 500 / 1000
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-blue-400 h-1.5 rounded-full"
-                        style={{ width: "50%" }}
+                  {/* 渲染所有 polyline */}
+                  {skills.map((s) =>
+                    s.polyline ? (
+                      <polyline
+                        key={`base-${s.id}`}
+                        points={s.polyline}
+                        stroke="gray"
+                        strokeWidth="2"
+                        fill="none"
                       />
-                    </div>
-                    <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+                    ) : null,
+                  )}
+                </g>
 
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: -200, left: 350 }}
-              >
-                <motion.div className="relative group"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                {/* 上層 */}
+                <g
+                  transform={`translate(${canvasWidth / 2}, ${canvasHeight / 2})`}
                 >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
-                    <span className="material-symbols-outlined text white">
-                      wall_art</span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        wall_art</span>
-                      <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-purple-400">
-                          美術能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
-                      </div>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
-                    <p className="text-gray-400">
-                      擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材等。
-                      </p>
-
-                    <hr className="my-2 border-t text-bold border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2021] MoonWalk</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <p className="text-gray-400">
-                      以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-purple-400">熟練度: 高級</p>
-                    <p className="text-gray-400">
-                      ＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。
-                    </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 750 / 1000
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-purple-400 h-1.5 rounded-full"
-                        style={{ width: "75%" }}
+                  {skills
+                    .filter((s) => selectedIds.has(s.id) && s.polyline)
+                    .map((s) => (
+                      <polyline
+                        key={`sel-${s.id}`}
+                        points={s.polyline}
+                        stroke="#f59e0b" // amber-500
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
                       />
-                    </div>
-                    <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+                    ))}
+                </g>
+              </svg>
 
-              <div className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: 200, left: 350 }}
-              >
-                <motion.div className="relative group"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
-                    <span className="material-symbols-outlined text white">
-                      deployed_code</span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        deployed_code</span>
-                      <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-purple-400">
-                          美術能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
-                      </div>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
-                    <p className="text-gray-400">
-                      擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材等。
-                      </p>
-
-                    <hr className="my-2 border-t text-bold border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2021] MoonWalk</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <p className="text-gray-400">
-                      以及更多...</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-purple-400">熟練度: 高級</p>
-                    <p className="text-gray-400">
-                      ＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。
-                    </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 750 / 1000
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-purple-400 h-1.5 rounded-full"
-                        style={{ width: "75%" }}
-                      />
-                    </div>
-                    <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-
-
-
-
-              {/* UI技能節點 */}
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: -250, left: 0 }}
-              >
-                <div className="relative group">
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-gray-500">
-                      Assignment
-                    </span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        Assignment
-                      </span>
-                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
-                        企劃能力 已解鎖 / 未選擇
-                      </h4>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      被動技能
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
-                    </p>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      相關作品
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      - 2023 gamejam
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      - 2024 畢製
-                    </p>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      熟練度: 中級
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      +
-                      （中級）具有數次開發小型遊戲的經驗，能夠獨立完成基本的遊戲設計與實現。
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      EXP 200 / 255
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-green-500 h-1.5 rounded-full"
-                        style={{ width: "78%" }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: -250, left: 200 }}
-              >
-                <motion.div className="relative group"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-[rgba(255,255,255,0.5)] flex items-center justify-center">
-                    <span className="material-symbols-outlined text white">
-                      wall_art</span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full flex flex-col w-52 bg-[rgba(0,0,0,0.5)] border-[1px] border-white p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        wall_art</span>
-                      <div className="flex flex-col items-start">
-                        <h4 className="font-bold text-white">
-                          企劃能力</h4>
-                        <p className="text-xs text-gray-400">
-                          被動技能</p>
-                      </div>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      技能說明：</p>
-                    <p className="text-gray-400">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。</p>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-white">
-                      相關作品</p>
-                    <p className="text-gray-400">
-                      - [2021] Path of Ghost</p>
-                    <p className="text-gray-400">
-                      - [2022] Eminence</p>
-                    <button className="mt-2 px-3 py-1 bg-[rgba(255,255,255,0.25)] border-[1px] border-white text-white rounded-sm hover:bg-gray-500 cursor-none text-sm">查看作品</button>
-
-                    <hr className="my-2 border-t border-gray-600" />
-                    <p className="text-blue-400">熟練度: 中級</p>
-                    <p className="text-gray-400">
-                      ＋具有多次開發小型遊戲的經驗，能夠獨立完成基本的遊戲構想、設計與實現。
-                    </p>
-                    <p className="text-white mt-2 text-xs">
-                      EXP 600 / 1000
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-blue-400 h-1.5 rounded-full"
-                        style={{ width: "60%" }}
-                      />
-                    </div>
-                    <div className="flex items-center mt-1 gap-2">
-                    <span className="material-symbols-outlined text-sm text-white">lock_open_right</span>
-                    <p className="text-white text-xs">
-                      已解鎖，點擊選擇此技能
-                    </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-
-
-
-
-
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2"
-                style={{ top: 0, left: -350 }}
-              >
-                <div className="relative group">
-                  <div className="w-12 h-12 rounded-full bg-[rgba(0,0,0,0.25)] border-2 border-gray-500 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-gray-500">
-                      Assignment
-                    </span>
-                  </div>
-
-                  <div
-                    className="absolute opacity-0 invisible
-                    group-hover:opacity-100 group-hover:visible
-                    transition-opacity duration-300
-                    bottom-full w-48 bg-[rgba(0,0,0,0.5)] border-[1px] border-[rgba(255,255,255,1)] p-3 rounded shadow-lg z-10 text-sm"
-                  >
-                    <div className="flex w-full items-center gap-3">
-                      <span className="material-symbols-outlined p-3 rounded border-[1px]">
-                        Assignment
-                      </span>
-                      <h4 className="font-bold text-text-light dark:text-text-dark text-center">
-                        企劃能力 已解鎖 / 未選擇
-                      </h4>
-                    </div>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      被動技能
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      擁有對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、故事情節、關卡設計等。
-                    </p>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      相關作品
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      - 2023 gamejam
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      - 2024 畢製
-                    </p>
-
-                    <hr className="my-2 border-t border-gray-300 dark:border-gray-700" />
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      熟練度: 中級
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      +
-                      （中級）具有數次開發小型遊戲的經驗，能夠獨立完成基本的遊戲設計與實現。
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                      EXP 200 / 255
-                    </p>
-                    <div className="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-1.5">
-                      <div
-                        className="bg-green-500 h-1.5 rounded-full"
-                        style={{ width: "78%" }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* 所有技能節點 */}
+              {skills.map((s) => (
+                <SkillTreeCanvasNode
+                  key={s.id}
+                  {...s}
+                  selected={isSelected(s.id)}
+                  onSelect={toggleSelect}
+                />
+              ))}
 
               {/* 中心角色卡片 */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="flex flex-col items-center">
                   <img
                     alt="BunnyK Icon"
-                    className="max-w-20 z-10 rounded-lg border-[1px] shadow-lg"
-                    src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t39.30808-6/570274599_122154692420718555_5659794563334834264_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=EBvDTnXsfBEQ7kNvwFjc5VP&_nc_oc=Admk4bqNP3T-t5B1sQKNvbil0RsBGoWrSDA-pU9hPYaEVNYzJQ_grZAl6xmOqxTm3KE&_nc_zt=23&_nc_ht=scontent.ftpe8-3.fna&_nc_gid=IHaAWkBDgGurrMWYA4HJmQ&oh=00_AfiPErQAbuoT5Chr6_t1_LXQQDplPKVp_MPnzJ4hetF-WQ&oe=691A3701"
+                    className="z-10 max-w-20 rounded-lg border-[1px] shadow-lg"
+                    src="./images/icon.jpg"
                   />
-                  <div className="border-[1px] mt-[-32px] rounded pt-10 text-center w-40 bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)] border-[rgba(255,255,255,0.5)] px-3 pb-3">
-                    <h3 className="font-bold text-lg text-text-light dark:text-text-dark">
+                  <div className="mt-[-32px] w-40 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
+                    <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
                       BunnyK
                     </h3>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
                       研究所畢業生
                     </p>
-                    <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                    <p className="mt-1 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                       前網頁美術設計師
                     </p>
                   </div>
                 </div>
               </div>
-
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* 自訂游標 */}
       <div
         ref={cursorRef}
-        className="fixed w-8 h-8 rounded-full border-2 border-white pointer-events-none z-50 opacity-0 shadow-lg"
+        className="pointer-events-none fixed z-50 h-8 w-8 rounded-full border-2 border-white opacity-0 shadow-lg"
         style={{
           borderColor: "rgba(255,255,255,0.95)",
           background: "transparent",

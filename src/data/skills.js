@@ -1,0 +1,989 @@
+const skills = [
+  {
+    "id": 1,
+    "x": 350,
+    "y": -200,
+    "icon": "bxl:unity",
+    "title": "Unity 實作能力",
+    "type": "被動技能",
+    "description": "擁有操作Unity的能力以及對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、關卡設計等。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence"
+    ],
+    "workLink": "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋熟悉 Unity 引擎的基本操作與功能，能夠獨立完成小型遊戲專案。"
+    ],
+    "prerequisites": [],
+    "polyline": "272,0 301,0 301,-200 326,-200"
+  },
+  {
+    "id": 2,
+    "x": 350,
+    "y": 0,
+    "icon": "bxl:visual-studio",
+    "title": "C# 編程能力",
+    "type": "被動技能",
+    "description": "擁有基本編程能力並強化對 C# 語言的應用能力，包含物件導向、Event、資料結構與程式邏輯等基礎。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence"
+    ],
+    "workLink": "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋具備單人開發小型遊戲經驗，能完成程式撰寫工作，理解遊戲開發中程式邏輯與架構設計，多人合作時也能支援遊戲系統的開發與擴充。"
+    ],
+    "prerequisites": [],
+    "polyline": "272,0 326,0"
+  },
+  {
+    "id": 3,
+    "x": 350,
+    "y": 200,
+    "icon": "material-symbols:wall-art-outline-rounded",
+    "title": "遊戲美術能力",
+    "type": "被動技能",
+    "description": "擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材、打擊感 Game Feel 等。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence",
+      "以及更多..."
+    ],
+    "workLink": "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋絕大部份專案都參與在美術部份，理解遊戲開發上視覺相關的各種技能需求。"
+    ],
+    "prerequisites": [],
+    "polyline": "272,0 301,0 301,200 326,200"
+  },
+  {
+    "id": 4,
+    "x": 500,
+    "y": -300,
+    "icon": "material-symbols:devices-outline",
+    "title": "平台輸入操作設計",
+    "type": "主動技能",
+    "description": "理解不同遊戲平台如電腦和手機的操作方式，並能處理玩家的輸入和對應的遊戲行為。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence",
+      "以及更多..."
+    ],
+    "workLink": null,
+    "mastery": 55,
+    "masteryDescriptions": [
+      "＋大部份專案都使用電腦遊玩，亦有手機以及 VR 遊戲開發經驗",
+      "＋具有舊版 Input Manger 以及新版 Input System 的應用經驗。"
+    ],
+    "prerequisites": [
+      1
+    ],
+    "polyline": "374,-200 450,-200 450,-300 476,-300"
+  },
+  {
+    "id": 5,
+    "x": 500,
+    "y": -200,
+    "icon": "material-symbols:architecture-rounded",
+    "title": "關卡設計能力",
+    "type": "被動技能",
+    "description": "根據遊戲特色和玩法設計相應的關卡，並考慮如何引導玩家行為和設定難度曲線。",
+    "works": [
+      "- [2021] Path of Ghost"
+    ],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋能理解遊戲核心玩法，並在關卡設計中引導玩家做出相關操作。",
+      "＋在高難度的關卡設計亦可以設計出挑戰玩家能力的關卡，或者利用關卡設計去表現創意。"
+    ],
+    "prerequisites": [
+      1
+    ],
+    "polyline": "374,-200 476,-200"
+  },
+  {
+    "id": 6,
+    "x": 500,
+    "y": -100,
+    "icon": "material-symbols:article-outline-rounded",
+    "title": "企劃能力",
+    "type": "被動技能",
+    "description": "擁有設計和發想遊戲的核心玩法、回饋機制等Game Loop元素的能力。",
+    "works": [
+      "- [2021] Path of Ghost"
+    ],
+    "workLink": null,
+    "mastery": 55,
+    "masteryDescriptions": [
+      "＋具備相關觀念，並在參與的GameJam活動中實踐。"
+    ],
+    "prerequisites": [
+      1
+    ],
+    "polyline": "374,-200 450,-200 450,-100 476,-100"
+  },
+  {
+    "id": 7,
+    "x": 450,
+    "y": 100,
+    "icon": "bxl:visual-studio",
+    "title": "進階編程能力",
+    "type": "被動技能",
+    "description": "擁有更深入的程式開發能力，學習更多語言，理解效能優化觀念如物件重複利用、Update 精簡與記憶體用量控制等。",
+    "works": [],
+    "workLink": null,
+    "mastery": 35,
+    "masteryDescriptions": [
+      "＋具備C++、Python等其他語言的編寫能力",
+      "＋優化部份具體相關觀念，但實踐機會不多。"
+    ],
+    "prerequisites": [
+      2
+    ],
+    "polyline": "374,0 400,0 400,100 426,100"
+  },
+  {
+    "id": 8,
+    "x": 450,
+    "y": 0,
+    "icon": "material-symbols:build-outline-rounded",
+    "title": "遊戲系統開發",
+    "type": "主動技能",
+    "description": "針對遊戲內的核心玩法以及功能模組進行開發，如背包、任務、互動物件等系統，能以模組化方式建立可維護、可延伸的遊戲架構。",
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋能把想法轉換成實際遊戲中的功能，製作遊戲的 prototype 甚至成品。"
+    ],
+    "prerequisites": [
+      2
+    ],
+    "polyline": "374,0 426,0"
+  },
+  {
+    "id": 9,
+    "x": 500,
+    "y": 300,
+    "icon": "material-symbols:blur-on",
+    "title": "技術美術能力",
+    "type": "被動技能",
+    "description": "擁手運用 Unity 的技術美術工具提升遊戲視覺與演出表現，如 Post-processing、Shader Graph、Particle System 等。",
+    "works": [
+      "- [2022] Eminence"
+    ],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋上述的系統都具有一定操作經驗。",
+      "＋另外有 Cinemachine 鏡頭運鏡調整經驗，對 2D 遊戲運鏡有一定程度理解。"
+    ],
+    "prerequisites": [
+      3
+    ],
+    "polyline": "374,200 450,200 450,300 476,300"
+  },
+  {
+    "id": 10,
+    "x": 500,
+    "y": 200,
+    "icon": "material-symbols:background-replace-outline-rounded",
+    "title": "圖像處理能力",
+    "type": "被動技能",
+    "description": "擁有處理圖檔轉換到 Unity 遊戲內部的能力，包括調整 Pixel Per Unit、調整壓縮、silce 切片讓圖檔能被 UI 和 Tilemap 使用等。",
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋熟悉圖檔在 Unity 中的處理，也有很多應用經驗。"
+    ],
+    "prerequisites": [
+      3
+    ],
+    "polyline": "374,200 476,200"
+  },
+  {
+    "id": 11,
+    "x": 650,
+    "y": -300,
+    "icon": "material-symbols:grid-on-outline",
+    "title": "Tilemap 應用",
+    "type": "主動技能",
+    "description": "在 2D 遊戲中透過 Tilemap 進行場景佈局、地形配置與關卡規劃，能有效建立具統一化美感與遊戲性的 2D 關卡架構。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence"
+    ],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋大部份 2D 遊戲開發經驗中都使用 Tilemap，除了基本關卡設計，亦能利用它加入前後景製作 Parallex 效果。"
+    ],
+    "prerequisites": [
+      5
+    ],
+    "polyline": "524,-200 600,-200 600,-300 626,-300"
+  },
+  {
+    "id": 12,
+    "x": 650,
+    "y": -200,
+    "icon": "material-symbols:category-outline-rounded",
+    "title": "ProBuilder 應用",
+    "type": "主動技能",
+    "description": "在 Unity 3D 遊戲開發中使用 ProBuilder 進行原型場景搭建、地形配置與關卡佈局，快速迭代遊戲動線與空間設計。",
+    "works": [],
+    "workLink": null,
+    "mastery": 30,
+    "masteryDescriptions": [
+      "＋曾用在模擬 Source Engine 的 rocket jump 玩法的 3D 遊戲中製作關卡。"
+    ],
+    "prerequisites": [
+      5
+    ],
+    "polyline": "524,-200 626,-200"
+  },
+  {
+    "id": 13,
+    "x": 700,
+    "y": 0,
+    "icon": "material-symbols:directions-walk-rounded",
+    "title": "角色控制系統開發",
+    "type": "主動技能",
+    "description": "使用 Character Controller 或 Rigidbody 實作角色操作，調整移動、重力、跳躍手感，並使用 Collider 製作人物移動和交互用 Hitbox。",
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋2D 遊戲經驗為主，具備實作如 Coyote Time 跳躍緩衝等更細緻的操作體驗調整能力。"
+    ],
+    "prerequisites": [
+      8
+    ],
+    "polyline": "474,0 676,0"
+  },
+  {
+    "id": 14,
+    "x": 700,
+    "y": -100,
+    "icon": "material-symbols:flowchart-outline-sharp",
+    "title": "FSM 開發",
+    "type": "主動技能",
+    "description": "以有限狀態機（Finite State Machine）建立角色或敵人的行為邏輯，將 Idle、Move、Attack、Hurt 等行為拆分為可管理的獨立狀態。",
+    "works": [],
+    "workLink": null,
+    "mastery": 25,
+    "masteryDescriptions": [
+      "＋具備相關概念，但實作次數不多"
+    ],
+    "prerequisites": [
+      8
+    ],
+    "polyline": "474,0 650,0 650,-100 676,-100"
+  },
+  {
+    "id": 15,
+    "x": 700,
+    "y": 100,
+    "icon": "material-symbols:cases-outline-rounded",
+    "title": "背包系統開發",
+    "type": "主動技能",
+    "description": "製作 Singleton 背包系統，以及使用 Scriptable Object 製作放在背包中物件。",
+    "works": [],
+    "workLink": null,
+    "mastery": 30,
+    "masteryDescriptions": [
+      "＋曾在練習用的小專案中製作"
+    ],
+    "prerequisites": [
+      8
+    ],
+    "polyline": "474,0 650,0 650,100 676,100"
+  },
+  {
+    "id": 16,
+    "x": 650,
+    "y": 300,
+    "icon": "material-symbols:select-window",
+    "title": "UI 系統應用",
+    "type": "主動技能",
+    "description": "利用 9-slice scaling 方式切片 UI 圖檔素材，並使用TextMeshPro去設計文字按鈕等 UI 排版。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence"
+    ],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋具備多次 UI 設計和實作經驗。"
+    ],
+    "prerequisites": [
+      10
+    ],
+    "polyline": "524,200 600,200 600,300 626,300"
+  },
+  {
+    "id": 17,
+    "x": 800,
+    "y": 0,
+    "icon": "material-symbols:destruction-outline-rounded",
+    "title": "物理系統應用",
+    "type": "主動技能",
+    "description": "理解 Unity 物理系統並運用 Force、Impulse、Velocity 等方式驅動更多物理互動，包含碰撞偵測、物體反應、剛體調整等。",
+    "works": [],
+    "workLink": null,
+    "mastery": 40,
+    "masteryDescriptions": [
+      "＋在 2D 遊戲的角色控制中使用。",
+      "＋曾實作 3D 遊戲模擬 Source Engine 的 rocket jump 玩法的經驗，該專案中需要計算不同爆炸位置對火箭跳動力的影響。"
+    ],
+    "prerequisites": [
+      13
+    ],
+    "polyline": "724,0 776,0"
+  },
+  {
+    "id": 18,
+    "x": 650,
+    "y": 200,
+    "icon": "material-symbols:animation-outline",
+    "title": "Animator 系統應用",
+    "type": "主動技能",
+    "description": "運用 Animator 建立角色動畫狀態機調整動畫播放效果，梳理動畫播放邏輯，串接移動、攻擊、受擊等動作。",
+    "works": [
+      "- [2021] Path of Ghost",
+      "- [2022] Eminence"
+    ],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋具匯入和處理動畫，並設定 state，parameter 和 condition 等能力和經驗。"
+    ],
+    "prerequisites": [
+      10
+    ],
+    "polyline": "524,200 626,200"
+  },
+  {
+    "id": 19,
+    "x": 200,
+    "y": -250,
+    "icon": "material-symbols:interactive-space-outline-rounded",
+    "title": "UI 設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 70,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "0,-174 0,-200 200,-200 200,-226"
+  },
+  {
+    "id": 20,
+    "x": -200,
+    "y": -250,
+    "icon": "mdi:user-heart-outline",
+    "title": "UX 設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "0,-174 0,-200 -200,-200 -200,-226"
+  },
+  {
+    "id": 21,
+    "x": 0,
+    "y": -250,
+    "icon": "material-symbols:code-rounded",
+    "title": "前端開發能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "0,-174 0,-226"
+  },
+  {
+    "id": 22,
+    "x": -300,
+    "y": -400,
+    "icon": "material-symbols:lab-research-outline-rounded",
+    "title": "用戶研究能力",
+    "type": "被動技能",
+    "description": "persona 競品 user flow ab test",
+    "works": [],
+    "workLink": null,
+    "mastery": 20,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      20
+    ],
+    "polyline": "-200,-274 -200,-350 -300,-350 -300,-376"
+  },
+  {
+    "id": 23,
+    "x": -200,
+    "y": -400,
+    "icon": "material-symbols:mobile-gear-outline-rounded",
+    "title": "Prototype 製作",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      20
+    ],
+    "polyline": "-200,-274 -200,-376"
+  },
+  {
+    "id": 24,
+    "x": -200,
+    "y": -600,
+    "icon": "streamline-logos:figma-logo",
+    "title": "Figma 使用能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      23
+    ],
+    "polyline": "-200,-424 -200,-576"
+  },
+  {
+    "id": 25,
+    "x": 200,
+    "y": -400,
+    "icon": "material-symbols:mobile-layout-outline-rounded",
+    "title": "排版設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 70,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      19
+    ],
+    "polyline": "200,-274 200,-376"
+  },
+  {
+    "id": 26,
+    "x": 200,
+    "y": -600,
+    "icon": "material-symbols:invert-colors-rounded",
+    "title": "色彩與字體應用",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 70,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      25
+    ],
+    "polyline": "200,-424 200,-576"
+  },
+  {
+    "id": 27,
+    "x": 0,
+    "y": -350,
+    "icon": "bxl:html5",
+    "title": "HTML編程能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      21
+    ],
+    "polyline": "0,-274 0,-326"
+  },
+  {
+    "id": 28,
+    "x": -100,
+    "y": -350,
+    "icon": "bxl:javascript",
+    "title": "JavaScript",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      21
+    ],
+    "polyline": "0,-274 0,-300 -100,-300 -100,-326"
+  },
+  {
+    "id": 29,
+    "x": 100,
+    "y": -350,
+    "icon": "streamline-logos:apple-logo",
+    "title": "SwiftUI",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      21
+    ],
+    "polyline": "0,-274 0,-300 100,-300 100,-326"
+  },
+  {
+    "id": 30,
+    "x": 0,
+    "y": -550,
+    "icon": "bxl:css3",
+    "title": "CSS",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      27
+    ],
+    "polyline": "0,-374 0,-526"
+  },
+  {
+    "id": 31,
+    "x": 100,
+    "y": -550,
+    "icon": "material-symbols:responsive-layout-outline-rounded",
+    "title": "RWD設計應用",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      27
+    ],
+    "polyline": "0,-374 0,-500 100,-500 100,-526"
+  },
+  {
+    "id": 32,
+    "x": -100,
+    "y": -600,
+    "icon": "bxl:react",
+    "title": "React",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      28
+    ],
+    "polyline": "-100,-374 -100,-576"
+  },
+  {
+    "id": 33,
+    "x": -100,
+    "y": -700,
+    "icon": "bxl:tailwind-css",
+    "title": "TailwindCSS",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      30
+    ],
+    "polyline": "0,-574 0,-650 -100,-650 -100,-676"
+  },
+  {
+    "id": 34,
+    "x": 0,
+    "y": -700,
+    "icon": "bxl:bootstrap",
+    "title": "Bootstrap",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      30
+    ],
+    "polyline": "0,-574 0,-676"
+  },
+  {
+    "id": 35,
+    "x": -350,
+    "y": -200,
+    "icon": "material-symbols:mobile-layout-outline-rounded",
+    "title": "平面視覺設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "-272,0 -300,0 -300,-200 -326,-200"
+  },
+  {
+    "id": 36,
+    "x": -350,
+    "y": 0,
+    "icon": "mdi:dinosaur-pixel",
+    "title": "像素繪畫能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "-272,0 -326,0"
+  },
+  {
+    "id": 37,
+    "x": -350,
+    "y": 200,
+    "icon": "material-symbols:draw-outline-rounded",
+    "title": "2D 繪畫能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [],
+    "polyline": "-272,0 -300,0 -300,200 -326,200"
+  },
+  {
+    "id": 38,
+    "x": -450,
+    "y": -300,
+    "icon": "material-symbols:sell-outline",
+    "title": "商業行銷設計",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      35
+    ],
+    "polyline": "-374,-200 -400,-200 -400,-300 -426,-300"
+  },
+  {
+    "id": 39,
+    "x": -450,
+    "y": -200,
+    "icon": "material-symbols:stylus-fountain-pen-outline-rounded",
+    "title": "向量圖繪製",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 70,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      35
+    ],
+    "polyline": "-374,-200 -426,-200"
+  },
+  {
+    "id": 40,
+    "x": -700,
+    "y": -200,
+    "icon": "material-symbols:motion-blur-rounded",
+    "title": "動態圖形設計",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 10,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      39
+    ],
+    "polyline": "-474,-200 -676,-200"
+  },
+  {
+    "id": 41,
+    "x": -500,
+    "y": -100,
+    "icon": "material-symbols:mountain-steam-outline-rounded",
+    "title": "場景設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 75,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      36
+    ],
+    "polyline": "-374,0 -450,0 -450,-100 -476,-100"
+  },
+  {
+    "id": 42,
+    "x": -650,
+    "y": -100,
+    "icon": "material-symbols:grid-on-outline",
+    "title": "Tilemap 設計",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      41
+    ],
+    "polyline": "-524,-100 -626,-100"
+  },
+  {
+    "id": 43,
+    "x": -800,
+    "y": -100,
+    "icon": "material-symbols:grid-on-outline",
+    "title": "Tilemap 設計進階",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 50,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      42
+    ],
+    "polyline": "-674,-100 -776,-100"
+  },
+  {
+    "id": 44,
+    "x": -500,
+    "y": 0,
+    "icon": "material-symbols:animation-outline",
+    "title": "動畫繪製能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      36
+    ],
+    "polyline": "-374,0 -476,0"
+  },
+  {
+    "id": 45,
+    "x": -700,
+    "y": 0,
+    "icon": "material-symbols:directions-run-rounded",
+    "title": "動作設計",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 80,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      44
+    ],
+    "polyline": "-524,0 -676,0"
+  },
+  {
+    "id": 46,
+    "x": -800,
+    "y": 0,
+    "icon": "material-symbols:directions-run-rounded",
+    "title": "動作設計進階",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      45
+    ],
+    "polyline": "-724,0 -776,0"
+  },
+  {
+    "id": 47,
+    "x": -700,
+    "y": 100,
+    "icon": "material-symbols:wand-stars-outline-rounded",
+    "title": "特效繪製",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 60,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      44
+    ],
+    "polyline": "-524,0 -650,0 -650,100 -676,100"
+  },
+  {
+    "id": 48,
+    "x": -450,
+    "y": 300,
+    "icon": "material-symbols:wall-art-outline-rounded",
+    "title": "插畫繪製",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 70,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      37
+    ],
+    "polyline": "-374,200 -400,200 -400,300 -426,300"
+  },
+  {
+    "id": 49,
+    "x": -450,
+    "y": 200,
+    "icon": "material-symbols:user-attributes-outline-rounded",
+    "title": "角色設計能力",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 40,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      37
+    ],
+    "polyline": "-374,200 -426,200"
+  },
+  {
+    "id": 50,
+    "x": -650,
+    "y": 200,
+    "icon": "custom:live2d",
+    "title": "Live 2D 操作",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 25,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      49
+    ],
+    "polyline": "-474,200 -626,200"
+  },
+  {
+    "id": 51,
+    "x": -800,
+    "y": 200,
+    "icon": "custom:spine",
+    "title": "Spine 操作",
+    "type": "被動技能",
+    "description": null,
+    "works": [],
+    "workLink": null,
+    "mastery": 10,
+    "masteryDescriptions": [
+      "＋"
+    ],
+    "prerequisites": [
+      50
+    ],
+    "polyline": "-674,200 -776,200"
+  },
+];
+
+export default skills;

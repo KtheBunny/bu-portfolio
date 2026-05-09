@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { usePageTransition } from "./PageTransitionContext";
 
 import HomeParaArt from "./HomeParaArt";
 import HomeParaGame from "./HomeParaGame";
@@ -9,15 +9,15 @@ import HomeParaUI from "./HomeParaUI";
 
 export default function HomeCanvas() {
   const [isLeaving, setIsLeaving] = useState(false);
-  const navigate = useNavigate();
+  const { playTransition } = usePageTransition();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const currentX = useRef(0.5); // normalized 0~1
 
   const mouseX = useMotionValue(0.5); // normalized 0~1
 
-  const left = useSpring(0.33, { stiffness: 120, damping: 20 });
-  const right = useSpring(0.66, { stiffness: 120, damping: 20 });
+  const left = useSpring(0.33, { stiffness: 300, damping: 25, mass: 1.2 });
+  const right = useSpring(0.66, { stiffness: 300, damping: 25, mass: 1.2 });
 
   const updateSeparators = (x) => {
     let l, r;
@@ -46,6 +46,8 @@ export default function HomeCanvas() {
   const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
 
   useEffect(() => {
+    setIsLeaving(false);
+
     if (containerRef.current) {
       setContainerWidth(containerRef.current.getBoundingClientRect().width);
     }
@@ -75,11 +77,7 @@ export default function HomeCanvas() {
       // 往下滾
       if (e.deltaY > 0 && !isLeaving) {
         setIsLeaving(true);
-
-        // 等動畫播完再跳頁
-        setTimeout(() => {
-          navigate("/Skills");
-        }, 800);
+        playTransition("/Skills");
       }
     };
 
@@ -91,7 +89,7 @@ export default function HomeCanvas() {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("wheel", handleWheel);
     };
-  }, [isLeaving, navigate]);
+  }, [isLeaving]);
 
   return (
     <div
@@ -102,14 +100,6 @@ export default function HomeCanvas() {
         width: "calc(100vw - 3.5rem)",
       }}
     >
-      {/* Guide */}
-      <div className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-white">
-        <span className="animate-bounce text-center font-gugi">
-          Scroll to see more
-        </span>
-        <Icon icon="mdi:mouse" className="h-6 w-6 animate-bounce" />
-      </div>
-
       {/* Left Part */}
       <motion.div
         className="absolute left-0 top-0 z-10 h-full overflow-hidden"
@@ -144,6 +134,14 @@ export default function HomeCanvas() {
             }
           />
 
+          {/* Guide */}
+          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white">
+            <div className="flex animate-bounce flex-col items-center gap-2">
+              <span className="text-center font-gugi">Scroll to see more</span>
+              <Icon icon="mdi:mouse" className="h-6 w-6" />
+            </div>
+          </div>
+
           <HomeParaGame />
         </div>
       </motion.div>
@@ -176,6 +174,14 @@ export default function HomeCanvas() {
             <h1 className="font-gugi text-5xl font-bold tracking-wide text-orange-500">
               PORTFOLIO
             </h1>
+          </div>
+
+          {/* Guide */}
+          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-orange-500">
+            <div className="flex animate-bounce flex-col items-center gap-2">
+              <span className="text-center font-gugi">Scroll to see more</span>
+              <Icon icon="mdi:mouse" className="h-6 w-6" />
+            </div>
           </div>
 
           <HomeParaUI />
@@ -216,6 +222,14 @@ export default function HomeCanvas() {
             }
           >
             <img src="./src/assets/logo/pixiv.svg" className="mask h-6 w-6" />
+          </div>
+
+          {/* Guide */}
+          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white">
+            <div className="flex animate-bounce flex-col items-center gap-2">
+              <span className="text-center font-gugi">Scroll to see more</span>
+              <Icon icon="mdi:mouse" className="h-6 w-6" />
+            </div>
           </div>
 
           <HomeParaArt />

@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "motion/react";
+import { usePageTransition } from "./PageTransitionContext";
 
 const navItems = [
   {
@@ -37,6 +38,7 @@ const ITEM_HEIGHT = 56;
 const FIRST_ITEM_OFFSET = -84; // = 84px from top
 
 export default function NavSideBar() {
+  const { playTransition } = usePageTransition();
   const location = useLocation();
   const [buttonHovered, setButtonHovered] = useState(null);
   const [navHovered, setIsNavHovered] = useState(false);
@@ -48,7 +50,7 @@ export default function NavSideBar() {
   return (
     <>
       <nav
-        className={`fixed left-0 top-0 z-50 flex h-screen w-14 flex-col items-center justify-center border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
+        className={`fixed left-0 top-0 z-[10000] flex h-screen w-14 flex-col items-center justify-center border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
         onMouseEnter={() => {
           setIsNavHovered(true);
           setButtonHovered(activeIndex);
@@ -77,34 +79,39 @@ export default function NavSideBar() {
           />
         )}
 
-        <div className="relative flex flex-col items-center w-full justify-center space-y-4">
-        {navItems.map((item, index) => {
-          const isActive = location.pathname === item.path;
+        <div className="relative flex w-full flex-col items-center justify-center space-y-4">
+          {navItems.map((item, index) => {
+            const isActive = location.pathname === item.path;
 
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className="group relative ml-1 mt-0 flex h-10 w-full items-center justify-center rounded-md transition-all ease-in-out"
-              onMouseEnter={() => setButtonHovered(index)}
-              onMouseLeave={() => setButtonHovered(index)}
-            >
-              <Icon
-                icon={isActive ? item.fill : item.outline}
-                className={`absolute left-3 pl-1 transition-all duration-300 ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"}`}
-                width="24"
-                height="24"
-              />
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="group relative ml-1 mt-0 flex h-10 w-full items-center justify-center rounded-md transition-all ease-in-out"
+                onMouseEnter={() => setButtonHovered(index)}
+                onMouseLeave={() => setButtonHovered(index)}
+                onClick={(e) => {
+                  e.preventDefault();
 
-              {/* 文字標籤 - hover 或 active 時顯示 */}
-              <span
-                className={`text-md absolute overflow-hidden whitespace-nowrap pl-4 transition-all ${navHovered ? "left-10 opacity-100" : "-left-1 opacity-0"} ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"} `}
+                  playTransition(item.path);
+                }}
               >
-                {item.label}
-              </span>
-            </Link>
-          );
-        })}
+                <Icon
+                  icon={isActive ? item.fill : item.outline}
+                  className={`absolute left-3 pl-1 transition-all duration-300 ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"}`}
+                  width="24"
+                  height="24"
+                />
+
+                {/* 文字標籤 - hover 或 active 時顯示 */}
+                <span
+                  className={`text-md absolute overflow-hidden whitespace-nowrap pl-4 transition-all ${navHovered ? "left-10 opacity-100" : "-left-1 opacity-0"} ${isActive ? "text-white" : "text-gray-500 group-hover:text-white"} `}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </>

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
+import { motion } from "framer-motion";
+
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
@@ -31,7 +33,9 @@ export default function SkillTreeCanvas() {
       // ---------- 1. 如果是要選取 ----------
       if (!isSelected) {
         // 如果有 prerequisites → 檢查每個前置是否已被選取
-        const allPrereqsSelected = skill.prerequisites.every((preId) => next.has(preId));
+        const allPrereqsSelected = skill.prerequisites.every((preId) =>
+          next.has(preId),
+        );
 
         if (!allPrereqsSelected) {
           console.log("❌ 前置技能未全部選取，不能選這個。");
@@ -61,9 +65,9 @@ export default function SkillTreeCanvas() {
 
   function getAllDescendants(skillId) {
     const result = [];
-  
+
     function dfs(id) {
-      const children = skills.filter(s => s.prerequisites.includes(id));
+      const children = skills.filter((s) => s.prerequisites.includes(id));
       for (const child of children) {
         result.push(child.id);
         dfs(child.id);
@@ -210,7 +214,7 @@ export default function SkillTreeCanvas() {
           }}
         >
           {/* 內部內容: 設為比 viewport 大 (minWidth/minHeight) */}
-          <div
+          <motion.div
             ref={containerRef}
             style={{
               position: "relative",
@@ -219,6 +223,15 @@ export default function SkillTreeCanvas() {
               minHeight: `${canvasHeight}px`,
               // 將內容置中（可改）
               margin: "0 auto",
+            }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.5,
+              type: "spring",
+              stiffness: 400,
+              damping: 30,
+              mass: 2.5,
             }}
           >
             <div
@@ -327,7 +340,7 @@ export default function SkillTreeCanvas() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* 自訂游標 */}

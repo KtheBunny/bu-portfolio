@@ -11,7 +11,7 @@ export default function HomeParaUI() {
         enableOnTouchDevice={true}
       >
         <img
-          className="absolute h-[115%] w-[115%] object-cover object-center"
+          className="pointer-events-none absolute h-[115%] w-[115%] object-cover object-center"
           src=".\src\assets\UIUX\home-UI-z3.png"
         />
       </MouseParallax>

@@ -107,7 +107,7 @@ export default function HomeParaArt() {
         enableOnTouchDevice={true}
       >
         <img
-          className="absolute h-full w-full object-cover object-center"
+          className="pointer-events-none absolute h-full w-full object-cover object-center"
           src=".\src\assets\art\home_illustration-z109.webp"
         />
       </MouseParallax>

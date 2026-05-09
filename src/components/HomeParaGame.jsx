@@ -87,7 +87,7 @@ export default function HomeParaGame() {
         enableOnTouchDevice={true}
       >
         <img
-          className="absolute h-full w-full scale-[125%] object-cover object-center"
+          className="pointer-events-none absolute h-full w-full scale-[125%] object-cover object-center"
           src=".\src\assets\game\home-game-z100.png"
           style={{ imageRendering: "pixelated" }}
         />

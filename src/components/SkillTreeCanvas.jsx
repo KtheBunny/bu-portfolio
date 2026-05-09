@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 
+import icon from "../assets/icon.jpg";
+
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
@@ -324,7 +326,7 @@ export default function SkillTreeCanvas() {
                   <img
                     alt="BunnyK Icon"
                     className="z-10 max-w-20 rounded-lg border-[1px] shadow-lg"
-                    src="./images/icon.jpg"
+                    src={icon}
                   />
                   <div className="mt-[-32px] w-40 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                     <h3 className="text-lg font-bold text-text-light dark:text-text-dark">

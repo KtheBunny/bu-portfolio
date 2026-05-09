@@ -1,11 +1,21 @@
 import { MouseParallax } from "react-just-parallax";
 
+import z1 from "../assets/art/home-illustration-z101.webp";
+import z2 from "../assets/art/home-illustration-z102.webp";
+import z3 from "../assets/art/home-illustration-z103.webp";
+import z4 from "../assets/art/home-illustration-z104.webp";
+import z5 from "../assets/art/home-illustration-z105.webp";
+import z6 from "../assets/art/home-illustration-z106.webp";
+import z7 from "../assets/art/home-illustration-z107.webp";
+import z8 from "../assets/art/home-illustration-z108.webp";
+import z9 from "../assets/art/home-illustration-z109.webp";
+
 export default function HomeParaArt() {
   return (
     <>
       <img
         className="absolute h-full w-full object-cover object-center"
-        src=".\src\assets\art\home_illustration-z101.webp"
+        src={z1}
       />
 
       <MouseParallax
@@ -17,7 +27,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[101%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z102.webp"
+          src={z2}
         />
       </MouseParallax>
 
@@ -30,7 +40,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[103%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z103.webp"
+          src={z3}
         />
       </MouseParallax>
 
@@ -43,7 +53,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[104%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z104.webp"
+          src={z4}
         />
       </MouseParallax>
 
@@ -56,7 +66,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[105%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z105.webp"
+          src={z5}
         />
       </MouseParallax>
 
@@ -69,7 +79,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[110%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z106.webp"
+          src={z6}
         />
       </MouseParallax>
 
@@ -82,7 +92,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[110%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z107.webp"
+          src={z7}
         />
       </MouseParallax>
 
@@ -95,7 +105,7 @@ export default function HomeParaArt() {
       >
         <img
           className="absolute h-full w-full scale-[115%] object-cover object-center"
-          src=".\src\assets\art\home_illustration-z108.webp"
+          src={z8}
         />
       </MouseParallax>
 
@@ -108,7 +118,7 @@ export default function HomeParaArt() {
       >
         <img
           className="pointer-events-none absolute h-full w-full object-cover object-center"
-          src=".\src\assets\art\home_illustration-z109.webp"
+          src={z9}
         />
       </MouseParallax>
     </>

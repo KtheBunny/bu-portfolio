@@ -1,5 +1,12 @@
 import { MouseParallax } from "react-just-parallax";
 
+import z1 from "../assets/UIUX/home-UI-z1.png";
+import z2 from "../assets/UIUX/home-UI-z2.png";
+import z3 from "../assets/UIUX/home-UI-z3.png";
+import z4 from "../assets/UIUX/home-UI-z4.png";
+import z5 from "../assets/UIUX/home-UI-z5.png";
+import z6 from "../assets/UIUX/home-UI-z6.png";
+
 export default function HomeParaUI() {
   return (
     <>
@@ -12,7 +19,7 @@ export default function HomeParaUI() {
       >
         <img
           className="pointer-events-none absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z3.png"
+          src={z3}
         />
       </MouseParallax>
 
@@ -25,7 +32,7 @@ export default function HomeParaUI() {
       >
         <img
           className="absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z5.png"
+          src={z5}
         />
       </MouseParallax>
 
@@ -38,7 +45,7 @@ export default function HomeParaUI() {
       >
         <img
           className="absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z6.png"
+          src={z6}
         />
       </MouseParallax>
 
@@ -51,7 +58,7 @@ export default function HomeParaUI() {
       >
         <img
           className="absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z4.png"
+          src={z4}
         />
       </MouseParallax>
 
@@ -64,7 +71,7 @@ export default function HomeParaUI() {
       >
         <img
           className="absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z2.png"
+          src={z2}
         />
       </MouseParallax>
 
@@ -77,7 +84,7 @@ export default function HomeParaUI() {
       >
         <img
           className="absolute h-[115%] w-[115%] object-cover object-center"
-          src=".\src\assets\UIUX\home-UI-z1.png"
+          src={z1}
         />
       </MouseParallax>
     </>

@@ -1,11 +1,19 @@
 import { MouseParallax } from "react-just-parallax";
 
+import z1 from "../assets/game/home-game-z1.png";
+import z2 from "../assets/game/home-game-z50.png";
+import z3 from "../assets/game/home-game-z60.png";
+import z4 from "../assets/game/home-game-z70.png";
+import z5 from "../assets/game/home-game-z80.png";
+import z6 from "../assets/game/home-game-z90.gif";
+import z7 from "../assets/game/home-game-z100.png";
+
 export default function HomeParaGame() {
   return (
     <>
       <img
         className="absolute h-full w-full object-cover object-center"
-        src=".\src\assets\game\home-game-z1.png"
+        src={z1}
         style={{ imageRendering: "pixelated" }}
       />
 
@@ -18,7 +26,7 @@ export default function HomeParaGame() {
       >
         <img
           className="absolute h-full w-full scale-[105%] object-cover object-center"
-          src=".\src\assets\game\home-game-z50.png"
+          src={z2}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
@@ -32,7 +40,7 @@ export default function HomeParaGame() {
       >
         <img
           className="absolute h-full w-full scale-[110%] object-cover object-center"
-          src=".\src\assets\game\home-game-z60.png"
+          src={z3}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
@@ -46,7 +54,7 @@ export default function HomeParaGame() {
       >
         <img
           className="absolute h-full w-full scale-[120%] object-cover object-center"
-          src=".\src\assets\game\home-game-z70.png"
+          src={z4}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
@@ -60,7 +68,7 @@ export default function HomeParaGame() {
       >
         <img
           className="absolute h-full w-full scale-[122%] object-cover object-center"
-          src=".\src\assets\game\home-game-z80.png"
+          src={z5}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
@@ -74,7 +82,7 @@ export default function HomeParaGame() {
       >
         <img
           className="absolute h-full w-full scale-[125%] object-cover object-center"
-          src=".\src\assets\game\home-game-z90.gif"
+          src={z6}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
@@ -88,7 +96,7 @@ export default function HomeParaGame() {
       >
         <img
           className="pointer-events-none absolute h-full w-full scale-[125%] object-cover object-center"
-          src=".\src\assets\game\home-game-z100.png"
+          src={z7}
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>

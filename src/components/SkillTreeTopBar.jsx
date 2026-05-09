@@ -1,3 +1,5 @@
+import icon from "../assets/icon.jpg";
+
 export default function SkillTreeTopBar() {
   return (
     <>
@@ -23,7 +25,7 @@ export default function SkillTreeTopBar() {
           <img
             alt="User avatar"
             className="h-12 w-12 rounded-[4px] shadow-lg"
-            src="./images/icon.jpg"
+            src={icon}
           />
         </div>
       </header>

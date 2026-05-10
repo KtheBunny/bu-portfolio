@@ -12,28 +12,34 @@ export default function HomeCanvas() {
   const { playTransition } = usePageTransition();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
-  const currentX = useRef(0.5); // normalized 0~1
+  //const currentX = useRef(0.5); // normalized 0~1
 
-  const mouseX = useMotionValue(0.5); // normalized 0~1
+  //const mouseX = useMotionValue(0.5); // normalized 0~1
+  const hoverLock = useRef(false);
 
   const left = useSpring(0.33, { stiffness: 300, damping: 25, mass: 1.2 });
   const right = useSpring(0.66, { stiffness: 300, damping: 25, mass: 1.2 });
 
+  /*
   const updateSeparators = (x) => {
     let l, r;
     if (x < 0.33) {
+      // 放大左邊
       l = 0.8;
       r = 0.9;
     } else if (x >= 0.33 && x <= 0.66) {
+      // 放大中間
       l = 0.1;
       r = 0.9;
     } else {
+      // 放大右邊
       l = 0.1;
       r = 0.2;
     }
     left.set(l);
     right.set(r);
   };
+  */
 
   const leftPx = useTransform(left, (v) => v * containerWidth - 200);
   const rightPx = useTransform(right, (v) => v * containerWidth);
@@ -56,10 +62,12 @@ export default function HomeCanvas() {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
-      updateSeparators(currentX.current);
+      //updateSeparators(currentX.current);
     };
 
+    /*
     const handleMove = (e) => {
+      if (hoverLock.current) return;
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
@@ -72,6 +80,7 @@ export default function HomeCanvas() {
       mouseX.set(x);
       updateSeparators(x);
     };
+    */
 
     const handleWheel = (e) => {
       // 往下滾
@@ -81,11 +90,11 @@ export default function HomeCanvas() {
       }
     };
 
-    window.addEventListener("mousemove", handleMove);
+    //window.addEventListener("mousemove", handleMove);
     window.addEventListener("resize", handleResize);
     window.addEventListener("wheel", handleWheel);
     return () => {
-      window.removeEventListener("mousemove", handleMove);
+      //window.removeEventListener("mousemove", handleMove);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("wheel", handleWheel);
     };
@@ -94,7 +103,7 @@ export default function HomeCanvas() {
   return (
     <div
       ref={containerRef}
-      className="home-canvas-container relative h-screen w-screen overflow-hidden"
+      className="home-canvas-container relative h-screen overflow-hidden"
       style={{
         left: "3.5rem",
         width: "calc(100vw - 3.5rem)",
@@ -102,6 +111,15 @@ export default function HomeCanvas() {
     >
       {/* Left Part */}
       <motion.div
+        onHoverStart={() => {
+          hoverLock.current = true;
+          left.set(0.8);
+          right.set(0.9);
+        }}
+        onHoverEnd={() => {
+          hoverLock.current = false;
+          //updateSeparators(currentX.current);
+        }}
         className="absolute left-0 top-0 z-10 h-full overflow-hidden"
         style={{
           width: leftWidth,
@@ -126,14 +144,6 @@ export default function HomeCanvas() {
             </h1>
           </div>
 
-          <Icon
-            icon="streamline-logos:youtube-clip-logo-solid"
-            className="absolute bottom-10 left-10 z-20 h-6 w-6 cursor-pointer text-white"
-            onClick={() =>
-              window.open("https://youtu.be/YxCVZVR6xT4", "_blank").focus()
-            }
-          />
-
           {/* Guide */}
           <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white">
             <div className="flex animate-bounce flex-col items-center gap-2">
@@ -148,6 +158,15 @@ export default function HomeCanvas() {
 
       {/* Middle Part */}
       <motion.div
+        onHoverStart={() => {
+          hoverLock.current = true;
+          left.set(0.1);
+          right.set(0.9);
+        }}
+        onHoverEnd={() => {
+          hoverLock.current = false;
+          //updateSeparators(currentX.current);
+        }}
         className="absolute top-0 h-full overflow-hidden"
         style={{
           left: leftPx,
@@ -190,6 +209,15 @@ export default function HomeCanvas() {
 
       {/* Right Part */}
       <motion.div
+        onHoverStart={() => {
+          hoverLock.current = true;
+          left.set(0.1);
+          right.set(0.2);
+        }}
+        onHoverEnd={() => {
+          hoverLock.current = false;
+          //updateSeparators(currentX.current);
+        }}
         className="absolute right-0 top-0 h-full overflow-hidden"
         style={{
           width: rightWidth,
@@ -210,18 +238,6 @@ export default function HomeCanvas() {
             <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
               PORTFOLIO
             </h1>
-          </div>
-
-          <div
-            className="absolute bottom-10 right-10 z-10 cursor-pointer"
-            style={{ filter: "brightness(0) invert(1)" }}
-            onClick={() =>
-              window
-                .open("https://www.pixiv.net/artworks/137194516", "_blank")
-                .focus()
-            }
-          >
-            <img src="./src/assets/logo/pixiv.svg" className="mask h-6 w-6" />
           </div>
 
           {/* Guide */}

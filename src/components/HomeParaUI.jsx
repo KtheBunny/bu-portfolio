@@ -1,11 +1,11 @@
 import { MouseParallax } from "react-just-parallax";
 
-import z1 from "../assets/UIUX/home-UI-z1.png";
-import z2 from "../assets/UIUX/home-UI-z2.png";
-import z3 from "../assets/UIUX/home-UI-z3.png";
-import z4 from "../assets/UIUX/home-UI-z4.png";
-import z5 from "../assets/UIUX/home-UI-z5.png";
-import z6 from "../assets/UIUX/home-UI-z6.png";
+import z1 from "../assets/UIUX/home-UI-z1.webp";
+import z2 from "../assets/UIUX/home-UI-z2.webp";
+import z3 from "../assets/UIUX/home-UI-z3.webp";
+import z4 from "../assets/UIUX/home-UI-z4.webp";
+import z5 from "../assets/UIUX/home-UI-z5.webp";
+import z6 from "../assets/UIUX/home-UI-z6.webp";
 
 export default function HomeParaUI() {
   return (

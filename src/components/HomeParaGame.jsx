@@ -1,16 +1,25 @@
 import { MouseParallax } from "react-just-parallax";
+import { Icon } from "@iconify/react";
 
-import z1 from "../assets/game/home-game-z1.png";
-import z2 from "../assets/game/home-game-z50.png";
-import z3 from "../assets/game/home-game-z60.png";
-import z4 from "../assets/game/home-game-z70.png";
-import z5 from "../assets/game/home-game-z80.png";
+import z1 from "../assets/game/home-game-z1.webp";
+import z2 from "../assets/game/home-game-z50.webp";
+import z3 from "../assets/game/home-game-z60.webp";
+import z4 from "../assets/game/home-game-z70.webp";
+import z5 from "../assets/game/home-game-z80.webp";
 import z6 from "../assets/game/home-game-z90.gif";
-import z7 from "../assets/game/home-game-z100.png";
+import z7 from "../assets/game/home-game-z100.webp";
 
 export default function HomeParaGame() {
   return (
     <>
+      <Icon
+        icon="streamline-logos:youtube-clip-logo-solid"
+        className="absolute bottom-10 left-10 z-20 h-6 w-6 cursor-pointer text-white"
+        onClick={() =>
+          window.open("https://youtu.be/YxCVZVR6xT4", "_blank").focus()
+        }
+      />
+
       <img
         className="absolute h-full w-full object-cover object-center"
         src={z1}

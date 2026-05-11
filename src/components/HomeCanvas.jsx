@@ -100,6 +100,26 @@ export default function HomeCanvas() {
     };
   }, [isLeaving]);
 
+  const handleMotionDivEntering = (div) => {
+    hoverLock.current = true;
+    if (div === "left") {
+      left.set(0.8);
+      right.set(0.9);
+    } else if (div === "right") {
+      left.set(0.1);
+      right.set(0.2);
+    }
+    else {      
+      left.set(0.1);
+      right.set(0.9);
+    }
+  }
+
+  const handleMotionDivLeaving = () => {
+    hoverLock.current = false;
+    //updateSeparators(currentX.current);
+  }
+
   return (
     <div
       ref={containerRef}
@@ -111,15 +131,10 @@ export default function HomeCanvas() {
     >
       {/* Left Part */}
       <motion.div
-        onHoverStart={() => {
-          hoverLock.current = true;
-          left.set(0.8);
-          right.set(0.9);
-        }}
-        onHoverEnd={() => {
-          hoverLock.current = false;
-          //updateSeparators(currentX.current);
-        }}
+        onPointerEnter={() => {handleMotionDivEntering("left");}}
+        onPointerLeave={handleMotionDivLeaving}
+        onPointerDown={() => {handleMotionDivEntering("left");}}
+        onPointerUp={handleMotionDivLeaving}
         className="absolute left-0 top-0 z-10 h-full overflow-hidden"
         style={{
           width: leftWidth,
@@ -158,15 +173,10 @@ export default function HomeCanvas() {
 
       {/* Middle Part */}
       <motion.div
-        onHoverStart={() => {
-          hoverLock.current = true;
-          left.set(0.1);
-          right.set(0.9);
-        }}
-        onHoverEnd={() => {
-          hoverLock.current = false;
-          //updateSeparators(currentX.current);
-        }}
+        onPointerEnter={() => {handleMotionDivEntering("middle");}}
+        onPointerLeave={handleMotionDivLeaving}
+        onPointerDown={() => {handleMotionDivEntering("middle");}}
+        onPointerUp={handleMotionDivLeaving}
         className="absolute top-0 h-full overflow-hidden"
         style={{
           left: leftPx,
@@ -209,15 +219,10 @@ export default function HomeCanvas() {
 
       {/* Right Part */}
       <motion.div
-        onHoverStart={() => {
-          hoverLock.current = true;
-          left.set(0.1);
-          right.set(0.2);
-        }}
-        onHoverEnd={() => {
-          hoverLock.current = false;
-          //updateSeparators(currentX.current);
-        }}
+        onPointerEnter={() => {handleMotionDivEntering("right");}}
+        onPointerLeave={handleMotionDivLeaving}
+        onPointerDown={() => {handleMotionDivEntering("right");}}
+        onPointerUp={handleMotionDivLeaving}
         className="absolute right-0 top-0 h-full overflow-hidden"
         style={{
           width: rightWidth,

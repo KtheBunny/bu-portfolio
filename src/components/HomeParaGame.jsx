@@ -12,6 +12,7 @@ import z7 from "../assets/game/home-game-z100.webp";
 export default function HomeParaGame() {
   return (
     <>
+    <div className="relative h-full overflow-hidden [contain:layout_paint]">
       <Icon
         icon="streamline-logos:youtube-clip-logo-solid"
         className="absolute bottom-10 left-10 z-20 h-6 w-6 cursor-pointer text-white"
@@ -109,6 +110,7 @@ export default function HomeParaGame() {
           style={{ imageRendering: "pixelated" }}
         />
       </MouseParallax>
+      </div>
     </>
   );
 }

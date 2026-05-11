@@ -15,6 +15,7 @@ import pixiv from "../assets/logo/pixiv.svg";
 export default function HomeParaArt() {
   return (
     <>
+    <div className="relative h-full overflow-hidden [contain:layout_paint]">
       <div
         className="absolute bottom-10 right-10 z-10 cursor-pointer"
         style={{ filter: "brightness(0) invert(1)" }}
@@ -135,6 +136,7 @@ export default function HomeParaArt() {
           src={z9}
         />
       </MouseParallax>
+      </div>
     </>
   );
 }

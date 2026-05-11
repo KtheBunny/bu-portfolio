@@ -123,7 +123,7 @@ export default function HomeCanvas() {
   return (
     <div
       ref={containerRef}
-      className="home-canvas-container relative h-screen overflow-hidden"
+      className="home-canvas-container relative min-h-svh overflow-hidden"
       style={{
         left: "3.5rem",
         width: "calc(100vw - 3.5rem)",

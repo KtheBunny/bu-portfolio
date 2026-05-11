@@ -10,6 +10,7 @@ import z6 from "../assets/UIUX/home-UI-z6.webp";
 export default function HomeParaUI() {
   return (
     <>
+    <div className="relative h-full overflow-hidden [contain:layout_paint]">
       <MouseParallax
         isAbsolutelyPositioned
         strength={0.2}
@@ -87,6 +88,7 @@ export default function HomeParaUI() {
           src={z1}
         />
       </MouseParallax>
+      </div>
     </>
   );
 }

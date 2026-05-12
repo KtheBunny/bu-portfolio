@@ -108,17 +108,16 @@ export default function HomeCanvas() {
     } else if (div === "right") {
       left.set(0.1);
       right.set(0.2);
-    }
-    else {      
+    } else {
       left.set(0.1);
       right.set(0.9);
     }
-  }
+  };
 
   const handleMotionDivLeaving = () => {
     hoverLock.current = false;
     //updateSeparators(currentX.current);
-  }
+  };
 
   return (
     <div
@@ -129,53 +128,15 @@ export default function HomeCanvas() {
         width: "calc(100vw - 3.5rem)",
       }}
     >
-      {/* Left Part */}
-      <motion.div
-        onPointerEnter={() => {handleMotionDivEntering("left");}}
-        onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {handleMotionDivEntering("left");}}
-        onPointerUp={handleMotionDivLeaving}
-        className="absolute left-0 top-0 z-10 h-full overflow-hidden"
-        style={{
-          width: leftWidth,
-          WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
-          maskImage: "linear-gradient(to right, black 85%, transparent)",
-        }}
-      >
-        <div
-          className="fixed left-[3.5rem] top-0 h-full"
-          style={{
-            width: "calc(100vw - 3.5rem)",
-          }}
-        >
-          <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200">
-              {"Game       Dev".split("").map((c, i) => (
-                <span key={i}>{c}</span>
-              ))}
-            </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-cyan-200">
-              PORTFOLIO
-            </h1>
-          </div>
-
-          {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white">
-            <div className="flex animate-bounce flex-col items-center gap-2">
-              <span className="text-center font-gugi">Scroll to see more</span>
-              <Icon icon="mdi:mouse" className="h-6 w-6" />
-            </div>
-          </div>
-
-          <HomeParaGame />
-        </div>
-      </motion.div>
-
       {/* Middle Part */}
       <motion.div
-        onPointerEnter={() => {handleMotionDivEntering("middle");}}
+        onPointerEnter={() => {
+          handleMotionDivEntering("middle");
+        }}
         onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {handleMotionDivEntering("middle");}}
+        onPointerDown={() => {
+          handleMotionDivEntering("middle");
+        }}
         onPointerUp={handleMotionDivLeaving}
         className="absolute top-0 h-full overflow-hidden"
         style={{
@@ -206,7 +167,7 @@ export default function HomeCanvas() {
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-orange-500">
+          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500">
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />
@@ -217,11 +178,61 @@ export default function HomeCanvas() {
         </div>
       </motion.div>
 
+      {/* Left Part */}
+      <motion.div
+        onPointerEnter={() => {
+          handleMotionDivEntering("left");
+        }}
+        onPointerLeave={handleMotionDivLeaving}
+        onPointerDown={() => {
+          handleMotionDivEntering("left");
+        }}
+        onPointerUp={handleMotionDivLeaving}
+        className="absolute left-0 top-0 h-full overflow-hidden"
+        style={{
+          width: leftWidth,
+          WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
+          maskImage: "linear-gradient(to right, black 85%, transparent)",
+        }}
+      >
+        <div
+          className="fixed left-[3.5rem] top-0 h-full"
+          style={{
+            width: "calc(100vw - 3.5rem)",
+          }}
+        >
+          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200">
+              {"Game       Dev".split("").map((c, i) => (
+                <span key={i}>{c}</span>
+              ))}
+            </h2>
+            <h1 className="font-gugi text-5xl font-bold tracking-wide text-cyan-200">
+              PORTFOLIO
+            </h1>
+          </div>
+
+          {/* Guide */}
+          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white">
+            <div className="flex animate-bounce flex-col items-center gap-2">
+              <span className="text-center font-gugi">Scroll to see more</span>
+              <Icon icon="mdi:mouse" className="h-6 w-6" />
+            </div>
+          </div>
+
+          <HomeParaGame />
+        </div>
+      </motion.div>
+
       {/* Right Part */}
       <motion.div
-        onPointerEnter={() => {handleMotionDivEntering("right");}}
+        onPointerEnter={() => {
+          handleMotionDivEntering("right");
+        }}
         onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {handleMotionDivEntering("right");}}
+        onPointerDown={() => {
+          handleMotionDivEntering("right");
+        }}
         onPointerUp={handleMotionDivLeaving}
         className="absolute right-0 top-0 h-full overflow-hidden"
         style={{
@@ -234,7 +245,7 @@ export default function HomeCanvas() {
           className="fixed left-[3.5rem] top-0 h-full"
           style={{ width: "calc(100vw - 3.5rem)" }}
         >
-          <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
             <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white">
               {"Illustration".split("").map((c, i) => (
                 <span key={i}>{c}</span>
@@ -246,7 +257,7 @@ export default function HomeCanvas() {
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white">
+          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white">
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />

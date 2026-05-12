@@ -9,6 +9,8 @@ import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
 export default function SkillTreeCanvas() {
   const [selectedIds, setSelectedIds] = useState(() => new Set());
+  const [showCustomCursor, setShowCustomCursor] = useState(false);
+
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
   const containerRef = useRef(null); // 內部實際比 viewport 大的內容
   const cursorRef = useRef(null);
@@ -81,6 +83,18 @@ export default function SkillTreeCanvas() {
   }
 
   useEffect(() => {
+    // 判斷是否為滑鼠裝置
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    setShowCustomCursor(hasFinePointer && canHover);
+    console.log("裝置能力檢測：", {
+      hasFinePointer,
+      canHover,
+      showCustomCursor,
+    });
+  }, [showCustomCursor]);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     const cursor = cursorRef.current;
@@ -149,8 +163,6 @@ export default function SkillTreeCanvas() {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mouseenter", onMouseEnter);
     window.addEventListener("mouseup", onMouseUp);
-
-    console.log("事件已註冊");
 
     // 初始置中：將 container 的中心對齊到 canvas (viewport) 的中心
     const centerContainerInCanvas = () => {
@@ -260,6 +272,11 @@ export default function SkillTreeCanvas() {
                 遊戲開發
               </div>
 
+              <div className="absolute top-[150px] flex h-12 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
+                <span className="material-symbols-outlined">Other_Houses</span>
+                其他技能
+              </div>
+
               {/* 連接線 */}
 
               <svg
@@ -354,6 +371,7 @@ export default function SkillTreeCanvas() {
           background: "transparent",
           transform: "translate(-50%,-50%) scale(1)",
           transition: "transform 0.12s ease, background 0.12s ease",
+          zIndex: `${showCustomCursor ? 50 : -5}`,
         }}
       />
     </>

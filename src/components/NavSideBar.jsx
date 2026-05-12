@@ -18,7 +18,7 @@ const navItems = [
     label: "技能樹",
   },
   {
-    path: "/bookmarks",
+    path: "/Works",
     fill: "material-symbols:bookmark",
     outline: "material-symbols:bookmark-outline",
     label: "作品集",

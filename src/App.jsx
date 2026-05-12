@@ -5,6 +5,7 @@ import TransitionOverlay from "./components/TransitionOverlay";
 import "./App.css";
 import Tree from "./pages/Tree";
 import Home from "./pages/Home";
+import Eminence from "./components/Eminence";
 import NavSideBar from "./components/NavSideBar";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Skills" element={<Tree />} />
+        <Route path="/Works" element={<Eminence />} />
       </Routes>
     </TransitionProvider>
   );

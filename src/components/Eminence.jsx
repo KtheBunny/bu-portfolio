@@ -8,7 +8,7 @@ import {
 import { useRef, useEffect } from "react";
 
 import logo from "../assets/logo/Eminence-logo.png";
-import hi from "../assets/logo/hi.png";
+import bg1 from "../assets/logo/Eminence-bg1.png";
 
 import f0000 from "../assets/frames/WakeUp0000.png";
 import f0001 from "../assets/frames/WakeUp0001.png";
@@ -51,10 +51,10 @@ const frames = [
   f0004,
   f0005,
   f0006,
-  f0007,
-  f0008,
-  f0009,
-  f0010,
+  //f0007,
+  //f0008,
+  //f0009,
+  //f0010,
   f0011,
   f0012,
   f0013,
@@ -105,12 +105,13 @@ const portfolioItems = [
   },
 ];
 
-const TOTAL_FRAMES = 32;
+const TOTAL_FRAMES = 28;
 
 export default function Eminence() {
   const containerRef = useRef(null);
   const imagesRef = useRef([]);
   const canvasRef = useRef(null);
+  const currentFrameRef = useRef(0);
 
   // 取得 scroll progress
   const { scrollYProgress } = useScroll({
@@ -123,7 +124,7 @@ export default function Eminence() {
    */
   const frameIndex = useTransform(
     scrollYProgress,
-    [0, 0.4],
+    [0, 0.3],
     [0, TOTAL_FRAMES - 1],
   );
 
@@ -144,9 +145,6 @@ export default function Eminence() {
     imagesRef.current = images;
   }, []);
 
-  /**
-   * draw frame
-   */
   const drawFrame = (index) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
@@ -157,9 +155,6 @@ export default function Eminence() {
 
     if (!image) return;
 
-    /**
-     * resize canvas
-     */
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
@@ -169,11 +164,10 @@ export default function Eminence() {
     /**
      * cover mode
      */
-    const scale = 4;
-    //Math.min(
-    //  canvas.width / image.width,
-    //  canvas.height / image.height,
-    //);
+    const scale = Math.max(
+      canvas.width / image.width,
+      canvas.height / image.height,
+    );
 
     const x = canvas.width / 2 - (image.width / 2) * scale;
 
@@ -186,7 +180,11 @@ export default function Eminence() {
    * scroll update
    */
   useMotionValueEvent(frameIndex, "change", (latest) => {
-    drawFrame(Math.floor(latest));
+    const frame = Math.floor(latest);
+
+    currentFrameRef.current = frame;
+
+    drawFrame(frame);
   });
 
   /**
@@ -200,6 +198,16 @@ export default function Eminence() {
     firstImage.onload = () => {
       drawFrame(0);
     };
+
+    const handleResize = () => {
+      drawFrame(currentFrameRef.current);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   // ----------------------
@@ -209,29 +217,47 @@ export default function Eminence() {
    * 0% ~ 35% scroll 時逐漸模糊
    * 超過後固定 blur(16px)
    */
-  const blurValue = useTransform(scrollYProgress, [0, 0.35], [0, 16]);
+  const blurValue = useTransform(scrollYProgress, [0, 0.35, 0.4], [0, 0, 16]);
   const filterValue = useMotionTemplate`blur(${blurValue}px)`;
 
   /**
    * 背景縮放
    * 讓畫面更有 cinematic 感
    */
-  const scaleValue = useTransform(scrollYProgress, [0, 0.35], [1, 1.08]);
+  const scaleValue = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.4],
+    [1, 1, 1.08],
+  );
 
   /**
    * 封面 dark overlay
    */
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.35], [0.2, 0.55]);
+  const overlayOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.4],
+    [0, 0, 0.55],
+  );
 
   // scroll提示相關
   const hintsOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
   const hintsBlur = useTransform(scrollYProgress, [0, 0.08], [0, 10]);
   const hintsFilter = useMotionTemplate`blur(${hintsBlur}px)`;
 
+  // logo相關
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [0, 0, 1]);
+
+  // 角色相關
+  const characterScale = useTransform(scrollYProgress, [0, 0.25], [1.2, 1]);
+  const characterY = useTransform(scrollYProgress, [0, 0.25], [-200, 0]);
+
+  // 第一個背景圖相關
+  const bg1Opacity = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, 0, 1]);
+
   return (
     <>
       <div ref={containerRef} className="bg-black text-white">
-        <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="sticky top-0 min-h-dvh overflow-hidden">
           <motion.div
             style={{
               opacity: hintsOpacity,
@@ -247,17 +273,53 @@ export default function Eminence() {
               </span>
             </div>
           </motion.div>
-          <canvas
-            ref={canvasRef}
-            className="h-screen w-screen"
-            style={{ imageRendering: "pixelated" }}
+
+          <motion.div
+            style={{
+              scale: characterScale,
+              filter: filterValue,
+              y: characterY,
+            }}
+            className="absolute inset-0"
+          >
+            <motion.img
+              src={bg1}
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{
+                opacity: bg1Opacity,
+                imageRendering: "pixelated",
+              }}
+            />
+            <canvas
+              ref={canvasRef}
+              className="z-1 absolute h-full w-full"
+              style={{ imageRendering: "pixelated" }}
+            />
+          </motion.div>
+
+          {/* 黑色遮罩 */}
+          {/*
+          <motion.div
+            style={{ opacity: overlayOpacity }}
+            className="absolute inset-0 bg-black"
           />
+          */}
+
+          {/* 中央文字 */}
+          <div className="absolute z-10 flex h-full flex-col items-center justify-center">
+            <motion.img
+              src={logo}
+              className="w-1/3"
+              style={{ opacity: logoOpacity }}
+            />
+          </div>
         </div>
         {/* =========================
           背景封面區
         ========================== */}
         <div className="sticky top-0 h-screen overflow-hidden">
           {/* 背景圖 */}
+          {/*
           <motion.div
             style={{
               scale: scaleValue,
@@ -268,25 +330,15 @@ export default function Eminence() {
           >
             <img src={hi} className="h-full w-full object-cover" />
           </motion.div>
-
-          {/* 黑色遮罩 */}
-          <motion.div
-            style={{ opacity: overlayOpacity }}
-            className="absolute inset-0 bg-black"
-          />
-
-          {/* 中央文字 */}
-          <div className="relative z-10 flex h-full flex-col items-center justify-center">
-            <img src={logo} className="w-1/3" />
-          </div>
+          */}
         </div>
 
         {/* =========================
           作品集區塊
       ========================== */}
         <section className="relative z-20 min-h-[220vh]">
-          <div className="mx-auto max-w-6xl px-6 pb-40 pt-[120vh]">
-            <div className="grid gap-10 md:grid-cols-2">
+          <div className="mx-auto max-w-6xl px-6 pb-40">
+            <div className="grid gap-10 md:grid-cols-1">
               {portfolioItems.map((item, index) => (
                 <motion.div
                   key={item.id}

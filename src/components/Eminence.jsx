@@ -43,6 +43,29 @@ import f0029 from "../assets/frames/WakeUp0029.png";
 import f0030 from "../assets/frames/WakeUp0030.png";
 import f0031 from "../assets/frames/WakeUp0031.png";
 
+import ppt1 from "../assets/Eminence/Eminence-1.webp";
+import ppt2 from "../assets/Eminence/Eminence-2.webp";
+import ppt3 from "../assets/Eminence/Eminence-3.webp";
+import ppt4 from "../assets/Eminence/Eminence-4.webp";
+import ppt5 from "../assets/Eminence/Eminence-5.webp";
+import ppt6 from "../assets/Eminence/Eminence-6.webp";
+import ppt7 from "../assets/Eminence/Eminence-7.webp";
+import ppt8 from "../assets/Eminence/Eminence-8.webp";
+import ppt9 from "../assets/Eminence/Eminence-9.webp";
+import ppt10 from "../assets/Eminence/Eminence-10.webp";
+import ppt11 from "../assets/Eminence/Eminence-11.webp";
+import ppt12 from "../assets/Eminence/Eminence-12.webp";
+import ppt13 from "../assets/Eminence/Eminence-13.webp";
+import ppt14 from "../assets/Eminence/Eminence-14.webp";
+import ppt15 from "../assets/Eminence/Eminence-15.webp";
+
+import AllCharacterAnimation from "../assets/Eminence/Eminence-CharaAni.png";
+import Fog1 from "../assets/Eminence/Eminence-Fog1.webm";
+import Fog2 from "../assets/Eminence/Eminence-Fog2.webm";
+import Parallax1 from "../assets/Eminence/Eminence-Para1.webm";
+import Parallax2 from "../assets/Eminence/Eminence-Para2.webm";
+import Decoration from "../assets/Eminence/Eminence-Deco.webm";
+
 const frames = [
   f0000,
   f0001,
@@ -78,34 +101,33 @@ const frames = [
   f0031,
 ];
 
-const portfolioItems = [
-  {
-    id: 1,
-    title: "Project One",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200",
-  },
-  {
-    id: 2,
-    title: "Project Two",
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200",
-  },
-  {
-    id: 3,
-    title: "Project Three",
-    image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200",
-  },
-  {
-    id: 4,
-    title: "Project Four",
-    image:
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200",
-  },
-];
-
 const TOTAL_FRAMES = 28;
+
+const FadeUp = ({ children, className = "" }) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 120,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.5,
+        ease: "easeOut",
+      }}
+      viewport={{
+        once: false,
+        amount: 0.25,
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default function Eminence() {
   const containerRef = useRef(null);
@@ -124,7 +146,7 @@ export default function Eminence() {
    */
   const frameIndex = useTransform(
     scrollYProgress,
-    [0, 0.3],
+    [0, 0.125],
     [0, TOTAL_FRAMES - 1],
   );
 
@@ -217,7 +239,7 @@ export default function Eminence() {
    * 0% ~ 35% scroll 時逐漸模糊
    * 超過後固定 blur(16px)
    */
-  const blurValue = useTransform(scrollYProgress, [0, 0.35, 0.4], [0, 0, 16]);
+  const blurValue = useTransform(scrollYProgress, [0, 0.15, 0.2], [0, 0, 16]);
   const filterValue = useMotionTemplate`blur(${blurValue}px)`;
 
   /**
@@ -226,7 +248,7 @@ export default function Eminence() {
    */
   const scaleValue = useTransform(
     scrollYProgress,
-    [0, 0.35, 0.4],
+    [0, 0.175, 0.2],
     [1, 1, 1.08],
   );
 
@@ -235,24 +257,24 @@ export default function Eminence() {
    */
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0, 0.35, 0.4],
+    [0, 0.175, 0.2],
     [0, 0, 0.55],
   );
 
   // scroll提示相關
-  const hintsOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
-  const hintsBlur = useTransform(scrollYProgress, [0, 0.08], [0, 10]);
+  const hintsOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0]);
+  const hintsBlur = useTransform(scrollYProgress, [0, 0.04], [0, 10]);
   const hintsFilter = useMotionTemplate`blur(${hintsBlur}px)`;
 
   // logo相關
-  const logoOpacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [0, 0, 1]);
+  const logoOpacity = useTransform(scrollYProgress, [0, 0.175, 0.2], [0, 0, 1]);
 
   // 角色相關
-  const characterScale = useTransform(scrollYProgress, [0, 0.25], [1.2, 1]);
-  const characterY = useTransform(scrollYProgress, [0, 0.25], [-200, 0]);
+  const characterScale = useTransform(scrollYProgress, [0, 0.125], [1.2, 1]);
+  const characterY = useTransform(scrollYProgress, [0, 0.125], [-200, 0]);
 
   // 第一個背景圖相關
-  const bg1Opacity = useTransform(scrollYProgress, [0, 0.15, 0.4], [0, 0, 1]);
+  const bg1Opacity = useTransform(scrollYProgress, [0, 0.07, 0.2], [0, 0, 1]);
 
   return (
     <>
@@ -297,86 +319,248 @@ export default function Eminence() {
             />
           </motion.div>
 
-          {/* 黑色遮罩 */}
-          {/*
-          <motion.div
-            style={{ opacity: overlayOpacity }}
-            className="absolute inset-0 bg-black"
-          />
-          */}
-
           {/* 中央文字 */}
-          <div className="absolute z-10 flex h-full flex-col items-center justify-center">
+          <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center">
             <motion.img
               src={logo}
-              className="w-1/3"
+              className={"w-1/2 lg:w-1/3"}
               style={{ opacity: logoOpacity }}
             />
           </div>
         </div>
         {/* =========================
-          背景封面區
+          gap
         ========================== */}
-        <div className="sticky top-0 h-screen overflow-hidden">
-          {/* 背景圖 */}
-          {/*
-          <motion.div
-            style={{
-              scale: scaleValue,
-              filter: filterValue,
-              opacity: 0.1,
-            }}
-            className="absolute inset-0"
-          >
-            <img src={hi} className="h-full w-full object-cover" />
-          </motion.div>
-          */}
-        </div>
+        <div className="sticky top-0 min-h-[200vh] overflow-hidden"></div>
 
         {/* =========================
           作品集區塊
       ========================== */}
-        <section className="relative z-20 min-h-[220vh]">
+        <section className="relative z-20">
           <div className="mx-auto max-w-6xl px-6 pb-40">
             <div className="grid gap-10 md:grid-cols-1">
-              {portfolioItems.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{
-                    opacity: 0,
-                    y: 120,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    delay: index * 0.08,
-                    ease: "easeOut",
-                  }}
-                  viewport={{
-                    once: false,
-                    amount: 0.25,
-                  }}
-                  className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md"
-                >
+              <FadeUp>
+                <iframe
+                  src="https://www.youtube.com/embed/YxCVZVR6xT4?si=7Ibymi1PXo8_QdAc"
+                  title="YouTube video player"
+                  className="aspect-video w-full rounded-3xl"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                   <div className="overflow-hidden">
                     <img
-                      src={item.image}
-                      className="h-[420px] w-full object-cover transition duration-700 group-hover:scale-105"
+                      src={ppt1}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
                     />
                   </div>
+                </div>
+              </FadeUp>
 
-                  <div className="p-6">
-                    <h2 className="text-2xl font-semibold">{item.title}</h2>
-
-                    <p className="mt-3 text-white/60">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt2}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <img
+                      src={AllCharacterAnimation}
+                      className="absolute left-1/2 top-1/2 z-10 w-2/5 -translate-x-1/2 -translate-y-1/2 object-cover transition duration-300 group-hover:scale-150"
+                      style={{ imageRendering: "pixelated" }}
+                    />
                   </div>
-                </motion.div>
-              ))}
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt3}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt4}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt5}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt6}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt7}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt8}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt9}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt10}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-y-[10%] right-[5.7%] flex h-[80%] w-[40%] flex-col transition duration-300 group-hover:scale-110">
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="min-h-0 w-auto flex-1 object-cover"
+                      >
+                        <source src={Parallax1} type="video/webm" />
+                      </video>
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="min-h-0 w-auto flex-1 object-cover"
+                      >
+                        <source src={Parallax2} type="video/webm" />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt11}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-x-[5.7%] top-1/2 flex w-[88.6%] -translate-y-1/2 flex-row transition duration-300 group-hover:scale-110">
+                      <div className="flex-1 overflow-hidden">
+                        <video
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="h-full w-full object-cover"
+                        >
+                          <source src={Fog1} type="video/webm" />
+                        </video>
+                      </div>
+
+                      <div className="flex-1 overflow-hidden">
+                        <video
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="h-full w-full object-cover"
+                        >
+                          <source src={Fog2} type="video/webm" />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt12}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt13}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt14}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <div className="overflow-hidden">
+                    <img
+                      src={ppt15}
+                      className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    />
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute left-1/2 top-1/2 w-[30%] -translate-x-1/2 -translate-y-1/2 object-cover transition duration-300 group-hover:scale-[210%]"
+                    >
+                      <source src={Decoration} type="video/webm" />
+                    </video>
+                  </div>
+                </div>
+              </FadeUp>
             </div>
           </div>
         </section>

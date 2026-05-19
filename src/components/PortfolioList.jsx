@@ -8,57 +8,63 @@ import eminenceIcon from "../assets/button/eminence-icon.png";
 import mwIcon from "../assets/button/MW-icon.png";
 import pogIcon from "../assets/button/POG-icon.png";
 
-// 作品資料
+import folderButton from "./PortfolioFolderButton";
+import EminenceButton from "./PortfolioEminenceButton";
+import PogButton from "./PortfolioPogButton";
+import MoonwalkButton from "./PortfolioMoonwalkButton";
+
 const projects = [
   {
     id: 1,
-    title: "Finance App",
-    type: "電腦遊戲",
-    skills: ["UI/UX", "React Native"],
+    title: "Eminence",
+    type: "Game",
+    skills: ["Game Dev", "Pixel Art"],
     year: "2025",
-    link: "/Eminence",
-    svg: { eminenceIcon },
-    image: "../src/assets/button/eminence-icon.png",
+    link: "/projects/pixel-adventure",
+
+    icon: EminenceButton,
   },
+
   {
     id: 2,
-    title: "Fantasy Game",
-    type: "Game Design",
-    skills: ["Game Dev", "Unity"],
+    title: "Path of Ghost",
+    type: "Mobile APP",
+    skills: ["UI/UX", "React Native"],
     year: "2024",
-    link: "/projects/fantasy-game",
-    svg: "../src/assets/button/folder.svg",
-    image: "/assets/projects/game-cover.png",
+    link: "/projects/finance-app",
+
+    icon: PogButton,
   },
+
   {
     id: 3,
-    title: "Music Platform",
+    title: "Moonwalk",
     type: "Web Design",
     skills: ["Frontend", "UI Design"],
     year: "2023",
     link: "/projects/music-platform",
-    svg: "../src/assets/button/monitor.svg",
-    image: "/assets/projects/music-cover.png",
+
+    icon: MoonwalkButton,
   },
   {
     id: 4,
-    title: "像素藝術作品集",
-    type: "作品集",
-    skills: ["Game Dev", "Unity"],
-    year: "2024",
-    link: "/projects/fantasy-game",
-    svg: "../src/assets/button/folder.svg",
-    image: "/assets/projects/game-cover.png",
+    title: "Pixel Art 作品集",
+    type: "Web Design",
+    skills: ["Frontend", "UI Design"],
+    year: "2023",
+    link: "/projects/music-platform",
+
+    icon: folderButton,
   },
   {
     id: 5,
-    title: "繪圖作品集",
-    type: "作品集",
-    skills: ["Game Dev", "Unity"],
-    year: "2024",
-    link: "/projects/fantasy-game",
-    svg: "../src/assets/button/folder.svg",
-    image: "/assets/projects/game-cover.png",
+    title: "繪畫作品集",
+    type: "Web Design",
+    skills: ["Frontend", "UI Design"],
+    year: "2023",
+    link: "/projects/music-platform",
+
+    icon: folderButton,
   },
 ];
 
@@ -67,6 +73,7 @@ const containerVariants = {
   hidden: {},
   show: {
     transition: {
+      delayChildren: 0.5,
       staggerChildren: 0.15,
     },
   },
@@ -108,64 +115,53 @@ export default function PortfolioList() {
         initial="hidden"
         animate="show"
       >
-        {projects.map((project) => (
-          <motion.div
-            key={project.id}
-            variants={itemVariants}
-            className="flex flex-col items-center"
-          >
-            {/* 按鈕區 */}
-            <Link to={project.link} className="group">
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 15,
-                }}
-                className="relative h-[280px] w-[280px] cursor-pointer"
-              >
-                {/* SVG底圖 */}
-                <img
-                  src={project.svg}
-                  alt={project.title}
-                  className="pointer-events-none h-full w-full select-none object-contain"
-                />
+        {projects.map((project) => {
+          const IconComponent = project.icon;
 
-                {/* 疊在SVG上的圖片 */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="pointer-events-none absolute inset-0 m-auto h-[58%] w-[58%] object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-              </motion.div>
-            </Link>
+          return (
+            <motion.div
+              key={project.id}
+              variants={itemVariants}
+              className="flex flex-col items-center"
+            >
+              <Link to={project.link} className="group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 220,
+                    damping: 15,
+                  }}
+                >
+                  {/* 直接 render */}
+                  <IconComponent />
+                </motion.div>
+              </Link>
 
-            {/* 作品資訊 */}
-            <div className="mt-5 w-full max-w-[300px] rounded-2xl border border-zinc-800 bg-zinc-900/70 px-5 py-4 backdrop-blur-md">
-              <div className="mb-2 flex items-center justify-between">
-                <h2 className="text-xl font-semibold">{project.title}</h2>
+              {/* 資訊卡 */}
+              <div className="mt-5 w-full max-w-[300px] rounded-2xl bg-zinc-900 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <h2 className="text-xl font-semibold">{project.title}</h2>
 
-                <span className="text-sm text-zinc-400">{project.year}</span>
+                  <span className="text-sm text-zinc-400">{project.year}</span>
+                </div>
+
+                <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-
-              <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full bg-zinc-800 px-3 py-1 text-xs text-zinc-300"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </motion.div>
     </section>
   );

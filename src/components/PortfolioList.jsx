@@ -8,63 +8,99 @@ import eminenceIcon from "../assets/button/eminence-icon.png";
 import mwIcon from "../assets/button/MW-icon.png";
 import pogIcon from "../assets/button/POG-icon.png";
 
-import folderButton from "./PortfolioFolderButton";
+import folderPixelButton from "./PortfolioFolderPixel";
+import folderArtButton from "./PortfolioFolderArt";
+import folderUIButton from "./PortfolioFolderUI";
 import EminenceButton from "./PortfolioEminenceButton";
 import PogButton from "./PortfolioPogButton";
 import MoonwalkButton from "./PortfolioMoonwalkButton";
+import HealterButton from "./PortfolioHealterButton";
+import IkhtcgButton from "./PortfolioIkhtcgButton";
 
 const projects = [
   {
     id: 1,
-    title: "Eminence",
-    type: "Game",
-    skills: ["Game Dev", "Pixel Art"],
+    title: "Pixel Art 作品集",
+    type: "Web Design",
+    skills: ["Frontend", "UI Design"],
     year: "2025",
-    link: "/projects/pixel-adventure",
+    link: "/projects/music-platform",
+
+    icon: folderPixelButton,
+  },
+  {
+    id: 2,
+    title: "繪畫相關作品集",
+    type: "Web Design",
+    skills: ["Frontend", "UI Design"],
+    year: "2025",
+    link: "/projects/music-platform",
+
+    icon: folderArtButton,
+  },
+  {
+    id: 3,
+    title: "APP及網頁作品集",
+    type: "Web Design",
+    skills: ["Frontend", "UI Design"],
+    year: "2025",
+    link: "/projects/music-platform",
+
+    icon: folderUIButton,
+  },
+  {
+    id: 4,
+    title: "Eminence",
+    type: "電腦遊戲",
+    skills: ["Game Dev", "Pixel Art", "Unity", "Technical Art"],
+    year: "2022",
+    link: "/Works/Eminence",
 
     icon: EminenceButton,
   },
 
   {
-    id: 2,
+    id: 5,
     title: "Path of Ghost",
-    type: "Mobile APP",
+    type: "電腦遊戲",
     skills: ["UI/UX", "React Native"],
-    year: "2024",
+    year: "2021",
     link: "/projects/finance-app",
 
     icon: PogButton,
   },
 
   {
-    id: 3,
-    title: "Moonwalk",
-    type: "Web Design",
+    id: 6,
+    title: "MoonWalk",
+    type: "電腦遊戲",
     skills: ["Frontend", "UI Design"],
-    year: "2023",
+    year: "2021",
     link: "/projects/music-platform",
 
     icon: MoonwalkButton,
   },
+
   {
-    id: 4,
-    title: "Pixel Art 作品集",
-    type: "Web Design",
-    skills: ["Frontend", "UI Design"],
-    year: "2023",
+    id: 7,
+    title: "Healter",
+    type: "iOS APP",
+    skills: ["Frontend", "UI Design", "SwiftUI"],
+    year: "2025",
     link: "/projects/music-platform",
 
-    icon: folderButton,
+    icon: HealterButton,
   },
+
   {
-    id: 5,
-    title: "繪畫作品集",
-    type: "Web Design",
-    skills: ["Frontend", "UI Design"],
-    year: "2023",
+    id: 8,
+    title: "伊香保-TCG",
+    type: "Web APP",
+    skills: ["Frontend", "UI Design", "SwiftUI"],
+    year: "2025",
     link: "/projects/music-platform",
 
-    icon: folderButton,
+    icon: IkhtcgButton,
   },
 ];
 
@@ -99,18 +135,32 @@ export default function PortfolioList() {
   return (
     <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 py-20 text-white">
       {/* 標題 */}
-      <div className="mb-16">
+      <motion.div
+        className="mb-16"
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.45,
+          ease: "easeOut",
+        }}
+      >
         <h1 className="mb-3 text-center font-gugi text-5xl font-bold">
           My Projects
         </h1>
         <p className="text-center text-lg text-zinc-400">
           選擇您感興趣的作品，點擊進入詳細頁面。
         </p>
-      </div>
+      </motion.div>
 
       {/* 作品列表 */}
       <motion.div
-        className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+        className="mx-auto grid max-w-6xl grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
         variants={containerVariants}
         initial="hidden"
         animate="show"

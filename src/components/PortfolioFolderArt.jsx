@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-import cover from "../assets/button/folder-cover.svg";
+import cover from "../assets/button/folder-Art-cover.svg";
 import paper1 from "../assets/button/folder-paper1.svg";
 import paper2 from "../assets/button/folder-paper2.svg";
-import base from "../assets/button/folder-base.svg";
+import base from "../assets/button/folder-Art-base.svg";
 
 export default function FolderButton() {
   return (
@@ -34,7 +34,7 @@ export default function FolderButton() {
             y: 0,
           },
           hover: {
-            y: -20,
+            y: -40,
           },
         }}
         transition={{
@@ -52,7 +52,7 @@ export default function FolderButton() {
             y: 0,
           },
           hover: {
-            y: -15,
+            y: -20,
           },
         }}
         transition={{

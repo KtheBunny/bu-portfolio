@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Skills" element={<Tree />} />
         <Route path="/Works" element={<Portfolio />} />
-        <Route path="/Eminence" element={<Eminence />} />
+        <Route path="/Works/Eminence" element={<Eminence />} />
       </Routes>
     </TransitionProvider>
   );

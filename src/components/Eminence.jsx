@@ -49,6 +49,11 @@ import Fog2 from "../assets/Eminence/Eminence-Fog2.webm";
 import Parallax1 from "../assets/Eminence/Eminence-Para1.webm";
 import Parallax2 from "../assets/Eminence/Eminence-Para2.webm";
 import Decoration from "../assets/Eminence/Eminence-Deco.webm";
+import Fog1Mp4 from "../assets/Eminence/Eminence-Fog1.mp4";
+import Fog2Mp4 from "../assets/Eminence/Eminence-Fog2.mp4";
+import Parallax1Mp4 from "../assets/Eminence/Eminence-Para1.mp4";
+import Parallax2Mp4 from "../assets/Eminence/Eminence-Para2.mp4";
+import DecorationMp4 from "../assets/Eminence/Eminence-Deco.mp4";
 
 //
 //  ppts module
@@ -427,6 +432,7 @@ export default function Eminence() {
                         className="min-h-0 w-auto flex-1 object-cover"
                       >
                         <source src={Parallax1} type="video/webm" />
+                        <source src={Parallax1Mp4} type="video/mp4" />
                       </video>
                       <video
                         autoPlay
@@ -436,6 +442,7 @@ export default function Eminence() {
                         className="min-h-0 w-auto flex-1 object-cover"
                       >
                         <source src={Parallax2} type="video/webm" />
+                        <source src={Parallax2Mp4} type="video/mp4" />
                       </video>
                     </div>
                   </div>
@@ -458,6 +465,7 @@ export default function Eminence() {
                           className="h-full w-full object-cover"
                         >
                           <source src={Fog1} type="video/webm" />
+                          <source src={Fog1Mp4} type="video/mp4" />
                         </video>
                       </div>
 
@@ -470,6 +478,7 @@ export default function Eminence() {
                           className="h-full w-full object-cover"
                         >
                           <source src={Fog2} type="video/webm" />
+                          <source src={Fog2Mp4} type="video/mp4" />
                         </video>
                       </div>
                     </div>
@@ -521,6 +530,7 @@ export default function Eminence() {
                       className="absolute left-1/2 top-1/2 w-[30%] -translate-x-1/2 -translate-y-1/2 object-cover transition duration-300 group-hover:scale-[210%]"
                     >
                       <source src={Decoration} type="video/webm" />
+                      <source src={DecorationMp4} type="video/mp4" />
                     </video>
                   </div>
                 </div>

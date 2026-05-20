@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import svgFolder from "../assets/button/folder.svg";
 import svgPhone from "../assets/button/phone.svg";
 import svgMonitor from "../assets/button/monitor.svg";
-import eminenceIcon from "../assets/button/eminence-icon.png";
+import eminenceIcon from "../assets/button/Eminence-icon.png";
 import mwIcon from "../assets/button/MW-icon.png";
 import pogIcon from "../assets/button/POG-icon.png";
 

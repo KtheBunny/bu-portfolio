@@ -7,6 +7,8 @@ import Tree from "./pages/Tree";
 import Home from "./pages/Home";
 import Portfolio from "./components/PortfolioList";
 import Eminence from "./components/Eminence";
+import Moonwalk from "./components/Moonwalk";
+
 import NavSideBar from "./components/NavSideBar";
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
         <Route path="/Skills" element={<Tree />} />
         <Route path="/Works" element={<Portfolio />} />
         <Route path="/Works/Eminence" element={<Eminence />} />
+        <Route path="/Works/Moonwalk" element={<Moonwalk />} />
       </Routes>
     </TransitionProvider>
   );

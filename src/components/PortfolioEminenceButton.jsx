@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import icon from "../assets/button/eminence-icon.png";
+import icon from "../assets/button/Eminence-icon.png";
 
 export default function EminenceButton() {
   return (

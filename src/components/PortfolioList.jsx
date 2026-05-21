@@ -65,7 +65,7 @@ const projects = [
     type: "電腦遊戲",
     skills: ["UI/UX", "React Native"],
     year: "2021",
-    link: "/projects/finance-app",
+    link: "/Works/PathOfGhost",
 
     icon: PogButton,
   },

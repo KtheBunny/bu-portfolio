@@ -76,7 +76,7 @@ const projects = [
     type: "電腦遊戲",
     skills: ["Frontend", "UI Design"],
     year: "2021",
-    link: "/projects/music-platform",
+    link: "/Works/Moonwalk",
 
     icon: MoonwalkButton,
   },

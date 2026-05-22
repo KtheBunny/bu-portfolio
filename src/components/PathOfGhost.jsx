@@ -6,8 +6,6 @@ import {
 } from "framer-motion";
 import { useRef, useEffect } from "react";
 
-import FloatingItems from "./MoonwalkFloatingItems";
-
 import logo from "../assets/logo/Pog-logo.png";
 import bg from "../assets/logo/Pog-bg.png";
 
@@ -16,7 +14,7 @@ import bg from "../assets/logo/Pog-bg.png";
 //
 
 const ppts = Object.entries(
-  import.meta.glob("../assets/Moonwalk/*.webp", {
+  import.meta.glob("../assets/Pog/*.webp", {
     eager: true,
     import: "default",
   }),
@@ -24,25 +22,10 @@ const ppts = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, module]) => module);
 
-import ShootAnimation from "../assets/Moonwalk/Moonwalk-ShootAni.png";
-import DeadAnimation from "../assets/Moonwalk/Moonwalk-DeadAni.png";
-import CannonAnimation from "../assets/Moonwalk/CannonAni.png";
-import BlackholeAnimation from "../assets/Moonwalk/BlackholeAni.png";
-import CarrotAnimation from "../assets/Moonwalk/CarrotAni.png";
-import AsteroidAnimation from "../assets/Moonwalk/AsteroidAni.png";
-import BubbleAnimation from "../assets/Moonwalk/BubbleAni.png";
-
-import Fog1 from "../assets/Eminence/Eminence-Fog1.webm";
-import Fog2 from "../assets/Eminence/Eminence-Fog2.webm";
-import Parallax1 from "../assets/Eminence/Eminence-Para1.webm";
-import Parallax2 from "../assets/Eminence/Eminence-Para2.webm";
-import Decoration from "../assets/Eminence/Eminence-Deco.webm";
-import Fog1Mp4 from "../assets/Eminence/Eminence-Fog1.mp4";
-import Fog2Mp4 from "../assets/Eminence/Eminence-Fog2.mp4";
-import Parallax1Mp4 from "../assets/Eminence/Eminence-Para1.mp4";
-import Parallax2Mp4 from "../assets/Eminence/Eminence-Para2.mp4";
-import DecorationMp4 from "../assets/Eminence/Eminence-Deco.mp4";
-
+import DeadAnimation from "../assets/Pog/Pog-DeadAni.png";
+import ClimbAnimation from "../assets/Pog/Pog-ClimbAni.png";
+import RunAnimation from "../assets/Pog/Pog-RunAni.png";
+import GhostAnimation from "../assets/Pog/Pog-GhostAni.png";
 //
 //  ppts module
 //
@@ -99,7 +82,6 @@ export default function PathOfGhost() {
                   backgroundImage: `url(${bg})`,
                 }}
               />
-              <FloatingItems />
             </div>
 
             {/* 下方提示 */}
@@ -120,7 +102,7 @@ export default function PathOfGhost() {
             </motion.div>
 
             {/* 中央文字 */}
-            <div className="absolute left-1/2 top-1/2 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 justify-center lg:w-1/3">
+            <div className="absolute left-1/2 top-1/2 z-10 flex w-1/2 -translate-x-1/2 -translate-y-1/2 justify-center">
               <motion.img
                 src={logo}
                 className={"w-full object-contain"}
@@ -155,71 +137,66 @@ export default function PathOfGhost() {
               </FadeUp>
 
               <FadeUp>
-                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                <div className="relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   <img
                     src={ppts[0]}
-                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                    className="w-full object-cover transition duration-300"
                   />
+                  <div className="absolute bottom-[10%] left-[8.6%] flex h-[28%] w-[28.9%] items-center justify-center">
+                    <a
+                      href="https://v3.globalgamejam.org/2021/games/temp-4"
+                      target="_blank"
+                      className="text-md hover:text-ellipsiss animate-bounce rounded-md border border-black p-2 text-center tracking-widest text-black transition duration-300 hover:bg-black hover:text-white"
+                    >
+                      前往作品 GGJ 網頁
+                    </a>
+                  </div>
                 </div>
               </FadeUp>
 
               <FadeUp>
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-                  <img
-                    src={ppts[1]}
-                    className="w-full object-cover transition duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-y-[10%] right-[0%] flex w-auto flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ShootAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={DeadAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    {/* 背景 */}
+                    <img src={ppts[1]} className="h-full w-full object-cover" />
+
+                    {/* overlay */}
+                    <div className="absolute inset-y-[10%] right-[10%] flex w-[15%] flex-col">
+                      <img
+                        src={DeadAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+
+                      <img
+                        src={ClimbAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+
+                      <img
+                        src={RunAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+
+                      <img
+                        src={GhostAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </FadeUp>
 
               <FadeUp>
-                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                   <img
                     src={ppts[2]}
                     className="w-full object-cover transition duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={CannonAnimation}
-                      className="min-h-0 w-auto object-contain"
-                    />
-                  </div>
-                  <div className="absolute right-[45%] top-[25%] flex h-[65%] w-[15%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={AsteroidAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={BubbleAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={CarrotAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                  </div>
-                  <div className="absolute bottom-[10%] right-[12%] flex w-[35%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={BlackholeAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                  </div>
                 </div>
               </FadeUp>
 
@@ -229,9 +206,6 @@ export default function PathOfGhost() {
                     src={ppts[3]}
                     className="w-full object-cover transition duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute left-[5.7%] top-[10%] w-[45%] transition duration-300 group-hover:scale-110">
-                    <img src={bg} className="min-h-0 w-auto object-contain" />
-                  </div>
                 </div>
               </FadeUp>
               <FadeUp>
@@ -246,6 +220,30 @@ export default function PathOfGhost() {
                 <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                   <img
                     src={ppts[5]}
+                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                  />
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <img
+                    src={ppts[6]}
+                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                  />
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <img
+                    src={ppts[7]}
+                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                  />
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <img
+                    src={ppts[8]}
                     className="w-full object-cover transition duration-300 group-hover:scale-110"
                   />
                 </div>

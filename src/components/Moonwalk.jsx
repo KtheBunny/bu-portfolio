@@ -32,17 +32,6 @@ import CarrotAnimation from "../assets/Moonwalk/CarrotAni.png";
 import AsteroidAnimation from "../assets/Moonwalk/AsteroidAni.png";
 import BubbleAnimation from "../assets/Moonwalk/BubbleAni.png";
 
-import Fog1 from "../assets/Eminence/Eminence-Fog1.webm";
-import Fog2 from "../assets/Eminence/Eminence-Fog2.webm";
-import Parallax1 from "../assets/Eminence/Eminence-Para1.webm";
-import Parallax2 from "../assets/Eminence/Eminence-Para2.webm";
-import Decoration from "../assets/Eminence/Eminence-Deco.webm";
-import Fog1Mp4 from "../assets/Eminence/Eminence-Fog1.mp4";
-import Fog2Mp4 from "../assets/Eminence/Eminence-Fog2.mp4";
-import Parallax1Mp4 from "../assets/Eminence/Eminence-Para1.mp4";
-import Parallax2Mp4 from "../assets/Eminence/Eminence-Para2.mp4";
-import DecorationMp4 from "../assets/Eminence/Eminence-Deco.mp4";
-
 //
 //  ppts module
 //
@@ -165,75 +154,85 @@ export default function Moonwalk() {
 
               <FadeUp>
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-                  <img
-                    src={ppts[1]}
-                    className="w-full object-cover transition duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-y-[10%] right-[0%] flex w-auto flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ShootAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={DeadAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    {/* 背景 */}
+                    <img src={ppts[1]} className="h-full w-full object-cover" />
+
+                    {/* overlay */}
+                    <div className="absolute inset-y-[10%] right-[0%] flex w-auto flex-col">
+                      <img
+                        src={ShootAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                      <img
+                        src={DeadAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </FadeUp>
 
               <FadeUp>
-                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
-                  <img
-                    src={ppts[2]}
-                    className="w-full object-cover transition duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={CannonAnimation}
-                      className="min-h-0 w-auto object-contain"
-                    />
-                  </div>
-                  <div className="absolute right-[45%] top-[25%] flex h-[65%] w-[15%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={AsteroidAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={BubbleAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                    <img
-                      src={CarrotAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                  </div>
-                  <div className="absolute bottom-[10%] right-[12%] flex w-[35%] flex-col transition duration-300 group-hover:scale-110">
-                    <img
-                      src={BlackholeAnimation}
-                      className="min-h-0 w-auto object-contain"
-                      style={{ imageRendering: "pixelated" }}
-                    />
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    {/* 背景 */}
+                    <img src={ppts[2]} className="h-full w-full object-cover" />
+
+                    {/* overlay */}
+                    <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col">
+                      <img
+                        src={CannonAnimation}
+                        className="min-h-0 w-auto object-contain"
+                      />
+                    </div>
+                    <div className="absolute right-[45%] top-[25%] flex h-[65%] w-[15%] flex-col">
+                      <img
+                        src={AsteroidAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                      <img
+                        src={BubbleAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                      <img
+                        src={CarrotAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
+                    <div className="absolute bottom-[10%] right-[12%] flex w-[35%] flex-col">
+                      <img
+                        src={BlackholeAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </FadeUp>
 
               <FadeUp>
-                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
-                  <img
-                    src={ppts[3]}
-                    className="w-full object-cover transition duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute left-[5.7%] top-[10%] w-[45%] transition duration-300 group-hover:scale-110">
-                    <img src={bg} className="min-h-0 w-auto object-contain" />
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    {/* 背景 */}
+                    <img src={ppts[3]} className="h-full w-full object-cover" />
+
+                    {/* overlay */}
+                    <div className="absolute left-[5.7%] top-[10%] w-[45%]">
+                      <img src={bg} className="min-h-0 w-auto object-contain" />
+                    </div>
                   </div>
                 </div>
               </FadeUp>
+
               <FadeUp>
                 <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
                   <img

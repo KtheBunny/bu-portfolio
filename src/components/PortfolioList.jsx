@@ -106,7 +106,18 @@ const projects = [
     type: "Web APP",
     skills: ["Frontend", "UI Design", "SwiftUI"],
     year: "2025",
-    link: "/projects/music-platform",
+    link: "/Works/IKH-TCG",
+
+    icon: IkhtcgButton,
+  },
+
+  {
+    id: 9,
+    title: "作品集網頁",
+    type: "Web APP",
+    skills: ["Frontend", "UI Design", "SwiftUI"],
+    year: "2026",
+    link: "/Works/IKH-TCG",
 
     icon: IkhtcgButton,
   },

@@ -10,6 +10,7 @@ import Eminence from "./components/Eminence";
 import Moonwalk from "./components/Moonwalk";
 import PathOfGhost from "./components/PathOfGhost";
 import Healter from "./components/Healter";
+import IKHTCG from "./components/IKHTCG";
 
 import NavSideBar from "./components/NavSideBar";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Works/Moonwalk" element={<Moonwalk />} />
         <Route path="/Works/PathOfGhost" element={<PathOfGhost />} />
         <Route path="/Works/Healter" element={<Healter />} />
+        <Route path="/Works/IKH-TCG" element={<IKHTCG />} />
       </Routes>
     </TransitionProvider>
   );

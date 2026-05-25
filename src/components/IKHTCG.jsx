@@ -5,15 +5,22 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { ScrollParallax } from "react-just-parallax";
 
 import logo from "../assets/logo/Healter-logo.webp";
+import card1 from "../assets/IKHTCG/card1.webp";
+import card2 from "../assets/IKHTCG/card2.webp";
+import card3 from "../assets/IKHTCG/card3.webp";
+import card4 from "../assets/IKHTCG/card4.webp";
+import card5 from "../assets/IKHTCG/card5.webp";
+import card6 from "../assets/IKHTCG/card6.webp";
 
 //
 // powerpoint import
 //
 
 const ppts = Object.entries(
-  import.meta.glob("../assets/Healter/*.webp", {
+  import.meta.glob("../assets/IKHTCG/IKHTCG*.webp", {
     eager: true,
     import: "default",
   }),
@@ -21,12 +28,10 @@ const ppts = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, module]) => module);
 
-import function1 from "../assets/Healter/Healter-function1.webm";
-import function1Mp4 from "../assets/Healter/Healter-function1.mp4";
-import function2 from "../assets/Healter/Healter-function2.webm";
-import function2Mp4 from "../assets/Healter/Healter-function2.mp4";
-import function3 from "../assets/Healter/Healter-function3.webm";
-import function3Mp4 from "../assets/Healter/Healter-function3.mp4";
+import cardDraw from "../assets/IKHTCG/CardDraw.mp4";
+import function1 from "../assets/IKHTCG/CardFunction1.mp4";
+import function3 from "../assets/IKHTCG/CardFunction3.mp4";
+
 //
 //  ppts module
 //
@@ -69,12 +74,21 @@ export default function IKHTCG() {
   const hintsBlur = useTransform(scrollYProgress, [0, 1], [0, 10]);
   const hintsFilter = useMotionTemplate`blur(${hintsBlur}px)`;
 
+  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const overlayBlur = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  const overlayFilter = useMotionTemplate`blur(${overlayBlur}px)`;
+
   return (
     <>
-      <div className="relative ml-[3.5rem] overflow-hidden bg-white text-[#330c00]">
+      <div className="relative ml-[3.5rem] overflow-hidden text-black">
         {/* HERO ANIMATION */}
-        <section ref={heroRef} className="relative h-[110vh]">
-          <div className="fixed left-14 top-0 min-h-dvh w-[calc(100vw-3.5rem)] overflow-hidden bg-cover bg-center">
+        <section ref={heroRef} className="relative h-[150vh]">
+          <motion.div
+            className="fixed left-14 top-0 min-h-dvh w-[calc(100vw-3.5rem)] overflow-hidden bg-[radial-gradient(circle_at_center,#eaecee_0%,#c6d7ee_100%)] bg-cover bg-center"
+            style={{
+              filter: overlayFilter,
+            }}
+          >
             {/* 下方提示 */}
             <motion.div
               style={{
@@ -92,28 +106,225 @@ export default function IKHTCG() {
               </div>
             </motion.div>
 
-            {/* 右下兔子 */}
-            <div className="absolute bottom-0 left-3/4 flex w-1/2 -translate-x-1/2 justify-center lg:w-1/3">
-              <motion.img
-                src={logo}
-                className={"w-full object-contain"}
-                initial={{
-                  opacity: 0,
-                  y: 1000,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 150,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 18,
-                  delay: 0.5,
-                }}
-              />
+            {/* 卡片 */}
+            {/* ill */}
+            <div className="absolute bottom-[40%] left-[10%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.15}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card3}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -35, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.55,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 3.1,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
             </div>
-          </div>
+
+            {/* 羊 */}
+            <div className="absolute left-[70%] top-[-70%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.14}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card4}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -25, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.5,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 2.9,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
+            {/* KK */}
+            <div className="absolute bottom-[-10%] left-[30%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.17}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card2}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -30, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.4,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 3.2,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
+            {/* AT */}
+            <div className="absolute left-[90%] top-0 flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.12}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card5}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -15, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.45,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 2.8,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
+            {/* F1 */}
+            <div className="absolute bottom-[5%] left-[80%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.15}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card1}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -25, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.35,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
+            {/* F2 */}
+            <div className="absolute left-[20%] top-[-40%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.1}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card6}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -20, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.3,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
+            {/* overlay */}
+            <motion.div
+              style={{
+                opacity: overlayOpacity,
+              }}
+              className="absolute h-full w-full bg-black/20"
+            />
+          </motion.div>
         </section>
 
         {/* PORTFOLIO */}
@@ -121,20 +332,20 @@ export default function IKHTCG() {
           <div className="mx-auto max-w-6xl overflow-hidden px-6 pb-40">
             <div className="grid gap-10 md:grid-cols-1">
               <FadeUp>
-                <iframe
-                  src="https://www.youtube.com/embed/9U8CLFAh82Q?si=q4CiWrLMBlSWakSa"
-                  title="YouTube video player"
-                  className="aspect-video w-full rounded-3xl"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                ></iframe>
-              </FadeUp>
-
-              <FadeUp>
                 <div className="relative aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5">
                   <img
                     src={ppts[0]}
                     className="w-full object-cover transition duration-300"
                   />
+                  <div className="absolute bottom-[25%] left-[5.7%] flex w-[30%] items-center justify-center">
+                    <a
+                      href="https://ikh-tcg.vercel.app/"
+                      target="_blank"
+                      className="text-md hover:text-ellipsiss animate-bounce rounded-md border border-[#3d3029] p-2 text-center tracking-widest text-[#3d3029] transition duration-300 hover:bg-[#3d3029] hover:text-white"
+                    >
+                      立即試玩
+                    </a>
+                  </div>
                 </div>
               </FadeUp>
 
@@ -147,14 +358,46 @@ export default function IKHTCG() {
               </FadeUp>
 
               <FadeUp>
-                <div className="group aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
+                <div className="relaive group aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
                   <img src={ppts[2]} className="w-full object-cover" />
+                  <div className="absolute inset-y-[10%] left-[5.7%] flex h-[80] w-[37%]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="min-h-0 w-auto flex-1 object-contain"
+                    >
+                      <source src={cardDraw} type="video/mp4" />
+                    </video>
+                  </div>
                 </div>
               </FadeUp>
 
               <FadeUp>
                 <div className="group aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
                   <img src={ppts[3]} className="w-full object-cover" />
+                  <div className="absolute inset-y-[28%] right-[5.7%] flex h-[54%] w-[88.3%]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="min-h-0 w-auto flex-1 object-contain"
+                    >
+                      <source src={function1} type="video/mp4" />
+                    </video>
+                    <div className="min-h-0 w-auto flex-1" />
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="min-h-0 w-auto flex-1 object-contain"
+                    >
+                      <source src={function3} type="video/mp4" />
+                    </video>
+                  </div>
                 </div>
               </FadeUp>
               <FadeUp>
@@ -165,93 +408,6 @@ export default function IKHTCG() {
               <FadeUp>
                 <div className="relative aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
                   <img src={ppts[5]} className="w-full object-cover" />
-                  <div className="absolute bottom-[11%] left-[5.7%] flex w-[41.3%] items-center justify-center">
-                    <a
-                      href="https://www.realtimecolors.com/?colors=330c00-faf7f5-fec99a-f9dbc3-ffb7a8&fonts=Poppins-Poppins"
-                      target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
-                    >
-                      查看配色網頁
-                    </a>
-                  </div>
-                  <div className="absolute bottom-[11%] right-[5.7%] flex w-[41.3%] items-center justify-center gap-4">
-                    <a
-                      href="https://www.figma.com/proto/gOxQ3caVaHvmD5RxifTlT0/Healter-Prototype?node-id=0-1&t=DKJe3cDd2Sg5hA4Q-1"
-                      target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
-                    >
-                      試玩 Prototype
-                    </a>
-                    <a
-                      href="https://www.figma.com/design/gOxQ3caVaHvmD5RxifTlT0/Healter-Prototype?node-id=0-1&m=dev&t=DKJe3cDd2Sg5hA4Q-1"
-                      target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
-                    >
-                      查看 Figma 檔
-                    </a>
-                  </div>
-                </div>
-              </FadeUp>
-
-              <FadeUp>
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://embed.figma.com/design/gOxQ3caVaHvmD5RxifTlT0/Healter-Prototype?node-id=0-1&embed-host=share"
-                  className="aspect-video w-full rounded-3xl"
-                ></iframe>
-              </FadeUp>
-
-              <FadeUp>
-                <div className="relative aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
-                  <img src={ppts[6]} className="w-full object-cover" />
-                  <div className="absolute inset-y-[25%] right-[5.7%] flex h-[50%] w-[88.3%]">
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="min-h-0 w-auto flex-1 object-contain"
-                    >
-                      <source src={function1} type="video/webm" />
-                      <source src={function1Mp4} type="video/mp4" />
-                    </video>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="min-h-0 w-auto flex-1 object-contain"
-                    >
-                      <source src={function2} type="video/webm" />
-                      <source src={function2Mp4} type="video/mp4" />
-                    </video>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="min-h-0 w-auto flex-1 object-contain"
-                    >
-                      <source src={function3} type="video/webm" />
-                      <source src={function3Mp4} type="video/mp4" />
-                    </video>
-                  </div>
-                </div>
-              </FadeUp>
-              <FadeUp>
-                <div className="aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
-                  <img src={ppts[7]} className="w-full object-cover" />
-                </div>
-              </FadeUp>
-              <FadeUp>
-                <div className="aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
-                  <img src={ppts[8]} className="w-full object-cover" />
-                </div>
-              </FadeUp>
-              <FadeUp>
-                <div className="aspect-video overflow-hidden rounded-3xl border border-black/10 bg-white/5 backdrop-blur-md">
-                  <img src={ppts[9]} className="w-full object-cover" />
                 </div>
               </FadeUp>
             </div>

@@ -52,7 +52,7 @@ const projects = [
     id: 4,
     title: "Eminence",
     type: "電腦遊戲",
-    skills: ["Game Dev", "Pixel Art", "Unity", "Technical Art"],
+    skills: ["遊戲開發", "Pixel Art", "Unity", "技術美術", "UI 設計"],
     year: "2022",
     link: "/Works/Eminence",
 
@@ -63,7 +63,7 @@ const projects = [
     id: 5,
     title: "Path of Ghost",
     type: "電腦遊戲",
-    skills: ["UI/UX", "React Native"],
+    skills: ["遊戲開發", "Pixel Art", "Unity", "UI 設計"],
     year: "2021",
     link: "/Works/PathOfGhost",
 
@@ -74,7 +74,7 @@ const projects = [
     id: 6,
     title: "MoonWalk",
     type: "電腦遊戲",
-    skills: ["Frontend", "UI Design"],
+    skills: ["遊戲開發", "Pixel Art", "UI 設計"],
     year: "2021",
     link: "/Works/Moonwalk",
 
@@ -104,7 +104,7 @@ const projects = [
     id: 8,
     title: "伊香保-TCG",
     type: "Web APP",
-    skills: ["Frontend", "UI Design", "SwiftUI"],
+    skills: ["遊戲開發", "前端程式", "UI 設計", "HTML", "Javascript"],
     year: "2025",
     link: "/Works/IKH-TCG",
 
@@ -115,9 +115,9 @@ const projects = [
     id: 9,
     title: "作品集網頁",
     type: "Web APP",
-    skills: ["Frontend", "UI Design", "SwiftUI"],
+    skills: ["前端程式", "UI 設計", "React"],
     year: "2026",
-    link: "/Works/IKH-TCG",
+    link: "/",
 
     icon: IkhtcgButton,
   },

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { TransitionProvider } from "./components/PageTransitionContext";
 import TransitionOverlay from "./components/TransitionOverlay";
+import ScrollToTop from "./components/ScrollToTop";
 
 import "./App.css";
 import Tree from "./pages/Tree";
@@ -17,8 +18,11 @@ import NavSideBar from "./components/NavSideBar";
 function App() {
   return (
     <TransitionProvider>
+      <ScrollToTop />
+
       <NavSideBar />
       <TransitionOverlay />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Skills" element={<Tree />} />

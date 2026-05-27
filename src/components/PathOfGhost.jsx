@@ -146,7 +146,7 @@ export default function PathOfGhost() {
                     <a
                       href="https://v3.globalgamejam.org/2021/games/temp-4"
                       target="_blank"
-                      className="text-md hover:text-ellipsiss animate-bounce rounded-md border border-black p-2 text-center tracking-widest text-black transition duration-300 hover:bg-black hover:text-white"
+                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss animate-bounce rounded-md border border-black p-2 text-center tracking-widest text-black transition duration-300 hover:bg-black hover:text-white"
                     >
                       前往作品 GGJ 網頁
                     </a>

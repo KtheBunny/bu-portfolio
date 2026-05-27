@@ -107,6 +107,41 @@ export default function IKHTCG() {
             </motion.div>
 
             {/* 卡片 */}
+            {/* F2 */}
+            <div className="absolute left-[20%] top-[-40%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
+              <ScrollParallax
+                strength={0.1}
+                shouldPause={false}
+                enableOnTouchDevice={true}
+              >
+                <motion.img
+                  src={card6}
+                  className={"w-full object-contain"}
+                  initial={{
+                    opacity: 0,
+                    y: 100,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [0, -20, 0], // 上下浮動
+                  }}
+                  transition={{
+                    opacity: {
+                      duration: 0.5,
+                      delay: 0.3,
+                      type: "ease",
+                    },
+                    y: {
+                      duration: 3,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </ScrollParallax>
+            </div>
+
             {/* ill */}
             <div className="absolute bottom-[40%] left-[10%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
               <ScrollParallax
@@ -282,41 +317,6 @@ export default function IKHTCG() {
               </ScrollParallax>
             </div>
 
-            {/* F2 */}
-            <div className="absolute left-[20%] top-[-40%] flex w-1/3 -translate-x-1/2 justify-center lg:w-1/4">
-              <ScrollParallax
-                strength={0.1}
-                shouldPause={false}
-                enableOnTouchDevice={true}
-              >
-                <motion.img
-                  src={card6}
-                  className={"w-full object-contain"}
-                  initial={{
-                    opacity: 0,
-                    y: 100,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: [0, -20, 0], // 上下浮動
-                  }}
-                  transition={{
-                    opacity: {
-                      duration: 0.5,
-                      delay: 0.3,
-                      type: "ease",
-                    },
-                    y: {
-                      duration: 3,
-                      repeat: Infinity,
-                      repeatType: "mirror",
-                      ease: "easeInOut",
-                    },
-                  }}
-                />
-              </ScrollParallax>
-            </div>
-
             {/* overlay */}
             <motion.div
               style={{
@@ -337,11 +337,11 @@ export default function IKHTCG() {
                     src={ppts[0]}
                     className="w-full object-cover transition duration-300"
                   />
-                  <div className="absolute bottom-[25%] left-[5.7%] flex w-[30%] items-center justify-center">
+                  <div className="absolute bottom-[22%] left-[5.7%] flex w-[30%] items-center justify-center">
                     <a
                       href="https://ikh-tcg.vercel.app/"
                       target="_blank"
-                      className="text-md hover:text-ellipsiss animate-bounce rounded-md border border-[#3d3029] p-2 text-center tracking-widest text-[#3d3029] transition duration-300 hover:bg-[#3d3029] hover:text-white"
+                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss animate-bounce rounded-md border border-[#3d3029] p-2 text-center tracking-widest text-[#3d3029] transition duration-300 hover:bg-[#3d3029] hover:text-white"
                     >
                       立即試玩
                     </a>

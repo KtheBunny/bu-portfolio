@@ -169,7 +169,7 @@ export default function Healter() {
                     <a
                       href="https://www.realtimecolors.com/?colors=330c00-faf7f5-fec99a-f9dbc3-ffb7a8&fonts=Poppins-Poppins"
                       target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
+                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss rounded-md border border-[#330c00] p-1 md:p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
                     >
                       查看配色網頁
                     </a>
@@ -178,14 +178,14 @@ export default function Healter() {
                     <a
                       href="https://www.figma.com/proto/gOxQ3caVaHvmD5RxifTlT0/Healter-Prototype?node-id=0-1&t=DKJe3cDd2Sg5hA4Q-1"
                       target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
+                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss rounded-md border border-[#330c00] p-1 md:p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
                     >
                       試玩 Prototype
                     </a>
                     <a
                       href="https://www.figma.com/design/gOxQ3caVaHvmD5RxifTlT0/Healter-Prototype?node-id=0-1&m=dev&t=DKJe3cDd2Sg5hA4Q-1"
                       target="_blank"
-                      className="text-md hover:text-ellipsiss rounded-md border border-[#330c00] p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
+                      className="hidden md:block text-xs sm:text-sm lg:text-lg hover:text-ellipsiss rounded-md border border-[#330c00] p-1 md:p-2 text-center tracking-widest text-[#330c00] transition duration-300 hover:bg-[#330c00] hover:text-white"
                     >
                       查看 Figma 檔
                     </a>

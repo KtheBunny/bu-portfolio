@@ -24,7 +24,7 @@ const projects = [
     type: "Web Design",
     skills: ["Frontend", "UI Design"],
     year: "2025",
-    link: "/projects/music-platform",
+    link: "/Works/PixelArt",
 
     icon: folderPixelButton,
   },
@@ -34,7 +34,7 @@ const projects = [
     type: "Web Design",
     skills: ["Frontend", "UI Design"],
     year: "2025",
-    link: "/projects/music-platform",
+    link: "/Works/Illustration",
 
     icon: folderArtButton,
   },

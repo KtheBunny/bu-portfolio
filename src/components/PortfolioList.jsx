@@ -17,7 +17,7 @@ import MoonwalkButton from "./PortfolioMoonwalkButton";
 import HealterButton from "./PortfolioHealterButton";
 import IkhtcgButton from "./PortfolioIkhtcgButton";
 
-const projects = [
+const portfolios = [
   {
     id: 1,
     title: "Pixel Art 作品集",
@@ -38,18 +38,23 @@ const projects = [
 
     icon: folderArtButton,
   },
+  /*
   {
     id: 3,
     title: "APP及網頁作品集",
     type: "Web Design",
     skills: ["Frontend", "UI Design"],
     year: "2025",
-    link: "/projects/music-platform",
+    link: "/Works/Web&App",
 
     icon: folderUIButton,
   },
+  */
+];
+
+const projects = [
   {
-    id: 4,
+    id: 1,
     title: "Eminence",
     type: "電腦遊戲",
     skills: ["遊戲開發", "Pixel Art", "Unity", "技術美術", "UI 設計"],
@@ -60,7 +65,7 @@ const projects = [
   },
 
   {
-    id: 5,
+    id: 2,
     title: "Path of Ghost",
     type: "電腦遊戲",
     skills: ["遊戲開發", "Pixel Art", "Unity", "UI 設計"],
@@ -71,7 +76,7 @@ const projects = [
   },
 
   {
-    id: 6,
+    id: 3,
     title: "MoonWalk",
     type: "電腦遊戲",
     skills: ["遊戲開發", "Pixel Art", "UI 設計"],
@@ -82,7 +87,7 @@ const projects = [
   },
 
   {
-    id: 7,
+    id: 4,
     title: "Healter",
     type: "iOS APP",
     skills: [
@@ -101,7 +106,7 @@ const projects = [
   },
 
   {
-    id: 8,
+    id: 5,
     title: "伊香保-TCG",
     type: "Web APP",
     skills: ["遊戲開發", "前端程式", "UI 設計", "HTML", "Javascript"],
@@ -112,7 +117,7 @@ const projects = [
   },
 
   {
-    id: 9,
+    id: 6,
     title: "作品集網頁",
     type: "Web APP",
     skills: ["前端程式", "UI 設計", "React"],
@@ -128,7 +133,7 @@ const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      delayChildren: 0.5,
+      delayChildren: 0.6,
       staggerChildren: 0.15,
     },
   },
@@ -152,86 +157,202 @@ const itemVariants = {
 
 export default function PortfolioList() {
   return (
-    <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 py-20 text-white">
-      {/* 標題 */}
-      <motion.div
-        className="mb-16"
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.45,
-          ease: "easeOut",
-        }}
-      >
-        <h1 className="mb-3 text-center font-gugi text-5xl font-bold">
-          My Projects
-        </h1>
-        <p className="text-center text-lg text-zinc-400">
-          選擇您感興趣的作品，點擊進入詳細頁面。
-        </p>
-      </motion.div>
+    <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 text-white">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 self-center py-20">
+        {/* 標題 */}
+        <motion.div
+          className="mb-6"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.45,
+            ease: "easeOut",
+          }}
+        >
+          <h1 className="mb-3 text-center font-gugi text-5xl font-bold">
+            Portfolios
+          </h1>
+          <p className="text-center text-lg text-zinc-400">
+            選擇您感興趣的作品，點擊進入詳細頁面。
+          </p>
+        </motion.div>
 
-      {/* 作品列表 */}
-      <motion.div
-        className="mx-auto grid max-w-6xl grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {projects.map((project) => {
-          const IconComponent = project.icon;
+        {/* 作品集標題 */}
+        <motion.div
+          className="mb-3"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.45,
+            delay: 0.2,
+            ease: "easeOut",
+          }}
+        >
+          <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
+            &gt; Skills & Disciplines
+          </h2>
+          <span className="text-left text-xl text-zinc-400">
+            依技能分類的作品集
+          </span>
+        </motion.div>
 
-          return (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className="flex flex-col items-center"
-            >
-              <Link to={project.link} className="group">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 220,
-                    damping: 15,
-                  }}
-                >
-                  {/* 直接 render */}
-                  <IconComponent />
-                </motion.div>
-              </Link>
+        {/* 作品集列表 */}
+        <motion.div
+          className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {portfolios.map((portfolios) => {
+            const IconComponent = portfolios.icon;
 
-              {/* 資訊卡 */}
-              <div className="mt-5 w-full max-w-[300px] rounded-2xl bg-zinc-900 p-4">
-                <div className="mb-2 flex items-center justify-between">
-                  <h2 className="text-xl font-semibold">{project.title}</h2>
+            return (
+              <motion.div
+                key={portfolios.id}
+                variants={itemVariants}
+                className="flex flex-col items-center"
+              >
+                <Link to={portfolios.link} className="group">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 220,
+                      damping: 15,
+                    }}
+                  >
+                    {/* 直接 render */}
+                    <IconComponent />
+                  </motion.div>
+                </Link>
 
-                  <span className="text-sm text-zinc-400">{project.year}</span>
-                </div>
+                {/* 資訊卡 */}
+                <div className="mt-5 w-full max-w-[300px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                  <div className="mb-2 flex items-center justify-between">
+                    <h2 className="text-xl font-semibold">
+                      {portfolios.title}
+                    </h2>
 
-                <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
-                    >
-                      {skill}
+                    <span className="text-sm text-zinc-400">
+                      {portfolios.year}
                     </span>
-                  ))}
+                  </div>
+
+                  <p className="mb-3 text-sm text-zinc-300">
+                    {portfolios.type}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {portfolios.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* 專題標題 */}
+        <motion.div
+          className="mb-8"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.45,
+            delay: 0.4,
+            ease: "easeOut",
+          }}
+        >
+          <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
+            Projects & Cases
+          </h2>
+          <span className="text-left text-xl text-zinc-400">
+            依專案分類的作品集
+          </span>
+        </motion.div>
+
+        {/* 專題列表 */}
+        <motion.div
+          className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {projects.map((project) => {
+            const IconComponent = project.icon;
+
+            return (
+              <motion.div
+                key={project.id}
+                variants={itemVariants}
+                className="flex flex-col items-center"
+              >
+                <Link to={project.link} className="group">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 220,
+                      damping: 15,
+                    }}
+                  >
+                    {/* 直接 render */}
+                    <IconComponent />
+                  </motion.div>
+                </Link>
+
+                {/* 資訊卡 */}
+                <div className="mt-5 w-full max-w-[300px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                  <div className="mb-2 flex items-center justify-between">
+                    <h2 className="text-xl font-semibold">{project.title}</h2>
+
+                    <span className="text-sm text-zinc-400">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
     </section>
   );
 }

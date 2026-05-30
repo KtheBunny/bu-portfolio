@@ -101,7 +101,7 @@ export default function IKHTCG() {
                 <span className="text-center font-gugi text-sm tracking-widest">
                   向下滾動以瀏覽作品
                   <br />
-                  Scroll to read more
+                  Scroll to see more
                 </span>
               </div>
             </motion.div>
@@ -341,7 +341,7 @@ export default function IKHTCG() {
                     <a
                       href="https://ikh-tcg.vercel.app/"
                       target="_blank"
-                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss animate-bounce rounded-md border border-[#3d3029] p-2 text-center tracking-widest text-[#3d3029] transition duration-300 hover:bg-[#3d3029] hover:text-white"
+                      className="hover:text-ellipsiss animate-bounce rounded-md border border-[#3d3029] p-2 text-center text-xs tracking-widest text-[#3d3029] transition duration-300 hover:bg-[#3d3029] hover:text-white sm:text-sm lg:text-lg"
                     >
                       立即試玩
                     </a>

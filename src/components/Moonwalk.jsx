@@ -103,7 +103,7 @@ export default function Moonwalk() {
                 <span className="text-center font-gugi text-sm tracking-widest text-white">
                   向下滾動以瀏覽作品
                   <br />
-                  Scroll to read more
+                  Scroll to see more
                 </span>
               </div>
             </motion.div>

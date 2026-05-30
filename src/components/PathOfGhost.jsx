@@ -96,7 +96,7 @@ export default function PathOfGhost() {
                 <span className="text-center font-gugi text-sm tracking-widest text-white">
                   向下滾動以瀏覽作品
                   <br />
-                  Scroll to read more
+                  Scroll to see more
                 </span>
               </div>
             </motion.div>
@@ -146,7 +146,7 @@ export default function PathOfGhost() {
                     <a
                       href="https://v3.globalgamejam.org/2021/games/temp-4"
                       target="_blank"
-                      className="text-xs sm:text-sm lg:text-lg hover:text-ellipsiss animate-bounce rounded-md border border-black p-2 text-center tracking-widest text-black transition duration-300 hover:bg-black hover:text-white"
+                      className="hover:text-ellipsiss animate-bounce rounded-md border border-black p-2 text-center text-xs tracking-widest text-black transition duration-300 hover:bg-black hover:text-white sm:text-sm lg:text-lg"
                     >
                       前往作品 GGJ 網頁
                     </a>

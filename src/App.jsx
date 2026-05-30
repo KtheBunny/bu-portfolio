@@ -12,7 +12,8 @@ import Moonwalk from "./components/Moonwalk";
 import PathOfGhost from "./components/PathOfGhost";
 import Healter from "./components/Healter";
 import IKHTCG from "./components/IKHTCG";
-import Pixelart from "./components/Pixelart"
+import Pixelart from "./components/Pixelart";
+import Illustration from "./components/Illustration";
 
 import NavSideBar from "./components/NavSideBar";
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/Works/Healter" element={<Healter />} />
         <Route path="/Works/IKH-TCG" element={<IKHTCG />} />
         <Route path="/Works/PixelArt" element={<Pixelart />} />
+        <Route path="/Works/Illustration" element={<Illustration />} />
       </Routes>
     </TransitionProvider>
   );

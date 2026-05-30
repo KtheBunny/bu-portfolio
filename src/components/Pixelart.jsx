@@ -21,6 +21,7 @@ const ppts = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, module]) => module);
 
+import dn1 from "../assets/other/dn-1.png";
 import dn2 from "../assets/other/dn-2.png";
 import EminenceAni from "../assets/Eminence/Eminence-CharaAni.png";
 
@@ -74,10 +75,21 @@ export default function Pixelart() {
 
   return (
     <>
-      <div className="relative ml-[3.5rem] overflow-hidden bg-white text-[#330c00]">
+      <div className="relative ml-[3.5rem] overflow-hidden bg-gray-600 text-white">
         {/* HERO ANIMATION */}
         <section ref={heroRef} className="relative h-[110vh]">
           <div className="fixed left-14 top-0 min-h-dvh w-[calc(100vw-3.5rem)] overflow-hidden bg-cover bg-center">
+            <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-normal drop-shadow-lg">
+                {"Pixel    Art".split("").map((c, i) => (
+                  <span key={i}>{c}</span>
+                ))}
+              </h2>
+              <h1 className="font-gugi text-4xl font-bold tracking-wide drop-shadow-lg lg:text-5xl">
+                PORTFOLIO
+              </h1>
+            </div>
+
             {/* 下方提示 */}
             <motion.div
               style={{
@@ -90,29 +102,24 @@ export default function Pixelart() {
                 <span className="text-center font-gugi text-sm tracking-widest">
                   向下滾動以瀏覽作品
                   <br />
-                  Scroll to read more
+                  Scroll to see more
                 </span>
               </div>
             </motion.div>
 
-            {/* 右下兔子 */}
-            <div className="absolute bottom-0 left-3/4 flex w-1/2 -translate-x-1/2 justify-center lg:w-1/3">
+            <div className="absolute left-1/2 top-1/2 flex w-1/2 -translate-x-1/2 -translate-y-1/2 justify-center lg:w-1/3">
               <motion.img
-                src={logo}
+                src={dn1}
                 className={"w-full object-contain"}
                 initial={{
                   opacity: 0,
-                  y: 1000,
                 }}
                 animate={{
                   opacity: 1,
-                  y: 150,
                 }}
                 transition={{
-                  type: "spring",
-                  stiffness: 220,
-                  damping: 18,
-                  delay: 0.5,
+                  type: "ease",
+                  delay: 0.2,
                 }}
               />
             </div>
@@ -123,19 +130,15 @@ export default function Pixelart() {
         <section className="relative z-20">
           <div className="mx-auto max-w-6xl overflow-hidden px-6 pb-40">
             <div className="grid gap-10 md:grid-cols-1">
-
               <FadeUp>
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0">
                     {/* 背景 */}
-                    <img
-                      src={ppts[0]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[0]} className="h-full w-full object-cover" />
 
                     {/* overlay */}
-                    <div className="absolute left-1/2 top-1/2 flex w-[61%] -translate-y-1/2 -translate-x-1/2 flex-row transition duration-300 group-hover:scale-[165%]">
+                    <div className="absolute left-1/2 top-1/2 flex w-[61%] -translate-x-1/2 -translate-y-1/2 flex-row transition duration-300 group-hover:scale-[165%]">
                       <img src={dn2} className="h-full w-full object-contain" />
                     </div>
                   </div>
@@ -147,14 +150,14 @@ export default function Pixelart() {
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     {/* 背景 */}
-                    <img
-                      src={ppts[1]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[1]} className="h-full w-full object-cover" />
 
                     {/* overlay */}
                     <div className="absolute bottom-[10%] left-1/2 flex h-[80%] flex-row">
-                      <img src={EminenceAni} className="h-full w-full object-contain" />
+                      <img
+                        src={EminenceAni}
+                        className="h-full w-full object-contain"
+                      />
                     </div>
                   </div>
                 </div>
@@ -164,10 +167,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ppts[2]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[2]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>
@@ -175,41 +175,38 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ppts[3]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[3]} className="h-full w-full object-cover" />
                     {/* overlay */}
-                                        <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col">
-                                          <img
-                                            src={CannonAnimation}
-                                            className="min-h-0 w-auto object-contain"
-                                          />
-                                        </div>
-                                        <div className="absolute right-[45%] top-[25%] flex h-[65%] w-[15%] flex-col">
-                                          <img
-                                            src={AsteroidAnimation}
-                                            className="min-h-0 w-auto object-contain"
-                                            style={{ imageRendering: "pixelated" }}
-                                          />
-                                          <img
-                                            src={BubbleAnimation}
-                                            className="min-h-0 w-auto object-contain"
-                                            style={{ imageRendering: "pixelated" }}
-                                          />
-                                          <img
-                                            src={CarrotAnimation}
-                                            className="min-h-0 w-auto object-contain"
-                                            style={{ imageRendering: "pixelated" }}
-                                          />
-                                        </div>
-                                        <div className="absolute bottom-[10%] right-[12%] flex w-[35%] flex-col">
-                                          <img
-                                            src={BlackholeAnimation}
-                                            className="min-h-0 w-auto object-contain"
-                                            style={{ imageRendering: "pixelated" }}
-                                          />
-                                        </div>
+                    <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col">
+                      <img
+                        src={CannonAnimation}
+                        className="min-h-0 w-auto object-contain"
+                      />
+                    </div>
+                    <div className="absolute right-[45%] top-[25%] flex h-[65%] w-[15%] flex-col">
+                      <img
+                        src={AsteroidAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                      <img
+                        src={BubbleAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                      <img
+                        src={CarrotAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
+                    <div className="absolute bottom-[10%] right-[12%] flex w-[35%] flex-col">
+                      <img
+                        src={BlackholeAnimation}
+                        className="min-h-0 w-auto object-contain"
+                        style={{ imageRendering: "pixelated" }}
+                      />
+                    </div>
                   </div>
                 </div>
               </FadeUp>
@@ -217,10 +214,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ppts[4]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[4]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>
@@ -228,10 +222,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ppts[5]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[5]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>
@@ -240,10 +231,16 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img
-                      src={ppts[6]}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={ppts[6]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[7]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>

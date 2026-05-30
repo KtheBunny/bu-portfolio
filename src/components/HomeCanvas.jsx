@@ -104,9 +104,9 @@ export default function HomeCanvas() {
     hoverLock.current = true;
     if (div === "left") {
       left.set(0.8);
-      right.set(0.9);
+      right.set(0.95);
     } else if (div === "right") {
-      left.set(0.1);
+      left.set(0.05);
       right.set(0.2);
     } else {
       left.set(0.1);
@@ -161,7 +161,7 @@ export default function HomeCanvas() {
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-orange-500">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>
@@ -207,7 +207,7 @@ export default function HomeCanvas() {
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-cyan-200">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>
@@ -251,7 +251,7 @@ export default function HomeCanvas() {
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-5xl font-bold tracking-wide text-white">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-white lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 import svgFolder from "../assets/button/folder.svg";
 import svgPhone from "../assets/button/phone.svg";
@@ -21,8 +22,16 @@ const portfolios = [
   {
     id: 1,
     title: "Pixel Art 作品集",
-    type: "Web Design",
-    skills: ["Frontend", "UI Design"],
+    type: "像素風遊戲的各種美術素材",
+    skills: [
+      "Pixel Art",
+      "動畫繪製",
+      "動作設計",
+      "場景設計",
+      "Tilemap",
+      "遊戲美術",
+      "關卡設計",
+    ],
     year: "2025",
     link: "/Works/PixelArt",
 
@@ -31,8 +40,8 @@ const portfolios = [
   {
     id: 2,
     title: "繪畫相關作品集",
-    type: "Web Design",
-    skills: ["Frontend", "UI Design"],
+    type: "個人及委託的日系繪圖作品",
+    skills: ["2D 繪畫", "插畫繪製", "人物設計"],
     year: "2025",
     link: "/Works/Illustration",
 
@@ -56,8 +65,22 @@ const projects = [
   {
     id: 1,
     title: "Eminence",
-    type: "電腦遊戲",
-    skills: ["遊戲開發", "Pixel Art", "Unity", "技術美術", "UI 設計"],
+    type: "電腦遊戲 - 畢業專題",
+    skills: [
+      "遊戲開發",
+      "Unity",
+      "C#",
+      "Pixel Art",
+      "人物設計",
+      "動作設計",
+      "動畫繪製",
+      "場景設計",
+      "Tilemap",
+      "UI 設計",
+      "遊戲美術",
+      "技術美術",
+      "關卡設計",
+    ],
     year: "2022",
     link: "/Works/Eminence",
 
@@ -67,8 +90,19 @@ const projects = [
   {
     id: 2,
     title: "Path of Ghost",
-    type: "電腦遊戲",
-    skills: ["遊戲開發", "Pixel Art", "Unity", "UI 設計"],
+    type: "電腦遊戲 - GameJam 作品",
+    skills: [
+      "遊戲開發",
+      "Unity",
+      "C#",
+      "Pixel Art",
+      "動畫繪製",
+      "場景設計",
+      "Tilemap",
+      "遊戲美術",
+      "關卡設計",
+      "遊戲企劃",
+    ],
     year: "2021",
     link: "/Works/PathOfGhost",
 
@@ -78,8 +112,8 @@ const projects = [
   {
     id: 3,
     title: "MoonWalk",
-    type: "電腦遊戲",
-    skills: ["遊戲開發", "Pixel Art", "UI 設計"],
+    type: "電腦遊戲 - SDL",
+    skills: ["遊戲開發", "Pixel Art", "動畫繪製", "UI 設計", "遊戲美術"],
     year: "2021",
     link: "/Works/Moonwalk",
 
@@ -89,15 +123,16 @@ const projects = [
   {
     id: 4,
     title: "Healter",
-    type: "iOS APP",
+    type: "iOS APP - MAIC決賽入圍作品",
     skills: [
       "APP 開發",
+      "SwiftUI",
+      "Figma",
       "概念美術",
       "平面設計",
       "UI 設計",
+      "Prototype 製作",
       "前端程式",
-      "SwiftUI",
-      "Figma",
     ],
     year: "2024",
     link: "/Works/Healter",
@@ -108,8 +143,17 @@ const projects = [
   {
     id: 5,
     title: "伊香保-TCG",
-    type: "Web APP",
-    skills: ["遊戲開發", "前端程式", "UI 設計", "HTML", "Javascript"],
+    type: "Web APP - 網頁抽卡小遊戲",
+    skills: [
+      "遊戲開發",
+      "HTML",
+      "Javascript",
+      "UI 設計",
+      "前端程式",
+      "PWA 設計",
+      "RWD",
+      "遊戲企劃",
+    ],
     year: "2025",
     link: "/Works/IKH-TCG",
 
@@ -118,15 +162,81 @@ const projects = [
 
   {
     id: 6,
-    title: "作品集網頁",
+    title: "本作品集網頁",
     type: "Web APP",
-    skills: ["前端程式", "UI 設計", "React"],
+    skills: [
+      "網頁開發",
+      "React",
+      "TailwindCSS",
+      "平面設計",
+      "前端程式",
+      "UI 設計",
+    ],
     year: "2026",
-    link: "/",
+    link: "/Works",
 
     icon: IkhtcgButton,
   },
 ];
+
+// class map
+const skillClassMap = {
+  "2D 繪畫": "bg-teal-900 text-teal-300 border-teal-300",
+  插畫繪製: "bg-teal-900 text-teal-200 border-teal-200",
+  "Pixel Art": "bg-cyan-900 text-cyan-200 border-cyan-200",
+  人物設計: "bg-cyan-900 text-cyan-200 border-cyan-200",
+  概念美術: "bg-sky-900 text-sky-100 border-sky-100",
+  平面設計: "bg-sky-900 text-sky-200 border-sky-200",
+  動畫繪製: "bg-blue-900 text-blue-200 border-blue-200",
+  動作設計: "bg-blue-900 text-blue-200 border-blue-200",
+  場景設計: "bg-indigo-900 text-indigo-200 border-indigo-200",
+  Tilemap: "bg-indigo-900 text-indigo-100 border-indigo-100",
+  "UI 設計": "bg-violet-900 text-violet-200 border-violet-200",
+  "Prototype 製作": "bg-violet-900 text-violet-200 border-violet-200",
+  "APP 開發": "bg-purple-900 text-purple-300 border-purple-300",
+  網頁開發: "bg-purple-900 text-purple-300 border-purple-300",
+  前端程式: "bg-purple-900 text-purple-200 border-purple-200",
+  "PWA 設計": "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
+  RWD: "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
+  遊戲美術: "bg-pink-900 text-pink-200 border-pink-200",
+  技術美術: "bg-pink-900 text-pink-100 border-pink-100",
+  關卡設計: "bg-rose-900 text-rose-200 border-rose-200",
+  遊戲企劃: "bg-rose-900 text-rose-200 border-rose-200",
+  遊戲開發: "bg-rose-900 text-rose-300 border-rose-300",
+};
+
+// class map
+const skillIconMap = {
+  "2D 繪畫": "material-symbols:draw-rounded",
+  插畫繪製: "material-symbols:wall-art-rounded",
+  "Pixel Art": "mdi:space-invaders",
+  人物設計: "material-symbols:user-attributes-rounded",
+  概念美術: "tabler:bulb-filled",
+  平面設計: "fluent:design-ideas-24-regular",
+  動畫繪製: "material-symbols:animation-outline",
+  動作設計: "material-symbols:directions-run-rounded",
+  場景設計: "material-symbols:mountain-steam-outline-rounded",
+  Tilemap: "material-symbols:grid-on-outline",
+  "UI 設計": "material-symbols:interactive-space-outline-rounded",
+  "Prototype 製作": "fe:prototype",
+  "APP 開發": "tdesign:app-filled",
+  網頁開發: "material-symbols:code-rounded",
+  前端程式: "material-symbols:code-rounded",
+  RWD: "material-symbols:responsive-layout-outline-rounded",
+  遊戲美術: "material-symbols:wall-art-rounded",
+  技術美術: "grommet-icons:technology",
+  關卡設計: "mdi:architecture",
+  遊戲企劃: "material-symbols:article",
+  遊戲開發: "streamline-plump:controller-1-solid",
+  Unity: "mdi:unity",
+  "C#": "bxl:c-sharp",
+  Figma: "solar:figma-bold",
+  SwiftUI: "lineicons:swift",
+  HTML: "flowbite:html-solid",
+  Javascript: "ri:javascript-fill",
+  React: "mdi:react",
+  TailwindCSS: "mdi:tailwind",
+};
 
 // framer motion 容器動畫
 const containerVariants = {
@@ -201,7 +311,7 @@ export default function PortfolioList() {
           }}
         >
           <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
-            &gt; Skills & Disciplines
+            Skills & Disciplines
           </h2>
           <span className="text-left text-xl text-zinc-400">
             依技能分類的作品集
@@ -215,16 +325,16 @@ export default function PortfolioList() {
           initial="hidden"
           animate="show"
         >
-          {portfolios.map((portfolios) => {
-            const IconComponent = portfolios.icon;
+          {portfolios.map((portfolio) => {
+            const IconComponent = portfolio.icon;
 
             return (
               <motion.div
-                key={portfolios.id}
+                key={portfolio.id}
                 variants={itemVariants}
                 className="flex flex-col items-center"
               >
-                <Link to={portfolios.link} className="group">
+                <Link to={portfolio.link} className="group">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{
@@ -239,30 +349,34 @@ export default function PortfolioList() {
                 </Link>
 
                 {/* 資訊卡 */}
-                <div className="mt-5 w-full max-w-[300px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
                   <div className="mb-2 flex items-center justify-between">
-                    <h2 className="text-xl font-semibold">
-                      {portfolios.title}
-                    </h2>
+                    <h2 className="text-xl font-semibold">{portfolio.title}</h2>
 
                     <span className="text-sm text-zinc-400">
-                      {portfolios.year}
+                      {portfolio.year}
                     </span>
                   </div>
 
-                  <p className="mb-3 text-sm text-zinc-300">
-                    {portfolios.type}
-                  </p>
+                  <p className="mb-3 text-sm text-zinc-300">{portfolio.type}</p>
 
                   <div className="flex flex-wrap gap-2">
-                    {portfolios.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {portfolio.skills.map((skill) => {
+                      const style =
+                        skillClassMap[skill] ??
+                        "bg-zinc-800 text-zinc-200 border-zinc-200";
+                      const icon =
+                        skillIconMap[skill] ?? "icon-park-outline:dot";
+                      return (
+                        <span
+                          key={skill}
+                          className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
+                        >
+                          <Icon icon={icon} width="12" height="12" />
+                          {skill}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>
@@ -326,7 +440,7 @@ export default function PortfolioList() {
                 </Link>
 
                 {/* 資訊卡 */}
-                <div className="mt-5 w-full max-w-[300px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
                   <div className="mb-2 flex items-center justify-between">
                     <h2 className="text-xl font-semibold">{project.title}</h2>
 
@@ -338,14 +452,22 @@ export default function PortfolioList() {
                   <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
 
                   <div className="flex flex-wrap gap-2">
-                    {project.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full bg-zinc-800 px-3 py-1 text-xs"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                    {project.skills.map((skill) => {
+                      const style =
+                        skillClassMap[skill] ??
+                        "bg-zinc-800 text-zinc-200 border-zinc-200";
+                      const icon =
+                        skillIconMap[skill] ?? "icon-park-outline:dot";
+                      return (
+                        <span
+                          key={skill}
+                          className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
+                        >
+                          <Icon icon={icon} width="12" height="12" />
+                          {skill}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>

@@ -184,7 +184,7 @@ export default function Illustration() {
               <FadeUp>
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
-                  <div className="absolute inset-0">
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     {/* 背景 */}
                     <img src={ppts[0]} className="h-full w-full object-cover" />
                   </div>

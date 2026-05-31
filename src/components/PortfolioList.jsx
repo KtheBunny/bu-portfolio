@@ -17,6 +17,7 @@ import PogButton from "./PortfolioPogButton";
 import MoonwalkButton from "./PortfolioMoonwalkButton";
 import HealterButton from "./PortfolioHealterButton";
 import IkhtcgButton from "./PortfolioIkhtcgButton";
+import webButton from "./PortfolioWebButton";
 
 const portfolios = [
   {
@@ -175,7 +176,7 @@ const projects = [
     year: "2026",
     link: "/Works",
 
-    icon: IkhtcgButton,
+    icon: webButton,
   },
 ];
 
@@ -183,26 +184,33 @@ const projects = [
 const skillClassMap = {
   "2D 繪畫": "bg-teal-900 text-teal-300 border-teal-300",
   插畫繪製: "bg-teal-900 text-teal-200 border-teal-200",
-  "Pixel Art": "bg-cyan-900 text-cyan-200 border-cyan-200",
+  "Pixel Art": "bg-teal-900 text-teal-200 border-teal-200",
+
   人物設計: "bg-cyan-900 text-cyan-200 border-cyan-200",
-  概念美術: "bg-sky-900 text-sky-100 border-sky-100",
-  平面設計: "bg-sky-900 text-sky-200 border-sky-200",
-  動畫繪製: "bg-blue-900 text-blue-200 border-blue-200",
-  動作設計: "bg-blue-900 text-blue-200 border-blue-200",
-  場景設計: "bg-indigo-900 text-indigo-200 border-indigo-200",
-  Tilemap: "bg-indigo-900 text-indigo-100 border-indigo-100",
-  "UI 設計": "bg-violet-900 text-violet-200 border-violet-200",
-  "Prototype 製作": "bg-violet-900 text-violet-200 border-violet-200",
-  "APP 開發": "bg-purple-900 text-purple-300 border-purple-300",
-  網頁開發: "bg-purple-900 text-purple-300 border-purple-300",
-  前端程式: "bg-purple-900 text-purple-200 border-purple-200",
-  "PWA 設計": "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
-  RWD: "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
-  遊戲美術: "bg-pink-900 text-pink-200 border-pink-200",
-  技術美術: "bg-pink-900 text-pink-100 border-pink-100",
-  關卡設計: "bg-rose-900 text-rose-200 border-rose-200",
-  遊戲企劃: "bg-rose-900 text-rose-200 border-rose-200",
-  遊戲開發: "bg-rose-900 text-rose-300 border-rose-300",
+  概念美術: "bg-cyan-900 text-cyan-200 border-cyan-200",
+
+  動畫繪製: "bg-sky-900 text-sky-200 border-sky-200",
+  動作設計: "bg-sky-900 text-sky-200 border-sky-200",
+
+  場景設計: "bg-blue-900 text-blue-200 border-blue-200",
+  Tilemap: "bg-blue-900 text-blue-200 border-blue-200",
+
+  平面設計: "bg-indigo-900 text-indigo-200 border-indigo-200",
+  "UI 設計": "bg-indigo-900 text-indigo-200 border-indigo-200",
+  "Prototype 製作": "bg-indigo-900 text-indigo-200 border-indigo-200",
+
+  "APP 開發": "bg-violet-900 text-violet-200 border-violet-200",
+  網頁開發: "bg-violet-900 text-violet-200 border-violet-200",
+  前端程式: "bg-violet-900 text-violet-200 border-violet-200",
+  "PWA 設計": "bg-violet-900 text-violet-200 border-violet-200",
+  RWD: "bg-violet-900 text-violet-200 border-violet-200",
+
+  遊戲美術: "bg-purple-900 text-purple-200 border-purple-200",
+  技術美術: "bg-purple-900 text-purple-200 border-purple-200",
+
+  關卡設計: "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
+  遊戲企劃: "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
+  遊戲開發: "bg-fuchsia-900 text-fuchsia-200 border-fuchsia-200",
 };
 
 // class map

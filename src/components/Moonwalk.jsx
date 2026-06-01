@@ -5,11 +5,20 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import FloatingItems from "./MoonwalkFloatingItems";
 
 import logo from "../assets/logo/Moonwalk-logo.png";
 import bg from "../assets/logo/Moonwalk-bg.png";
+
+//
+// Recommended portfolio import
+//
+
+import PixelButton from "./PortfolioFolderPixel";
+import PogButton from "./PortfolioPogButton";
+import EminenceButton from "./PortfolioEminenceButton";
 
 //
 // powerpoint import
@@ -247,6 +256,90 @@ export default function Moonwalk() {
                     src={ppts[5]}
                     className="w-full object-cover transition duration-300 group-hover:scale-110"
                   />
+                </div>
+              </FadeUp>
+
+              {/* 查看更多 */}
+              <FadeUp>
+                <div className="relative flex flex-col items-center justify-around rounded-3xl border bg-[#f0f0f0] p-6 text-black">
+                  <span className="mb-6 font-gugi text-xl font-bold tracking-wide lg:text-2xl">
+                    謝謝觀看，您可能會對這些作品也有興趣
+                  </span>
+                  <div className="relative flex w-full items-center justify-around">
+                    <div className="grid w-full grid-cols-1 gap-14 text-black md:grid-cols-2 lg:grid-cols-3">
+                      <Link
+                        to="/Works/PixelArt"
+                        className="group w-full cursor-pointer rounded-xl border border-black p-4 transition duration-300 hover:bg-zinc-900"
+                      >
+                        <div className="flex h-full flex-col items-center justify-between">
+                          <div className="mb-6 w-full">
+                            <h3 className="w-full text-sm font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-400">
+                              像素風遊戲的各種美術素材
+                            </h3>
+                            <h2 className="my-3 w-full text-2xl font-semibold transition duration-300 group-hover:text-white">
+                              Pixel Art 作品集
+                            </h2>
+                            <span className="w-full text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                              整理了最近的像素動畫和遊戲美術素材作品。
+                            </span>
+                          </div>
+
+                          <PixelButton />
+                          <span className="mt-6 w-full text-right text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                            立即查看 ➔
+                          </span>
+                        </div>
+                      </Link>
+
+                      <Link
+                        to="/Works/Eminence"
+                        className="group w-full cursor-pointer rounded-xl border border-black p-4 transition duration-300 hover:bg-zinc-900"
+                      >
+                        <div className="flex h-full flex-col items-center justify-between">
+                          <div className="mb-6 w-full">
+                            <h3 className="w-full text-sm font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-400">
+                              電腦遊戲 - 畢業專題
+                            </h3>
+                            <h2 className="my-3 w-full text-2xl font-semibold transition duration-300 group-hover:text-white">
+                              Eminence
+                            </h2>
+                            <span className="w-full text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                              少女在陌生的星球和實驗室醒來，探索自己身世的橫向捲軸類銀河惡魔城遊戲。
+                            </span>
+                          </div>
+
+                          <EminenceButton />
+                          <span className="mt-6 w-full text-right text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                            立即查看 ➔
+                          </span>
+                        </div>
+                      </Link>
+
+                      <Link
+                        to="/Works/PathOfGhost"
+                        className="group w-full cursor-pointer rounded-xl border border-black p-4 transition duration-300 hover:bg-zinc-900"
+                      >
+                        <div className="flex h-full flex-col items-center justify-between">
+                          <div className="mb-6 w-full">
+                            <h3 className="w-full text-sm font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-400">
+                              電腦遊戲 - GameJam 作品
+                            </h3>
+                            <h2 className="my-3 w-full text-2xl font-semibold transition duration-300 group-hover:text-white">
+                              Path Of Ghost
+                            </h2>
+                            <span className="w-full text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                              透過死亡和重生來解開重重機關的橫向捲軸解迷遊戲。
+                            </span>
+                          </div>
+
+                          <PogButton />
+                          <span className="mt-6 w-full text-right text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                            立即查看 ➔
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </FadeUp>
             </div>

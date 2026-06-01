@@ -5,12 +5,19 @@ import {
   useMotionTemplate,
 } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import logo from "../assets/logo/Healter-logo.webp";
 import bg1 from "../assets/other/bg-1.webp";
 import bg2 from "../assets/other/bg-2.webp";
 import bg3 from "../assets/other/bg-3.webp";
 import bg4 from "../assets/other/bg-4.webp";
+
+//
+// Recommended portfolio import
+//
+
+import PixelButton from "./PortfolioFolderPixel";
 
 //
 // powerpoint import
@@ -75,25 +82,21 @@ export default function Illustration() {
   const hintsFilter = useMotionTemplate`blur(${hintsBlur}px)`;
 
   // bg相關
-  const bg1Opacity = useTransform(
-    scrollPageProgress,
-    [0, 0.1, 0.25],
-    [1, 1, 0],
-  );
+  const bg1Opacity = useTransform(scrollPageProgress, [0, 0.1, 0.2], [1, 1, 0]);
 
   const bg2Opacity = useTransform(
     scrollPageProgress,
-    [0.1, 0.25, 0.35, 0.5],
+    [0.1, 0.2, 0.3, 0.4],
     [0, 1, 1, 0],
   );
 
   const bg3Opacity = useTransform(
     scrollPageProgress,
-    [0.35, 0.5, 0.65, 0.8],
+    [0.3, 0.4, 0.5, 0.6],
     [0, 1, 1, 0],
   );
 
-  const bg4Opacity = useTransform(scrollPageProgress, [0.65, 0.8], [0, 1]);
+  const bg4Opacity = useTransform(scrollPageProgress, [0.5, 0.6], [0, 1]);
 
   const bgBlur = useTransform(
     scrollPageProgress,
@@ -214,6 +217,42 @@ export default function Illustration() {
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     <img src={ppts[3]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+
+              {/* 查看更多 */}
+              <FadeUp>
+                <div className="relative flex flex-col items-center justify-around rounded-3xl border bg-[#f0f0f0] p-6 text-black">
+                  <span className="mb-6 font-gugi text-xl font-bold tracking-wide lg:text-2xl">
+                    謝謝觀看，您可能會對這個作品集也有興趣
+                  </span>
+                  <div className="relative flex w-full items-center justify-around">
+                    <div className="grid w-full gap-14 text-black [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))]">
+                      <Link
+                        to="/Works/PixelArt"
+                        className="group mx-auto w-full max-w-sm cursor-pointer rounded-xl border border-black p-4 transition duration-300 hover:bg-zinc-900"
+                      >
+                        <div className="flex h-full flex-col items-center justify-between">
+                          <div className="mb-6 w-full">
+                            <h3 className="w-full text-sm font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-400">
+                              像素風遊戲的各種美術素材
+                            </h3>
+                            <h2 className="my-3 w-full text-2xl font-semibold transition duration-300 group-hover:text-white">
+                              Pixel Art 作品集
+                            </h2>
+                            <span className="w-full text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                              整理了最近的像素動畫和遊戲美術素材作品。
+                            </span>
+                          </div>
+
+                          <PixelButton />
+                          <span className="mt-6 w-full text-right text-base font-semibold text-zinc-800 transition duration-300 group-hover:text-zinc-300">
+                            立即查看 ➔
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </FadeUp>

@@ -258,7 +258,7 @@ export default function Pixelart() {
               <FadeUp>
                 <div className="relative flex flex-col items-center justify-around rounded-3xl border bg-[#f0f0f0] p-6 text-black">
                   <span className="mb-6 font-gugi text-xl font-bold tracking-wide lg:text-2xl">
-                    謝謝觀看，下面可以詳細瀏覽個別作品
+                    謝謝觀看，您可能會對這些作品也有興趣
                   </span>
                   <div className="relative flex w-full items-center justify-around">
                     <div className="grid w-full grid-cols-1 gap-14 text-black md:grid-cols-2 lg:grid-cols-3">

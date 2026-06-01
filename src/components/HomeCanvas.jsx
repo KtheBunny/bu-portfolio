@@ -12,34 +12,10 @@ export default function HomeCanvas() {
   const { playTransition } = usePageTransition();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
-  //const currentX = useRef(0.5); // normalized 0~1
-
-  //const mouseX = useMotionValue(0.5); // normalized 0~1
   const hoverLock = useRef(false);
 
   const left = useSpring(0.33, { stiffness: 300, damping: 25, mass: 1.2 });
   const right = useSpring(0.66, { stiffness: 300, damping: 25, mass: 1.2 });
-
-  /*
-  const updateSeparators = (x) => {
-    let l, r;
-    if (x < 0.33) {
-      // 放大左邊
-      l = 0.8;
-      r = 0.9;
-    } else if (x >= 0.33 && x <= 0.66) {
-      // 放大中間
-      l = 0.1;
-      r = 0.9;
-    } else {
-      // 放大右邊
-      l = 0.1;
-      r = 0.2;
-    }
-    left.set(l);
-    right.set(r);
-  };
-  */
 
   const leftPx = useTransform(left, (v) => v * containerWidth - 200);
   const rightPx = useTransform(right, (v) => v * containerWidth);
@@ -50,6 +26,25 @@ export default function HomeCanvas() {
   );
   const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
   const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
+
+  const gamedevClicked = () => {
+    if (!isLeaving) {
+      setIsLeaving(true);
+      playTransition("/Works/Eminence");
+    }
+  };
+  const UIClicked = () => {
+    if (!isLeaving) {
+      setIsLeaving(true);
+      playTransition("/Works/Healter");
+    }
+  };
+  const illustrationClicked = () => {
+    if (!isLeaving) {
+      setIsLeaving(true);
+      playTransition("/Works/Illustration");
+    }
+  };
 
   useEffect(() => {
     setIsLeaving(false);
@@ -62,26 +57,9 @@ export default function HomeCanvas() {
       if (containerRef.current) {
         setContainerWidth(containerRef.current.getBoundingClientRect().width);
       }
-      //updateSeparators(currentX.current);
     };
 
-    /*
-    const handleMove = (e) => {
-      if (hoverLock.current) return;
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.getBoundingClientRect().width);
-      }
-      const rect = containerRef.current.getBoundingClientRect(); // 獲取容器的位置和尺寸
-
-      const relativeX = e.clientX - rect.left; // 滑鼠 x 減去容器左邊緣
-      const x = Math.max(0, Math.min(1, relativeX / rect.width)); // 歸一化到 0-1，確保不超出範圍
-
-      currentX.current = x;
-      mouseX.set(x);
-      updateSeparators(x);
-    };
-    */
-
+    // Scroll to leave page
     const handleWheel = (e) => {
       // 往下滾
       if (e.deltaY > 0 && !isLeaving) {
@@ -116,7 +94,6 @@ export default function HomeCanvas() {
 
   const handleMotionDivLeaving = () => {
     hoverLock.current = false;
-    //updateSeparators(currentX.current);
   };
 
   return (
@@ -155,13 +132,16 @@ export default function HomeCanvas() {
             width: "calc(100vw - 3.5rem)",
           }}
         >
-          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500">
+          <div
+            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+            onClick={UIClicked}
+          >
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500 transition duration-300 group-hover:text-orange-900">
               {"UI/UX   Design".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 lg:text-5xl">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 transition duration-300 group-hover:text-orange-900 lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>
@@ -201,19 +181,22 @@ export default function HomeCanvas() {
             width: "calc(100vw - 3.5rem)",
           }}
         >
-          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200">
+          <div
+            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+            onClick={gamedevClicked}
+          >
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200 transition duration-300 group-hover:text-emerald-400">
               {"Game       Dev".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 lg:text-5xl">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 transition duration-300 group-hover:text-emerald-400 lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white">
+          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200">
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />
@@ -245,13 +228,16 @@ export default function HomeCanvas() {
           className="fixed left-[3.5rem] top-0 h-full"
           style={{ width: "calc(100vw - 3.5rem)" }}
         >
-          <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white">
+          <div
+            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+            onClick={illustrationClicked}
+          >
+            <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white transition duration-300 group-hover:text-violet-300">
               {"Illustration".split("").map((c, i) => (
                 <span key={i}>{c}</span>
               ))}
             </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-white lg:text-5xl">
+            <h1 className="font-gugi text-4xl font-bold tracking-wide text-white transition duration-300 group-hover:text-violet-300 lg:text-5xl">
               PORTFOLIO
             </h1>
           </div>

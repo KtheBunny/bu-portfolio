@@ -9,6 +9,7 @@ import HomeParaUI from "./HomeParaUI";
 
 export default function HomeCanvas() {
   const [isLeaving, setIsLeaving] = useState(false);
+  const [showSeeMore, setShowSeeMore] = useState(false);
   const { playTransition } = usePageTransition();
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
@@ -45,6 +46,13 @@ export default function HomeCanvas() {
       playTransition("/Works/Illustration");
     }
   };
+
+  useEffect(() => {
+    // 判斷是否為滑鼠裝置
+    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    setShowSeeMore(hasFinePointer && canHover);
+  }, [showSeeMore]);
 
   useEffect(() => {
     setIsLeaving(false);
@@ -147,7 +155,12 @@ export default function HomeCanvas() {
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500">
+          <div
+            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500"
+            style={{
+              display: `${showSeeMore ? "block" : "none"}`,
+            }}
+          >
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />
@@ -196,7 +209,12 @@ export default function HomeCanvas() {
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200">
+          <div
+            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200"
+            style={{
+              display: `${showSeeMore ? "block" : "none"}`,
+            }}
+          >
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />
@@ -243,7 +261,12 @@ export default function HomeCanvas() {
           </div>
 
           {/* Guide */}
-          <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white">
+          <div
+            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white"
+            style={{
+              display: `${showSeeMore ? "block" : "none"}`,
+            }}
+          >
             <div className="flex animate-bounce flex-col items-center gap-2">
               <span className="text-center font-gugi">Scroll to see more</span>
               <Icon icon="mdi:mouse" className="h-6 w-6" />

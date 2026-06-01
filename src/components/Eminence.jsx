@@ -94,6 +94,7 @@ const FadeUp = ({ children, className = "" }) => {
 
 export default function Eminence() {
   const heroRef = useRef(null);
+  const containerRef = useRef(null);
   const imagesRef = useRef([]);
   const canvasRef = useRef(null);
   const currentFrameRef = useRef(0);
@@ -142,7 +143,10 @@ export default function Eminence() {
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    const rect = canvas.getBoundingClientRect();
+    const container = containerRef.current;
+    const rect = container
+      ? container.getBoundingClientRect()
+      : canvas.getBoundingClientRect();
 
     if (
       rect.width === sizeRef.current.width &&
@@ -159,6 +163,10 @@ export default function Eminence() {
 
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
+
+    // store measured size in CSS pixels for drawFrame
+    sizeRef.current.width = width;
+    sizeRef.current.height = height;
 
     context.setTransform(1, 0, 0, 1, 0, 0);
 
@@ -177,8 +185,10 @@ export default function Eminence() {
 
     if (!image) return;
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width =
+      sizeRef.current.width || canvas.clientWidth || window.innerWidth;
+    const height =
+      sizeRef.current.height || canvas.clientHeight || window.innerHeight;
 
     context.clearRect(0, 0, width, height);
 
@@ -216,9 +226,21 @@ export default function Eminence() {
       drawFrame(0);
     };
 
+    const container = containerRef.current;
+
+    const ro = new ResizeObserver(() => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setupCanvas();
+        drawFrame(currentFrameRef.current);
+      }, 100);
+    });
+
+    if (container) ro.observe(container);
+
+    // fallback for environments without ResizeObserver
     const handleResize = () => {
       clearTimeout(resizeTimer);
-
       resizeTimer = setTimeout(() => {
         setupCanvas();
         drawFrame(currentFrameRef.current);
@@ -228,6 +250,7 @@ export default function Eminence() {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      if (container) ro.disconnect();
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -249,7 +272,7 @@ export default function Eminence() {
 
   // 角色相關
   const characterScale = useTransform(scrollYProgress, [0, 0.75], [1.2, 1]);
-  const characterY = useTransform(scrollYProgress, [0, 0.75], [-200, 0]);
+  const characterY = useTransform(scrollYProgress, [0, 0.75], [-100, 0]);
 
   // 第一個背景圖相關
   const bg1Opacity = useTransform(scrollYProgress, [0, 0.5, 0.9], [0, 0, 1]);
@@ -258,7 +281,7 @@ export default function Eminence() {
     <>
       <div className="relative ml-[3.5rem] overflow-hidden bg-black text-white">
         {/* HERO ANIMATION */}
-        <section ref={heroRef} className="relative h-[300vh]">
+        <section ref={heroRef} className="relative h-[250vh]">
           <div
             className="fixed top-0 min-h-dvh overflow-hidden bg-black"
             style={{ left: "3.5rem", width: "calc(100vw - 3.5rem)" }}
@@ -281,11 +304,12 @@ export default function Eminence() {
 
             <motion.div
               style={{
-                scale: characterScale,
+                //scale: characterScale,
                 filter: filterValue,
                 y: characterY,
               }}
               className="absolute inset-0"
+              ref={containerRef}
             >
               <motion.img
                 src={bg1}
@@ -301,15 +325,6 @@ export default function Eminence() {
                 style={{ imageRendering: "pixelated" }}
               />
             </motion.div>
-
-            {/* 中央文字 */}
-            <div className="absolute z-10 flex h-full w-full flex-col items-center justify-center">
-              <motion.img
-                src={logo}
-                className={"w-1/2 lg:w-1/3"}
-                style={{ opacity: logoOpacity }}
-              />
-            </div>
           </div>
         </section>
 
@@ -324,6 +339,15 @@ export default function Eminence() {
                   className="aspect-video w-full rounded-3xl"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 ></iframe>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md">
+                  <img
+                    src={ppts[15]}
+                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                  />
+                </div>
               </FadeUp>
 
               <FadeUp>

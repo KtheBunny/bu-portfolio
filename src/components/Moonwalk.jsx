@@ -155,6 +155,15 @@ export default function Moonwalk() {
               <FadeUp>
                 <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   <img
+                    src={ppts[6]}
+                    className="w-full object-cover transition duration-300 group-hover:scale-110"
+                  />
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  <img
                     src={ppts[0]}
                     className="w-full object-cover transition duration-300 group-hover:scale-110"
                   />

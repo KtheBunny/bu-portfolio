@@ -228,7 +228,7 @@ export default function Illustration() {
                     謝謝觀看，您可能會對這個作品集也有興趣
                   </span>
                   <div className="relative flex w-full items-center justify-around">
-                    <div className="grid w-full gap-14 text-black [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))]">
+                    <div className="grid w-full gap-14 text-black [grid-template-columns:repeat(auto-fit,max(320px,1fr))]">
                       <Link
                         to="/Works/PixelArt"
                         className="group mx-auto w-full max-w-sm cursor-pointer rounded-xl border border-black p-4 transition duration-300 hover:bg-zinc-900"

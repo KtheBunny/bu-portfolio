@@ -10,12 +10,13 @@ import z7 from "../assets/art/home-illustration-z107.webp";
 import z8 from "../assets/art/home-illustration-z108.webp";
 import z9 from "../assets/art/home-illustration-z109.webp";
 
-import pixiv from "../assets/logo/pixiv.svg";
+// import pixiv from "../assets/logo/pixiv.svg";
 
 export default function HomeParaArt() {
   return (
     <>
       <div className="relative h-full overflow-hidden [contain:layout_paint]">
+        {/* p網按鈕
         <div
           className="absolute bottom-10 right-10 z-10 cursor-pointer"
           style={{ filter: "brightness(0) invert(1)" }}
@@ -27,6 +28,7 @@ export default function HomeParaArt() {
         >
           <img src={pixiv} className="mask h-6 w-6" />
         </div>
+          */}
 
         <img
           className="absolute h-full w-full object-cover object-center"

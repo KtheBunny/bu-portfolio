@@ -43,9 +43,17 @@ export default function NavSideBar() {
   const [buttonHovered, setButtonHovered] = useState(null);
   const [navHovered, setIsNavHovered] = useState(false);
 
-  const activeIndex = navItems.findIndex(
-    (item) => item.path === location.pathname,
-  );
+  const activeIndex = navItems.findIndex((item) => {
+    // For root path we only want exact match
+    if (item.path === "/") return location.pathname === "/";
+
+    // Treat parent path as active when the current pathname is exactly
+    // the item.path or is a subpath like "/Works/Eminence"
+    return (
+      location.pathname === item.path ||
+      location.pathname.startsWith(item.path + "/")
+    );
+  });
 
   return (
     <>
@@ -81,7 +89,7 @@ export default function NavSideBar() {
 
         <div className="relative flex w-full flex-col items-center justify-center space-y-4">
           {navItems.map((item, index) => {
-            const isActive = location.pathname === item.path;
+            const isActive = activeIndex === index;
 
             return (
               <Link

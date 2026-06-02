@@ -7,8 +7,7 @@ import icon from "../assets/icon.jpg";
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
-export default function SkillTreeCanvas() {
-  const [selectedIds, setSelectedIds] = useState(() => new Set());
+export default function SkillTreeCanvas({ selectedIds, setSelectedIds }) {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
 
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
@@ -27,6 +26,7 @@ export default function SkillTreeCanvas() {
 
   // 切換選取（加入或移除 id）
   const toggleSelect = (id) => {
+    // setSelectedIds 由父元件傳入
     setSelectedIds((prev) => {
       const next = new Set(prev);
       const isSelected = next.has(id);
@@ -36,17 +36,16 @@ export default function SkillTreeCanvas() {
 
       // ---------- 1. 如果是要選取 ----------
       if (!isSelected) {
-        // 如果有 prerequisites → 檢查每個前置是否已被選取
-        const allPrereqsSelected = skill.prerequisites.every((preId) =>
-          next.has(preId),
-        );
-
-        if (!allPrereqsSelected) {
-          console.log("❌ 前置技能未全部選取，不能選這個。");
-          return next; // 不更新
+        // 如果 mastery 小於 20，拒絕選取
+        const mastery = Number(skill.mastery ?? 0);
+        if (mastery < 20) {
+          return next;
         }
 
-        // 允許選取
+        // 自動選取所有前置（包含遞迴的前置）
+        const ancestors = getAllAncestors(id);
+        ancestors.forEach((ancId) => next.add(ancId));
+        // 選取當前技能
         next.add(id);
         return next;
       }
@@ -75,6 +74,27 @@ export default function SkillTreeCanvas() {
       for (const child of children) {
         result.push(child.id);
         dfs(child.id);
+      }
+    }
+
+    dfs(skillId);
+    return result;
+  }
+
+  // 取得所有遞迴的前置技能（ancestors）
+  function getAllAncestors(skillId) {
+    const result = [];
+    const visited = new Set();
+
+    function dfs(id) {
+      const node = skills.find((s) => s.id === id);
+      if (!node || !Array.isArray(node.prerequisites)) return;
+      for (const preId of node.prerequisites) {
+        if (!visited.has(preId)) {
+          visited.add(preId);
+          result.push(preId);
+          dfs(preId);
+        }
       }
     }
 

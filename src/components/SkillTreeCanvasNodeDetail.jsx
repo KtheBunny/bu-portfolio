@@ -136,21 +136,36 @@ const SkillTreeCanvasNodeDetail = forwardRef(
 
             <div className="mt-2 flex items-center gap-2">
               <Icon
-                icon="material-symbols:lock-open-right-outline-rounded"
+                icon={
+                  mastery < 20
+                    ? "material-symbols:lock-outline"
+                    : "material-symbols:lock-open-right-outline-rounded"
+                }
+                className={
+                  mastery < 20
+                    ? "text-xs text-gray-500"
+                    : "text-xs text-white hover:text-amber-300"
+                }
                 width="16"
                 height="16"
               />
               {isSelected ? (
-                <p className="text-xs text-amber-500">已選取</p>
+                <p className="text-xs text-amber-500">
+                  已選取，再次點擊取消選擇
+                </p>
               ) : (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     onSelect && onSelect();
                   }}
-                  className="text-xs text-white hover:text-amber-300"
+                  className={
+                    mastery < 20
+                      ? "text-xs text-gray-500"
+                      : "text-xs text-white hover:text-amber-300"
+                  }
                 >
-                  已解鎖，點擊選擇此技能
+                  {mastery < 20 ? "未解鎖" : "已解鎖，點擊選擇此技能"}
                 </button>
               )}
             </div>

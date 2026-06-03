@@ -96,21 +96,21 @@ const SkillTreeCanvasNodeDetail = forwardRef(
               <>
                 <hr className="my-2 border-gray-600" />
                 <p className="mb-1 text-white">相關作品</p>
-                {works.map((w, i) => (
-                  <p key={i} className="text-gray-400">
-                    {w}
-                  </p>
-                ))}
-
-                {workLink && (
-                  <a
-                    href={workLink}
-                    target="_blank"
-                    className="mt-2 flex justify-center rounded-sm border-[1px] border-white bg-[rgba(255,255,255,0.25)] px-3 py-1 text-white hover:bg-gray-500"
-                  >
-                    查看作品
-                  </a>
-                )}
+                {works.map((w, i) => {
+                  const text = typeof w === "string" ? w : w.text;
+                  const link = typeof w === "string" ? workLink : w.link;
+                  return (
+                    <p key={i} className="text-gray-400">
+                      {link ? (
+                        <a href={link} target="_blank" rel="noreferrer" className="underline hover:text-amber-300">
+                          {text}
+                        </a>
+                      ) : (
+                        <span className="underline">{text}</span>
+                      )}
+                    </p>
+                  );
+                })}
               </>
             )}
 

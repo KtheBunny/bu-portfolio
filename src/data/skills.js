@@ -8,7 +8,10 @@ const skills = [
     type: "被動技能",
     description:
       "擁有操作Unity的能力以及對遊戲的整體設計與規劃的能力和經驗，包含遊戲機制、關卡設計等。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence"],
+    works: [
+      { text: "- [2021] Path of Ghost", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+      { text: "- [2022] Eminence", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+    ],
     workLink: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
     mastery: 75,
     masteryDescriptions: [
@@ -26,7 +29,10 @@ const skills = [
     type: "被動技能",
     description:
       "擁有基本編程能力並強化對 C# 語言的應用能力，包含物件導向、Event、資料結構與程式邏輯等基礎。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence"],
+    works: [
+      { text: "- [2021] Path of Ghost", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+      { text: "- [2022] Eminence", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+    ],
     workLink: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
     mastery: 60,
     masteryDescriptions: [
@@ -44,7 +50,11 @@ const skills = [
     type: "被動技能",
     description:
       "擁有對遊戲的美感與視覺上的呈現需求認知，包含整體風格、需要的美術素材、打擊感 Game Feel 等。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence", "以及更多..."],
+    works: [
+      { text: "- [2021] Path of Ghost", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+      { text: "- [2022] Eminence", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+      { text: "以及更多...", link: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK" },
+    ],
     workLink: "https://youtu.be/dQw4w9WgXcQ?si=UEGENPjnnvgdpmdK",
     mastery: 80,
     masteryDescriptions: [
@@ -62,7 +72,11 @@ const skills = [
     type: "主動技能",
     description:
       "理解不同遊戲平台如電腦和手機的操作方式，並能處理玩家的輸入和對應的遊戲行為。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence", "以及更多..."],
+    works: [
+      { text: "- [2021] Path of Ghost", link: null },
+      { text: "- [2022] Eminence", link: null },
+      { text: "以及更多...", link: null },
+    ],
     workLink: null,
     mastery: 55,
     masteryDescriptions: [
@@ -81,7 +95,7 @@ const skills = [
     type: "被動技能",
     description:
       "根據遊戲特色和玩法設計相應的關卡，並考慮如何引導玩家行為和設定難度曲線。",
-    works: ["- [2021] Path of Ghost"],
+    works: [{ text: "- [2021] Path of Ghost", link: null }],
     workLink: null,
     mastery: 75,
     masteryDescriptions: [
@@ -100,7 +114,7 @@ const skills = [
     type: "被動技能",
     description:
       "擁有設計和發想遊戲的核心玩法、回饋機制等Game Loop元素的能力。",
-    works: ["- [2021] Path of Ghost"],
+    works: [{ text: "- [2021] Path of Ghost", link: null }],
     workLink: null,
     mastery: 55,
     masteryDescriptions: ["＋具備相關觀念，並在參與的GameJam活動中實踐。"],
@@ -153,7 +167,7 @@ const skills = [
     type: "被動技能",
     description:
       "擁手運用 Unity 的技術美術工具提升遊戲視覺與演出表現，如 Post-processing、Shader Graph、Particle System 等。",
-    works: ["- [2022] Eminence"],
+    works: [{ text: "- [2022] Eminence", link: null }],
     workLink: null,
     mastery: 50,
     masteryDescriptions: [
@@ -188,7 +202,10 @@ const skills = [
     type: "主動技能",
     description:
       "在 2D 遊戲中透過 Tilemap 進行場景佈局、地形配置與關卡規劃，能有效建立具統一化美感與遊戲性的 2D 關卡架構。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence"],
+    works: [
+      { text: "- [2021] Path of Ghost", link: null },
+      { text: "- [2022] Eminence", link: null },
+    ],
     workLink: null,
     mastery: 80,
     masteryDescriptions: [
@@ -274,7 +291,10 @@ const skills = [
     type: "主動技能",
     description:
       "利用 9-slice scaling 方式切片 UI 圖檔素材，並使用TextMeshPro去設計文字按鈕等 UI 排版。",
-    works: ["- [2021] Path of Ghost", "- [2022] Eminence"],
+    works: [
+      { text: "- [2021] Path of Ghost", link: null },
+      { text: "- [2022] Eminence", link: null },
+    ],
     workLink: null,
     mastery: 50,
     masteryDescriptions: ["＋具備多次 UI 設計和實作經驗。"],

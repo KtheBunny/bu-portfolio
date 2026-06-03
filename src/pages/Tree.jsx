@@ -5,6 +5,7 @@ import "../index.css";
 
 function Tree() {
   const [selectedIds, setSelectedIds] = useState(() => new Set());
+  const [currentProfession, setCurrentProfession] = useState("（無）");
 
   // 強制覆寫選取（由 TopBar 呼叫）
   const applySelection = (ids = []) => {
@@ -13,10 +14,14 @@ function Tree() {
 
   return (
     <>
-      <SkillTreeTopBar applySelection={applySelection} />
+      <SkillTreeTopBar
+        applySelection={applySelection}
+        setCurrentProfession={setCurrentProfession}
+      />
       <SkillTreeCanvas
         selectedIds={selectedIds}
         setSelectedIds={setSelectedIds}
+        currentProfession={currentProfession}
       />
     </>
   );

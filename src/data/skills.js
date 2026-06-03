@@ -21,7 +21,7 @@ const skills = [
     id: 2,
     x: 350,
     y: 0,
-    icon: "bxl:visual-studio",
+    icon: "tabler:brand-c-sharp",
     title: "C# 編程能力",
     type: "被動技能",
     description:
@@ -219,7 +219,7 @@ const skills = [
     id: 13,
     x: 700,
     y: 0,
-    icon: "material-symbols:directions-walk-rounded",
+    icon: "mingcute:move-line",
     title: "角色控制系統開發",
     type: "主動技能",
     description:
@@ -253,7 +253,7 @@ const skills = [
     id: 15,
     x: 700,
     y: 100,
-    icon: "material-symbols:cases-outline-rounded",
+    icon: "bi:backpack",
     title: "背包系統開發",
     type: "主動技能",
     description:
@@ -397,7 +397,7 @@ const skills = [
     id: 24,
     x: -200,
     y: -600,
-    icon: "streamline-logos:figma-logo",
+    icon: "solar:figma-broken",
     title: "Figma 使用能力",
     type: "被動技能",
     description: null,

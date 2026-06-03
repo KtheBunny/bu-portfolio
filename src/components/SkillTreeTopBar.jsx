@@ -14,7 +14,10 @@ import { useEffect, useState } from "react";
 // localStorage key 給第一次查看的使用者，之後就不再顯示提示
 const WORK_BRANCH_HINT_KEY = "work-branch-hint-dismissed";
 
-export default function SkillTreeTopBar({ applySelection }) {
+export default function SkillTreeTopBar({
+  applySelection,
+  setCurrentProfession,
+}) {
   //
   // 首次查看提示
   //
@@ -118,7 +121,7 @@ export default function SkillTreeTopBar({ applySelection }) {
           <div
             ref={eduRefs.setReference}
             {...getEduReferenceProps()}
-            className={`flex h-12 w-fit cursor-pointer items-center justify-center rounded-[4px] border border-[rgba(255,255,255,0.25)] p-4 text-center text-text-secondary-light shadow-lg backdrop-blur-[1.5px] transition duration-200 hover:border-white hover:bg-white/10 hover:text-white dark:text-text-secondary-dark ${
+            className={`hidden h-12 w-fit cursor-pointer items-center justify-center rounded-[4px] border border-[rgba(255,255,255,0.25)] p-4 text-center text-text-secondary-light shadow-lg backdrop-blur-[1.5px] transition duration-200 hover:border-white hover:bg-white/10 hover:text-white md:flex dark:text-text-secondary-dark ${
               eduOpen ? "border-white bg-white/10 text-white" : ""
             } `}
           >
@@ -138,7 +141,7 @@ export default function SkillTreeTopBar({ applySelection }) {
             } `}
           >
             <span className="material-symbols-outlined mr-1">layers</span>
-            <span className="cursor-pointer font-semibold">工作分支選擇</span>
+            <span className="cursor-pointer font-semibold">預設配點選擇</span>
           </div>
 
           <img
@@ -216,45 +219,85 @@ export default function SkillTreeTopBar({ applySelection }) {
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
                 onClick={() => {
-                  applySelection([]);
-                  setBranchOpen(false);
-                }}
-              >
-                （無）
-              </button>
-              <button
-                className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
-                onClick={() => {
-                  // 前端工程師預設：[21,27,28,30,31,32,33]
-                  applySelection([21, 27, 28, 30, 31, 32, 33]);
+                  applySelection([
+                    21, 23, 27, 28, 29, 30, 31, 32, 33, 34, 19, 20, 24,
+                  ]);
+                  setCurrentProfession?.("前端工程師");
                   setBranchOpen(false);
                 }}
               >
                 前端工程師
               </button>
+
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
-                onClick={() => {}}
+                onClick={() => {
+                  applySelection([
+                    1, 2, 3, 10, 7, 4, 8, 13, 14, 17, 18, 5, 11, 12, 15,
+                  ]);
+                  setCurrentProfession?.("遊戲工程師");
+                  setBranchOpen(false);
+                }}
               >
                 遊戲工程師
               </button>
+
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
-                onClick={() => {}}
+                onClick={() => {
+                  applySelection([
+                    1, 3, 5, 10, 11, 18, 36, 37, 41, 42, 43, 44, 45, 46, 47, 48,
+                    49, 39, 50, 35,
+                  ]);
+                  setCurrentProfession?.("遊戲美術");
+                  setBranchOpen(false);
+                }}
               >
                 遊戲美術
               </button>
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
-                onClick={() => {}}
+                onClick={() => {
+                  applySelection([
+                    2, 3, 1, 5, 9, 10, 11, 16, 18, 42, 43, 44, 47, 36, 7, 41,
+                  ]);
+                  setCurrentProfession?.("技術美術");
+                  setBranchOpen(false);
+                }}
               >
                 技術美術
               </button>
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
-                onClick={() => {}}
+                onClick={() => {
+                  applySelection([
+                    3, 10, 19, 20, 23, 24, 25, 26, 22, 35, 39, 16,
+                  ]);
+                  setCurrentProfession?.("UI 設計師");
+                  setBranchOpen(false);
+                }}
               >
                 UI 設計師
+              </button>
+              <button
+                className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
+                onClick={() => {
+                  applySelection([35, 37, 38, 48, 49, 50]);
+                  setCurrentProfession?.("插畫家");
+                  setBranchOpen(false);
+                }}
+              >
+                插畫家
+              </button>
+              <button
+                className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
+                onClick={() => {
+                  applySelection([]);
+                  setCurrentProfession?.("（無）");
+                  setBranchOpen(false);
+                }}
+              >
+                （無）
               </button>
             </div>
           </div>

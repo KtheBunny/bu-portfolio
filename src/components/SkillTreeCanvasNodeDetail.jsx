@@ -150,9 +150,15 @@ const SkillTreeCanvasNodeDetail = forwardRef(
                 height="16"
               />
               {isSelected ? (
-                <p className="text-xs text-amber-500">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelect && onSelect();
+                  }}
+                  className="text-xs text-amber-500"
+                >
                   已選取，再次點擊取消選擇
-                </p>
+                </button>
               ) : (
                 <button
                   onClick={(e) => {

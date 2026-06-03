@@ -7,7 +7,11 @@ import icon from "../assets/icon.jpg";
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
 
-export default function SkillTreeCanvas({ selectedIds, setSelectedIds }) {
+export default function SkillTreeCanvas({
+  selectedIds,
+  setSelectedIds,
+  currentProfession = "（無）",
+}) {
   const [showCustomCursor, setShowCustomCursor] = useState(false);
 
   const canvasRef = useRef(null); // 實際綁在「viewport」上 (overflow container)
@@ -365,12 +369,12 @@ export default function SkillTreeCanvas({ selectedIds, setSelectedIds }) {
                     className="z-10 max-w-20 rounded-lg border-[1px] shadow-lg"
                     src={icon}
                   />
-                  <div className="mt-[-32px] w-40 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
+                  <div className="mt-[-32px] w-44 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
                     <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
                       BunnyK
                     </h3>
                     <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
-                      研究所畢業生
+                      當前職業：{currentProfession}
                     </p>
                     <p className="mt-1 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                       前網頁美術設計師

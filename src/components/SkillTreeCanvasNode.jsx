@@ -37,7 +37,6 @@ export default function SkillTreeCanvasNode({
   type,
   description,
   works,
-  workLink,
   mastery,
   masteryDescriptions,
   prerequisites,
@@ -110,7 +109,6 @@ export default function SkillTreeCanvasNode({
           type={type}
           description={description}
           works={works}
-          workLink={workLink}
           mastery={mastery}
           masteryDescriptions={masteryDescriptions}
           isSelected={selected}

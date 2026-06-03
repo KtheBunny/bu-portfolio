@@ -1,5 +1,6 @@
 import { FloatingPortal } from "@floating-ui/react";
 import { Icon } from "@iconify/react";
+import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { forwardRef } from "react";
 
@@ -46,7 +47,6 @@ const SkillTreeCanvasNodeDetail = forwardRef(
       type,
       description,
       works = [],
-      workLink,
       mastery,
       masteryDescriptions = [],
       isSelected = false,
@@ -98,19 +98,31 @@ const SkillTreeCanvasNodeDetail = forwardRef(
                 <p className="mb-1 text-white">相關作品</p>
                 {works.map((w, i) => {
                   const text = typeof w === "string" ? w : w.text;
-                  const link = typeof w === "string" ? workLink : w.link;
+                  const link = typeof w === "string" ? null : w.link;
                   return (
                     <p key={i} className="text-gray-400">
                       {link ? (
-                        <a href={link} target="_blank" rel="noreferrer" className="underline hover:text-amber-300">
+                        <Link
+                          to={link}
+                          className="underline hover:text-gray-200"
+                        >
                           {text}
-                        </a>
+                        </Link>
                       ) : (
                         <span className="underline">{text}</span>
                       )}
                     </p>
                   );
                 })}
+                <div className="mt-2 flex items-center gap-2">
+                  <Icon
+                    icon="material-symbols:list"
+                    className="text-xs text-gray-400"
+                    width="16"
+                    height="16"
+                  />
+                  <p className="text-xs text-gray-400">點擊可查看相關作品集</p>
+                </div>
               </>
             )}
 

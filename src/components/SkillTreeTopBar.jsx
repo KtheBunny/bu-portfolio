@@ -171,7 +171,7 @@ export default function SkillTreeTopBar({
             <div className="flex h-full w-full items-center justify-center rounded-[4px] border border-white/40 bg-white/10 shadow-[0_0_25px_rgba(255,255,255,0.25)] backdrop-blur-[2px]">
               <span className="material-symbols-outlined mr-1">layers</span>
 
-              <span className="font-semibold">工作分支選擇</span>
+              <span className="font-semibold">預設配點選擇</span>
             </div>
           </div>
 

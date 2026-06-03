@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 import { motion } from "framer-motion";
 
@@ -27,6 +27,32 @@ export default function SkillTreeCanvas({
 
   const canvasWidth = 2200;
   const canvasHeight = 1600;
+
+  // 計算四個分類的已選技能數量
+  const counts = useMemo(() => {
+    let c1 = 0; // x <= -350
+    let c2 = 0; // x >= 350
+    let c3 = 0; // -350 < x < 350 && y < 0
+    let c4 = 0; // -350 < x < 350 && y > 0
+
+    // selectedIds 是一個 Set
+    for (const s of skills) {
+      if (!selectedIds || !selectedIds.has(s.id)) continue;
+
+      if (typeof s.x === "number") {
+        if (s.x <= -350) c1++;
+        else if (s.x >= 350) c2++;
+        else {
+          if (typeof s.y === "number") {
+            if (s.y < 0) c3++;
+            else if (s.y > 0) c4++;
+          }
+        }
+      }
+    }
+
+    return { c1, c2, c3, c4 };
+  }, [selectedIds]);
 
   // 切換選取（加入或移除 id）
   const toggleSelect = (id) => {
@@ -376,9 +402,17 @@ export default function SkillTreeCanvas({
                     <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
                       當前職業：{currentProfession}
                     </p>
-                    <p className="mt-1 text-xs text-text-secondary-light dark:text-text-secondary-dark">
-                      前網頁美術設計師
-                    </p>
+                    <div className="mt-1 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                      <div className="flex items-center justify-center space-x-2">
+                        <span className="text-cyan-300">{counts.c1}</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-indigo-300">{counts.c3}</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-purple-300">{counts.c2}</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-zinc-300">{counts.c4}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

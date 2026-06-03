@@ -10,6 +10,7 @@ import {
   autoUpdate,
 } from "@floating-ui/react";
 import { useEffect, useState } from "react";
+import { Icon } from "@iconify/react";
 
 // localStorage key 給第一次查看的使用者，之後就不再顯示提示
 const WORK_BRANCH_HINT_KEY = "work-branch-hint-dismissed";
@@ -126,7 +127,7 @@ export default function SkillTreeTopBar({
             } `}
           >
             <span className="material-symbols-outlined mr-1">star</span>
-            <span className="font-semibold">學歷 - 研究生</span>
+            <span className="font-semibold">學歷 - 碩士</span>
           </div>
 
           {/* 工作分支按鈕 */}
@@ -201,8 +202,45 @@ export default function SkillTreeTopBar({
             style={eduStyles}
             {...getEduFloatingProps()}
           >
-            <div className="flex flex-col items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] p-4 shadow-[0_6px_14px_rgba(0,0,0,0.35)] backdrop-blur-[2px]">
-              國立臺北教育大學 數位科技設計學系玩具與遊戲設計碩士班 | 碩士畢業
+            <div className="flex bg-black/25 flex-col items-left justify-center gap-4 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] p-4 shadow-[0_6px_14px_rgba(0,0,0,0.35)] backdrop-blur-[4px]">
+              {/* NTUE */}
+              <div className="flex items-center gap-3">
+                <div className="rounded-md border shadow-[0_0_10px_#c084fc] p-3">
+                  <Icon icon="icon-park-twotone:bachelor-cap" width="24" height="24" />
+                </div>
+                <div>
+                  <h4 className="font-bold">國立臺北教育大學</h4>
+                  <p className="text-xs text-gray-400">數位科技設計學系玩具與遊戲設計碩士班 | 碩士畢業</p>
+                </div>
+              </div>
+              {/* CM */}
+              <div className="flex items-center gap-3">
+                <div className="rounded-md border shadow-[0_0_10px_#60a5fa] p-3 ">
+                  <Icon icon="icon-park-twotone:bachelor-cap" width="24" height="24" />
+                </div>
+                <div>
+                  <h4 className="font-bold">香港城市大學</h4>
+                  <p className="text-xs text-gray-400">理學士（創意媒體） | 學士畢業</p>
+                </div>
+              </div>
+              {/* high dip */}
+              <div className="flex items-center gap-3">
+                <div className="rounded-md border shadow-[0_0_10px_#fff] p-3">
+                  <Icon icon="icon-park-twotone:bachelor-cap" width="24" height="24" />
+                </div>
+                <div>
+                  <h4 className="font-bold">香港理工大學</h4>
+                  <p className="text-xs text-gray-400">電子及資訊工程學 | 高級文憑畢業</p>
+                </div>
+              </div>
+              <div className="border-b border-gray-500"></div>
+              {/*stat*/}
+              <div className="flex flex-col items-center gap-1">
+                
+                  <h4 className="font-bold">可使用點數：不限</h4>
+                  <p className="text-xs text-gray-400">+碩士效果加成</p>
+
+              </div>
             </div>
           </div>
         </FloatingPortal>
@@ -215,7 +253,7 @@ export default function SkillTreeTopBar({
             style={branchStyles}
             {...getBranchFloatingProps()}
           >
-            <div className="flex flex-col items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] p-1 shadow-[0_6px_14px_rgba(0,0,0,0.35)] backdrop-blur-[2px]">
+            <div className="flex bg-black/25 flex-col items-center justify-center gap-2 rounded-[4px] border-[1px] border-solid border-[rgba(255,255,255,0.5)] p-1 shadow-[0_6px_14px_rgba(0,0,0,0.35)] backdrop-blur-[4px]">
               <button
                 className="w-full px-4 py-2 text-center hover:bg-zinc-100/10"
                 onClick={() => {

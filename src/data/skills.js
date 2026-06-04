@@ -537,7 +537,7 @@ const skills = [
     description:
       "能使用 SwiftUI 開發 iOS 應用程式介面，利用宣告式開發方式建立互動元件與畫面流程。",
     works: [{ text: "- [2025] Healter", link: "/Works/Healter" }],
-    mastery: 35,
+    mastery: 40,
     masteryDescriptions: [
       "＋獨立開發 iOS App 前端介面，具備 SwiftUI 實作經驗。",
       "＋了解 State、Binding 與 Navigation 等基礎開發模式。",
@@ -590,7 +590,7 @@ const skills = [
     description:
       "具備 React 開發能力，能以元件化方式建構前端介面，提升程式可維護性與開發效率。",
     works: [{ text: "- [2026] 作品集網頁", link: null }],
-    mastery: 50,
+    mastery: 60,
     masteryDescriptions: [
       "＋具備 React 開發能力，熟悉 useState、useEffect、useRef 等 Hooks，以及 Router 等常見應用。",
     ],
@@ -797,7 +797,7 @@ const skills = [
       { text: "- [2021] Path of Ghost", link: "/Works/PathOfGhost" },
       { text: "- [2022] Eminence", link: "/Works/Eminence" },
     ],
-    mastery: 50,
+    mastery: 60,
     masteryDescriptions: [
       "＋能依據場景需求設計多層次 Tile Set 與地形結構。",
       "＋具備 Rule Tile 設計經驗，可處理不同地形轉接與自動拼接需求。",

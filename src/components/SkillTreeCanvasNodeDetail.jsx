@@ -95,7 +95,7 @@ const SkillTreeCanvasNodeDetail = forwardRef(
             {works.length > 0 && (
               <>
                 <hr className="my-2 border-gray-600" />
-                <p className="mb-1 text-white">相關作品</p>
+                <p className="mb-1 text-white">相關作品：</p>
                 {works.map((w, i) => {
                   const text = typeof w === "string" ? w : w.text;
                   const link = typeof w === "string" ? null : w.link;

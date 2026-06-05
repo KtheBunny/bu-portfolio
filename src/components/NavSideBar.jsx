@@ -24,10 +24,10 @@ const navItems = [
     label: "作品集",
   },
   {
-    path: "/settings",
-    fill: "material-symbols:settings-rounded",
-    outline: "material-symbols:settings-outline-rounded",
-    label: "設定",
+    path: "/Info",
+    fill: "iconamoon:profile-fill",
+    outline: "iconamoon:profile-bold",
+    label: "關於我",
   },
 ];
 

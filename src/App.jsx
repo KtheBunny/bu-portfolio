@@ -6,6 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 import Tree from "./pages/Tree";
 import Home from "./pages/Home";
+import Info from "./pages/Info";
 import Portfolio from "./components/PortfolioList";
 import Eminence from "./components/Eminence";
 import Moonwalk from "./components/Moonwalk";
@@ -27,6 +28,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Info" element={<Info />} />
         <Route path="/Skills" element={<Tree />} />
         <Route path="/Works" element={<Portfolio />} />
         <Route path="/Works/Eminence" element={<Eminence />} />

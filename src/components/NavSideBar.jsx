@@ -19,12 +19,12 @@ const navItems = [
   },
   {
     path: "/Works",
-    fill: "material-symbols:bookmark",
-    outline: "material-symbols:bookmark-outline",
+    fill: "dashicons:portfolio",
+    outline: "carbon:portfolio",
     label: "作品集",
   },
   {
-    path: "/Info",
+    path: "/About",
     fill: "iconamoon:profile-fill",
     outline: "iconamoon:profile-bold",
     label: "關於我",

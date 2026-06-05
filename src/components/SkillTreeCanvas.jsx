@@ -260,21 +260,16 @@ export default function SkillTreeCanvas({
     <>
       {/* viewport: 固定顯示大小並可滾動 (綁 canvasRef) */}
 
-      <div
-        className="h-screen w-screen overflow-hidden"
-        style={{
-          // 可視區背景
-          background:
-            "url('https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1194&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        }}
-      >
+      <div className="h-screen w-screen overflow-hidden bg-[url(https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1194&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover">
         <div
           ref={canvasRef}
           className="relative h-full w-full cursor-none overflow-auto backdrop-blur-lg"
           style={{
             // 可視區背景
-            background:
-              "url('https://www.transparenttextures.com/patterns/graphy.png')",
+            background: `
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      url('https://www.transparenttextures.com/patterns/graphy.png')
+    `,
           }}
         >
           {/* 內部內容: 設為比 viewport 大 (minWidth/minHeight) */}
@@ -396,20 +391,26 @@ export default function SkillTreeCanvas({
                     src={icon}
                   />
                   <div className="mt-[-32px] w-44 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
-                    <h3 className="text-lg font-bold text-text-light dark:text-text-dark">
+                    <h3 className="font-gugi text-lg text-text-light dark:text-text-dark">
                       BunnyK
                     </h3>
                     <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
                       當前職業：{currentProfession}
                     </p>
-                    <div className="mt-1 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                    <div className="mt-1 font-gugi text-sm text-text-secondary-light dark:text-text-secondary-dark">
                       <div className="flex items-center justify-center space-x-2">
                         <span className="text-cyan-300">{counts.c1}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
+                          /
+                        </span>
                         <span className="text-indigo-300">{counts.c3}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
+                          /
+                        </span>
                         <span className="text-purple-300">{counts.c2}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">/</span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
+                          /
+                        </span>
                         <span className="text-zinc-300">{counts.c4}</span>
                       </div>
                     </div>

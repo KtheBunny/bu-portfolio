@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { usePageTransition } from "../components/PageTransitionContext";
 
-import avatar from "../assets/new bu.png";
+import Carousel from "../components/Carousel";
+import Footer from "../components/Footer";
+
+import avatar from "../assets/new bu.webp";
 
 const socials = [
   {
@@ -72,7 +75,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <main className="min-h-scree ml-14 bg-[#0f0f0f] text-white">
+      <main className="min-h-scree ml-14 overflow-x-clip bg-[#0f0f0f] text-white">
         {/* HERO */}
         <section className="relative flex h-screen flex-col items-center justify-center overflow-hidden">
           {/*  */}
@@ -165,9 +168,9 @@ export default function ProfilePage() {
             transition={{
               delay: 1.8,
             }}
-            className="absolute bottom-10 text-sm text-zinc-500"
+            className="absolute bottom-20 flex animate-bounce flex-col items-center text-sm text-zinc-500"
           >
-            Scroll Down ↓
+            <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
           </motion.div>
         </section>
 
@@ -179,12 +182,12 @@ export default function ProfilePage() {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <h2 className="mb-8 font-gugi text-5xl">About Me</h2>
+            <h2 className="mb-8 text-center font-gugi text-5xl">About Me</h2>
 
-            <p className="text-lg leading-9 text-zinc-300">
+            <p className="text-center text-lg leading-9 text-zinc-300">
               袁浩軒，熱愛遊戲以及與遊戲相關的創作，擁有遊戲美術與程式開發的跨領域背景。除了具備像素藝術、角色設計、場景設計、UI/UX
               設計等美術能力外，也熟悉 Unity
-              與前端開發流程，能從開發者角度思考美術設計與玩家體驗。希望投入遊戲產業美術相關職位，持續探索藝術表現與互動設計的更多可能性。
+              與前端開發流程，能從開發者角度思考美術設計與玩家體驗。希望投入遊戲產業美術相關職位，持續創作兼具視覺表現與遊玩體驗的作品。
             </p>
           </motion.div>
         </section>
@@ -259,142 +262,57 @@ export default function ProfilePage() {
               <p className="text-zinc-500">2018 - 2023</p>
             </div>
           </motion.div>
-          <div className="mt-32 border-b"></div>
+        </section>
+
+        {/* PROJECTS */}
+        <section className="mx-auto max-w-6xl px-10 py-32 text-center">
+          <motion.div
+            variants={revealUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2 className="mb-12 font-gugi text-5xl">Awards & Projects</h2>
+
+            <div className="space-y-10">
+              <div className="mb-6 space-y-4">
+                <h3 className="text-2xl font-semibold">
+                  MAIC 行動應用創新賽 2024 臺灣決賽
+                </h3>
+
+                <p className="mt-2 text-zinc-400">Healter</p>
+
+                <p className="text-zinc-500">
+                  概念美術、玩法設計、平面設計、ＵＩ設計、前端程式、影片剪輯
+                </p>
+              </div>
+
+              <div className="mb-6 space-y-4">
+                <h3 className="text-2xl font-semibold">Global Game Jam 2021</h3>
+
+                <p className="text-zinc-400">Path Of Ghost</p>
+
+                <p className="text-zinc-500">
+                  遊戲美術、人物動畫、玩法設計、關卡設計、影片剪輯
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+        <section className="mx-auto max-w-6xl px-10 py-32 text-center">
+          <motion.div
+            variants={revealUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <h2 className="mb-12 font-gugi text-5xl">Gallery</h2>
+            <Carousel />
+          </motion.div>
+          <div className="mt-32 border-b" />
         </section>
       </main>
-      <footer className="ml-14 bg-[#0f0f0f] pb-32">
-        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-10 lg:flex-row lg:justify-between">
-          {/* 左側 */}
-          <div className="shrink-0">
-            <h2 className="font-gugi text-3xl">
-              Despite everything, it's still you.
-            </h2>
-
-            <a
-              href="mailto:usagikinn@gmail.com"
-              className="mt-4 block text-zinc-400 transition-colors hover:text-white"
-            >
-              usagikinn@gmail.com
-            </a>
-            <div className="z-10 mt-8 flex gap-4 drop-shadow-lg">
-              {socials.map((social) => (
-                <motion.a
-                  key={social.icon}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  variants={socialItem}
-                  whileHover={{
-                    scale: 1.15,
-                    y: -4,
-                  }}
-                >
-                  <Icon
-                    icon={social.icon}
-                    className="h-8 w-8 text-white transition-colors hover:text-zinc-300"
-                  />
-                </motion.a>
-              ))}
-            </div>
-            <p className="mt-4 text-sm text-zinc-500">© 2026 BunnyK</p>
-          </div>
-
-          {/* 右側 */}
-          <div className="grid flex-1 grid-cols-2 gap-10 sm:grid-cols-3">
-            {/* 網站頁面 */}
-            <div className="flex flex-col gap-2">
-              <p className="font-bold">網站頁面</p>
-
-              <button
-                onClick={() => playTransition("/")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                主頁
-              </button>
-
-              <button
-                onClick={() => playTransition("/Skills")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                技能樹
-              </button>
-
-              <button
-                onClick={() => playTransition("/Portfolio")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                作品集
-              </button>
-
-              <button
-                onClick={() => playTransition("/About")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                關於我
-              </button>
-            </div>
-
-            {/* 作品集 */}
-            <div className="flex flex-col gap-2">
-              <p className="font-bold">作品集</p>
-
-              <button
-                onClick={() => playTransition("/Works/PixelArt")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                Pixel Art 作品集
-              </button>
-
-              <button
-                onClick={() => playTransition("/Works/Illustration")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                繪圖作品集
-              </button>
-            </div>
-
-            {/* 作品列表 */}
-            <div className="flex flex-col gap-2">
-              <p className="font-bold">作品列表</p>
-
-              <button
-                onClick={() => playTransition("/Works/Eminence")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                Eminence
-              </button>
-
-              <button
-                onClick={() => playTransition("/Works/PathOfGhost")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                Path Of Ghost
-              </button>
-
-              <button
-                onClick={() => playTransition("/Works/Moonwalk")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                Moonwalk
-              </button>
-
-              <button
-                onClick={() => playTransition("/Works/Healter")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                Healter
-              </button>
-
-              <button
-                onClick={() => playTransition("/Works/IKH-TCG")}
-                className="text-left text-zinc-400 transition-colors hover:text-white"
-              >
-                IKH-TCG
-              </button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

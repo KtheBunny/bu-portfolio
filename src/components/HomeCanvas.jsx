@@ -162,8 +162,7 @@ export default function HomeCanvas() {
             }}
           >
             <div className="flex animate-bounce flex-col items-center gap-2">
-              <span className="text-center font-gugi">Scroll to see more</span>
-              <Icon icon="mdi:mouse" className="h-6 w-6" />
+              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
             </div>
           </div>
 
@@ -216,8 +215,7 @@ export default function HomeCanvas() {
             }}
           >
             <div className="flex animate-bounce flex-col items-center gap-2">
-              <span className="text-center font-gugi">Scroll to see more</span>
-              <Icon icon="mdi:mouse" className="h-6 w-6" />
+              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
             </div>
           </div>
 
@@ -268,8 +266,7 @@ export default function HomeCanvas() {
             }}
           >
             <div className="flex animate-bounce flex-col items-center gap-2">
-              <span className="text-center font-gugi">Scroll to see more</span>
-              <Icon icon="mdi:mouse" className="h-6 w-6" />
+              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
             </div>
           </div>
 

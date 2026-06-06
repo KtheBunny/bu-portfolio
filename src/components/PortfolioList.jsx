@@ -19,6 +19,8 @@ import HealterButton from "./PortfolioHealterButton";
 import IkhtcgButton from "./PortfolioIkhtcgButton";
 import webButton from "./PortfolioWebButton";
 
+import Footer from "../components/Footer";
+
 const portfolios = [
   {
     id: 1,
@@ -275,214 +277,222 @@ const itemVariants = {
 
 export default function PortfolioList() {
   return (
-    <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 text-white">
-      <div className="mx-auto flex max-w-6xl flex-col gap-2 self-center py-20">
-        {/* 標題 */}
-        <motion.div
-          className="mb-6"
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.45,
-            ease: "easeOut",
-          }}
-        >
-          <h1 className="mb-3 text-center font-gugi text-5xl font-bold">
-            Portfolios
-          </h1>
-          <p className="text-center text-lg text-zinc-400">
-            選擇您感興趣的作品，點擊進入詳細頁面。
-          </p>
-        </motion.div>
+    <>
+      <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 self-center py-20">
+          {/* 標題 */}
+          <motion.div
+            className="mb-6"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.45,
+              ease: "easeOut",
+            }}
+          >
+            <h1 className="mb-3 text-center font-gugi text-5xl font-bold">
+              Portfolios
+            </h1>
+            <p className="text-center text-lg text-zinc-400">
+              選擇您感興趣的作品，點擊進入詳細頁面。
+            </p>
+          </motion.div>
 
-        {/* 作品集標題 */}
-        <motion.div
-          className="mb-3"
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.45,
-            delay: 0.2,
-            ease: "easeOut",
-          }}
-        >
-          <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
-            Skills & Disciplines
-          </h2>
-          <span className="text-left text-xl text-zinc-400">
-            依技能分類的作品集
-          </span>
-        </motion.div>
+          {/* 作品集標題 */}
+          <motion.div
+            className="mb-3"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.45,
+              delay: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
+              Skills & Disciplines
+            </h2>
+            <span className="text-left text-xl text-zinc-400">
+              依技能分類的作品集
+            </span>
+          </motion.div>
 
-        {/* 作品集列表 */}
-        <motion.div
-          className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-        >
-          {portfolios.map((portfolio) => {
-            const IconComponent = portfolio.icon;
+          {/* 作品集列表 */}
+          <motion.div
+            className="mb-16 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
+            {portfolios.map((portfolio) => {
+              const IconComponent = portfolio.icon;
 
-            return (
-              <motion.div
-                key={portfolio.id}
-                variants={itemVariants}
-                className="flex flex-col items-center"
-              >
-                <Link to={portfolio.link} className="group">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 220,
-                      damping: 15,
-                    }}
-                  >
-                    {/* 直接 render */}
-                    <IconComponent />
-                  </motion.div>
-                </Link>
+              return (
+                <motion.div
+                  key={portfolio.id}
+                  variants={itemVariants}
+                  className="flex flex-col items-center"
+                >
+                  <Link to={portfolio.link} className="group">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 220,
+                        damping: 15,
+                      }}
+                    >
+                      {/* 直接 render */}
+                      <IconComponent />
+                    </motion.div>
+                  </Link>
 
-                {/* 資訊卡 */}
-                <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
-                  <div className="mb-2 flex items-center justify-between">
-                    <h2 className="text-xl font-semibold">{portfolio.title}</h2>
+                  {/* 資訊卡 */}
+                  <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <h2 className="text-xl font-semibold">
+                        {portfolio.title}
+                      </h2>
 
-                    <span className="text-sm text-zinc-400">
-                      {portfolio.year}
-                    </span>
+                      <span className="text-sm text-zinc-400">
+                        {portfolio.year}
+                      </span>
+                    </div>
+
+                    <p className="mb-3 text-sm text-zinc-300">
+                      {portfolio.type}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {portfolio.skills.map((skill) => {
+                        const style =
+                          skillClassMap[skill] ??
+                          "bg-zinc-800 text-zinc-200 border-zinc-200";
+                        const icon =
+                          skillIconMap[skill] ?? "icon-park-outline:dot";
+                        return (
+                          <span
+                            key={skill}
+                            className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
+                          >
+                            <Icon icon={icon} width="12" height="12" />
+                            {skill}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
 
-                  <p className="mb-3 text-sm text-zinc-300">{portfolio.type}</p>
+          {/* 專題標題 */}
+          <motion.div
+            className="mb-8"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.45,
+              delay: 0.4,
+              ease: "easeOut",
+            }}
+          >
+            <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
+              Projects & Cases
+            </h2>
+            <span className="text-left text-xl text-zinc-400">
+              依專案分類的作品集
+            </span>
+          </motion.div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {portfolio.skills.map((skill) => {
-                      const style =
-                        skillClassMap[skill] ??
-                        "bg-zinc-800 text-zinc-200 border-zinc-200";
-                      const icon =
-                        skillIconMap[skill] ?? "icon-park-outline:dot";
-                      return (
-                        <span
-                          key={skill}
-                          className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
-                        >
-                          <Icon icon={icon} width="12" height="12" />
-                          {skill}
-                        </span>
-                      );
-                    })}
+          {/* 專題列表 */}
+          <motion.div
+            className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
+            {projects.map((project) => {
+              const IconComponent = project.icon;
+
+              return (
+                <motion.div
+                  key={project.id}
+                  variants={itemVariants}
+                  className="flex flex-col items-center"
+                >
+                  <Link to={project.link} className="group">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 220,
+                        damping: 15,
+                      }}
+                    >
+                      {/* 直接 render */}
+                      <IconComponent />
+                    </motion.div>
+                  </Link>
+
+                  {/* 資訊卡 */}
+                  <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <h2 className="text-xl font-semibold">{project.title}</h2>
+
+                      <span className="text-sm text-zinc-400">
+                        {project.year}
+                      </span>
+                    </div>
+
+                    <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.skills.map((skill) => {
+                        const style =
+                          skillClassMap[skill] ??
+                          "bg-zinc-800 text-zinc-200 border-zinc-200";
+                        const icon =
+                          skillIconMap[skill] ?? "icon-park-outline:dot";
+                        return (
+                          <span
+                            key={skill}
+                            className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
+                          >
+                            <Icon icon={icon} width="12" height="12" />
+                            {skill}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* 專題標題 */}
-        <motion.div
-          className="mb-8"
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.45,
-            delay: 0.4,
-            ease: "easeOut",
-          }}
-        >
-          <h2 className="mb-1 text-left font-gugi text-3xl font-bold">
-            Projects & Cases
-          </h2>
-          <span className="text-left text-xl text-zinc-400">
-            依專案分類的作品集
-          </span>
-        </motion.div>
-
-        {/* 專題列表 */}
-        <motion.div
-          className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-        >
-          {projects.map((project) => {
-            const IconComponent = project.icon;
-
-            return (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                className="flex flex-col items-center"
-              >
-                <Link to={project.link} className="group">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 220,
-                      damping: 15,
-                    }}
-                  >
-                    {/* 直接 render */}
-                    <IconComponent />
-                  </motion.div>
-                </Link>
-
-                {/* 資訊卡 */}
-                <div className="mt-5 w-full max-w-[320px] rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900 to-zinc-800 p-4">
-                  <div className="mb-2 flex items-center justify-between">
-                    <h2 className="text-xl font-semibold">{project.title}</h2>
-
-                    <span className="text-sm text-zinc-400">
-                      {project.year}
-                    </span>
-                  </div>
-
-                  <p className="mb-3 text-sm text-zinc-300">{project.type}</p>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.skills.map((skill) => {
-                      const style =
-                        skillClassMap[skill] ??
-                        "bg-zinc-800 text-zinc-200 border-zinc-200";
-                      const icon =
-                        skillIconMap[skill] ?? "icon-park-outline:dot";
-                      return (
-                        <span
-                          key={skill}
-                          className={`flex items-center gap-1 rounded-full border px-3 py-1 text-xs ${style}`}
-                        >
-                          <Icon icon={icon} width="12" height="12" />
-                          {skill}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-      </div>
-    </section>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+          <div className="mb-16 mt-32 border-b"></div>
+        </div>
+      </section>
+      <Footer />
+    </>
   );
 }

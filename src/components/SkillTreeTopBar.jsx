@@ -1,4 +1,4 @@
-import icon from "../assets/icon.jpg";
+import icon from "../assets/icon.webp";
 import {
   FloatingOverlay,
   FloatingPortal,

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 
 import { motion } from "framer-motion";
 
-import icon from "../assets/icon.jpg";
+import icon from "../assets/icon.webp";
 
 import skills from "../data/skills";
 import SkillTreeCanvasNode from "./SkillTreeCanvasNode";
@@ -201,8 +201,8 @@ export default function SkillTreeCanvas({
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      const walkX = (x - drag.current.startX) * 1.5; // 調整滾動速度
-      const walkY = (y - drag.current.startY) * 1.5;
+      const walkX = (x - drag.current.startX) * 1; // 調整滾動速度
+      const walkY = (y - drag.current.startY) * 1;
       canvas.scrollLeft = drag.current.scrollLeft - walkX;
       canvas.scrollTop = drag.current.scrollTop - walkY;
     };

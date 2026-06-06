@@ -57,8 +57,9 @@ export default function NavSideBar() {
 
   return (
     <>
+      {/* old bg: bg-gradient-to-b from-gray-900 to-gray-800 */}
       <nav
-        className={`fixed left-0 top-0 z-[10000] flex h-screen w-14 flex-col items-center justify-center border-r bg-gradient-to-b from-gray-900 to-gray-800 py-4 transition-all duration-300 ease-in-out hover:w-36`}
+        className={`fixed left-0 top-0 z-[10000] flex h-screen w-14 flex-col items-center justify-center border-r bg-[#0f0f0f] py-4 transition-all duration-300 ease-in-out hover:w-36`}
         onMouseEnter={() => {
           setIsNavHovered(true);
           setButtonHovered(activeIndex);

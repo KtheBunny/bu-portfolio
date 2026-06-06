@@ -104,175 +104,220 @@ export default function HomeCanvas() {
     hoverLock.current = false;
   };
 
+  //
+  // 首次手機使用提示
+  //
+  const MOBILE_HINT_KEY = "mobile-view-hint-dismissed";
+
+  const [showMobileHint, setShowMobileHint] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem(MOBILE_HINT_KEY);
+
+    // md 以下才顯示
+    const isSmallScreen = window.innerWidth < 768;
+
+    if (!dismissed && isSmallScreen) {
+      setShowMobileHint(true);
+    }
+  }, []);
+
+  const handleMobileHintDismiss = () => {
+    localStorage.setItem(MOBILE_HINT_KEY, "true");
+    setShowMobileHint(false);
+  };
+
   return (
-    <div
-      ref={containerRef}
-      className="relative min-h-svh overflow-hidden"
-      style={{
-        left: "3.5rem",
-        width: "calc(100vw - 3.5rem)",
-      }}
-    >
-      {/* Middle Part */}
-      <motion.div
-        onPointerEnter={() => {
-          handleMotionDivEntering("middle");
-        }}
-        onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {
-          handleMotionDivEntering("middle");
-        }}
-        onPointerUp={handleMotionDivLeaving}
-        className="absolute top-0 h-full overflow-hidden"
+    <>
+      {/* 手機提示 */}
+      {showMobileHint && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70">
+          <div className="mx-4 flex max-w-sm flex-col items-center gap-6 rounded-xl border bg-[#0f0f0f] p-6 text-center shadow-xl">
+            <Icon icon="mdi:phone-rotate-landscape" className="h-10 w-10" />
+            <p className="text-white">推薦使用電腦或橫向手機觀看網頁。</p>
+
+            <button
+              onClick={handleMobileHintDismiss}
+              className="rounded-md border px-4 py-2 text-white hover:bg-white hover:text-[#0f0f0f]"
+            >
+              我知道了
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 首頁內容 */}
+      <div
+        ref={containerRef}
+        className="relative min-h-svh overflow-hidden"
         style={{
-          left: leftPx,
-          width: midWidth,
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-          maskImage:
-            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          left: "3.5rem",
+          width: "calc(100vw - 3.5rem)",
         }}
       >
-        <div
-          className="fixed left-[3.5rem] top-0 h-full"
+        {/* Middle Part */}
+        <motion.div
+          onPointerEnter={() => {
+            handleMotionDivEntering("middle");
+          }}
+          onPointerLeave={handleMotionDivLeaving}
+          onPointerDown={() => {
+            handleMotionDivEntering("middle");
+          }}
+          onPointerUp={handleMotionDivLeaving}
+          className="absolute top-0 h-full overflow-hidden"
           style={{
-            backgroundColor: "#FFF",
-            width: "calc(100vw - 3.5rem)",
+            left: leftPx,
+            width: midWidth,
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+            maskImage:
+              "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
           }}
         >
           <div
-            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-            onClick={UIClicked}
-          >
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500 transition duration-300 group-hover:text-orange-900">
-              {"UI/UX   Design".split("").map((c, i) => (
-                <span key={i}>{c}</span>
-              ))}
-            </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 transition duration-300 group-hover:text-orange-900 lg:text-5xl">
-              PORTFOLIO
-            </h1>
-          </div>
-
-          {/* Guide */}
-          <div
-            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500"
+            className="fixed left-[3.5rem] top-0 h-full"
             style={{
-              display: `${showSeeMore ? "block" : "none"}`,
+              backgroundColor: "#FFF",
+              width: "calc(100vw - 3.5rem)",
             }}
           >
-            <div className="flex animate-bounce flex-col items-center gap-2">
-              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+            <div
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+              onClick={UIClicked}
+            >
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500 transition duration-300 group-hover:text-orange-900">
+                {"UI/UX   Design".split("").map((c, i) => (
+                  <span key={i}>{c}</span>
+                ))}
+              </h2>
+              <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 transition duration-300 group-hover:text-orange-900 lg:text-5xl">
+                PORTFOLIO
+              </h1>
             </div>
+
+            {/* Guide */}
+            <div
+              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500"
+              style={{
+                display: `${showSeeMore ? "block" : "none"}`,
+              }}
+            >
+              <div className="flex animate-bounce flex-col items-center gap-2">
+                <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+              </div>
+            </div>
+
+            <HomeParaUI />
           </div>
+        </motion.div>
 
-          <HomeParaUI />
-        </div>
-      </motion.div>
-
-      {/* Left Part */}
-      <motion.div
-        onPointerEnter={() => {
-          handleMotionDivEntering("left");
-        }}
-        onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {
-          handleMotionDivEntering("left");
-        }}
-        onPointerUp={handleMotionDivLeaving}
-        className="absolute left-0 top-0 h-full overflow-hidden"
-        style={{
-          width: leftWidth,
-          WebkitMaskImage: "linear-gradient(to right, black 85%, transparent)",
-          maskImage: "linear-gradient(to right, black 85%, transparent)",
-        }}
-      >
-        <div
-          className="fixed left-[3.5rem] top-0 h-full"
+        {/* Left Part */}
+        <motion.div
+          onPointerEnter={() => {
+            handleMotionDivEntering("left");
+          }}
+          onPointerLeave={handleMotionDivLeaving}
+          onPointerDown={() => {
+            handleMotionDivEntering("left");
+          }}
+          onPointerUp={handleMotionDivLeaving}
+          className="absolute left-0 top-0 h-full overflow-hidden"
           style={{
-            width: "calc(100vw - 3.5rem)",
+            width: leftWidth,
+            WebkitMaskImage:
+              "linear-gradient(to right, black 85%, transparent)",
+            maskImage: "linear-gradient(to right, black 85%, transparent)",
           }}
         >
           <div
-            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-            onClick={gamedevClicked}
-          >
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200 transition duration-300 group-hover:text-emerald-400">
-              {"Game       Dev".split("").map((c, i) => (
-                <span key={i}>{c}</span>
-              ))}
-            </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 transition duration-300 group-hover:text-emerald-400 lg:text-5xl">
-              PORTFOLIO
-            </h1>
-          </div>
-
-          {/* Guide */}
-          <div
-            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200"
+            className="fixed left-[3.5rem] top-0 h-full"
             style={{
-              display: `${showSeeMore ? "block" : "none"}`,
+              width: "calc(100vw - 3.5rem)",
             }}
           >
-            <div className="flex animate-bounce flex-col items-center gap-2">
-              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+            <div
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+              onClick={gamedevClicked}
+            >
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200 transition duration-300 group-hover:text-emerald-400">
+                {"Game       Dev".split("").map((c, i) => (
+                  <span key={i}>{c}</span>
+                ))}
+              </h2>
+              <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 transition duration-300 group-hover:text-emerald-400 lg:text-5xl">
+                PORTFOLIO
+              </h1>
             </div>
+
+            {/* Guide */}
+            <div
+              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200"
+              style={{
+                display: `${showSeeMore ? "block" : "none"}`,
+              }}
+            >
+              <div className="flex animate-bounce flex-col items-center gap-2">
+                <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+              </div>
+            </div>
+
+            <HomeParaGame />
           </div>
+        </motion.div>
 
-          <HomeParaGame />
-        </div>
-      </motion.div>
-
-      {/* Right Part */}
-      <motion.div
-        onPointerEnter={() => {
-          handleMotionDivEntering("right");
-        }}
-        onPointerLeave={handleMotionDivLeaving}
-        onPointerDown={() => {
-          handleMotionDivEntering("right");
-        }}
-        onPointerUp={handleMotionDivLeaving}
-        className="absolute right-0 top-0 h-full overflow-hidden"
-        style={{
-          width: rightWidth,
-          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)",
-          maskImage: "linear-gradient(to right, transparent, black 15%)",
-        }}
-      >
-        <div
-          className="fixed left-[3.5rem] top-0 h-full"
-          style={{ width: "calc(100vw - 3.5rem)" }}
+        {/* Right Part */}
+        <motion.div
+          onPointerEnter={() => {
+            handleMotionDivEntering("right");
+          }}
+          onPointerLeave={handleMotionDivLeaving}
+          onPointerDown={() => {
+            handleMotionDivEntering("right");
+          }}
+          onPointerUp={handleMotionDivLeaving}
+          className="absolute right-0 top-0 h-full overflow-hidden"
+          style={{
+            width: rightWidth,
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 15%)",
+            maskImage: "linear-gradient(to right, transparent, black 15%)",
+          }}
         >
           <div
-            className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-            onClick={illustrationClicked}
+            className="fixed left-[3.5rem] top-0 h-full"
+            style={{ width: "calc(100vw - 3.5rem)" }}
           >
-            <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white transition duration-300 group-hover:text-violet-300">
-              {"Illustration".split("").map((c, i) => (
-                <span key={i}>{c}</span>
-              ))}
-            </h2>
-            <h1 className="font-gugi text-4xl font-bold tracking-wide text-white transition duration-300 group-hover:text-violet-300 lg:text-5xl">
-              PORTFOLIO
-            </h1>
-          </div>
-
-          {/* Guide */}
-          <div
-            className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white"
-            style={{
-              display: `${showSeeMore ? "block" : "none"}`,
-            }}
-          >
-            <div className="flex animate-bounce flex-col items-center gap-2">
-              <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+            <div
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
+              onClick={illustrationClicked}
+            >
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white transition duration-300 group-hover:text-violet-300">
+                {"Illustration".split("").map((c, i) => (
+                  <span key={i}>{c}</span>
+                ))}
+              </h2>
+              <h1 className="font-gugi text-4xl font-bold tracking-wide text-white transition duration-300 group-hover:text-violet-300 lg:text-5xl">
+                PORTFOLIO
+              </h1>
             </div>
-          </div>
 
-          <HomeParaArt />
-        </div>
-      </motion.div>
-    </div>
+            {/* Guide */}
+            <div
+              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white"
+              style={{
+                display: `${showSeeMore ? "block" : "none"}`,
+              }}
+            >
+              <div className="flex animate-bounce flex-col items-center gap-2">
+                <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
+              </div>
+            </div>
+
+            <HomeParaArt />
+          </div>
+        </motion.div>
+      </div>
+    </>
   );
 }

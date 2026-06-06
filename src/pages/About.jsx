@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
+import { usePageTransition } from "../components/PageTransitionContext";
 
 import avatar from "../assets/new bu.png";
 
@@ -64,6 +65,11 @@ const revealUp = {
 };
 
 export default function ProfilePage() {
+  //
+  // About Me 轉場
+  //
+  const { playTransition } = usePageTransition();
+
   return (
     <>
       <main className="min-h-scree ml-14 bg-[#0f0f0f] text-white">
@@ -256,20 +262,137 @@ export default function ProfilePage() {
           <div className="mt-32 border-b"></div>
         </section>
       </main>
-      <footer className="bg-[#0f0f0f] py-20">
-        <div className="mx-auto max-w-6xl px-10">
-          <h2 className="font-gugi text-3xl">
-            Despite everything, it's still you.
-          </h2>
+      <footer className="ml-14 bg-[#0f0f0f] pb-32">
+        <div className="mx-auto flex max-w-6xl flex-col gap-12 px-10 lg:flex-row lg:justify-between">
+          {/* 左側 */}
+          <div className="shrink-0">
+            <h2 className="font-gugi text-3xl">
+              Despite everything, it's still you.
+            </h2>
 
-          <a
-            href="mailto:hello@bunnyk.dev"
-            className="mt-4 block text-zinc-400 hover:text-white"
-          >
-            usagikinn@gmail.com
-          </a>
+            <a
+              href="mailto:usagikinn@gmail.com"
+              className="mt-4 block text-zinc-400 transition-colors hover:text-white"
+            >
+              usagikinn@gmail.com
+            </a>
+            <div className="z-10 mt-8 flex gap-4 drop-shadow-lg">
+              {socials.map((social) => (
+                <motion.a
+                  key={social.icon}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  variants={socialItem}
+                  whileHover={{
+                    scale: 1.15,
+                    y: -4,
+                  }}
+                >
+                  <Icon
+                    icon={social.icon}
+                    className="h-8 w-8 text-white transition-colors hover:text-zinc-300"
+                  />
+                </motion.a>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-zinc-500">© 2026 BunnyK</p>
+          </div>
 
-          <p className="mt-10 text-sm text-zinc-500">© 2026 BunnyK</p>
+          {/* 右側 */}
+          <div className="grid flex-1 grid-cols-2 gap-10 sm:grid-cols-3">
+            {/* 網站頁面 */}
+            <div className="flex flex-col gap-2">
+              <p className="font-bold">網站頁面</p>
+
+              <button
+                onClick={() => playTransition("/")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                主頁
+              </button>
+
+              <button
+                onClick={() => playTransition("/Skills")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                技能樹
+              </button>
+
+              <button
+                onClick={() => playTransition("/Portfolio")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                作品集
+              </button>
+
+              <button
+                onClick={() => playTransition("/About")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                關於我
+              </button>
+            </div>
+
+            {/* 作品集 */}
+            <div className="flex flex-col gap-2">
+              <p className="font-bold">作品集</p>
+
+              <button
+                onClick={() => playTransition("/Works/PixelArt")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                Pixel Art 作品集
+              </button>
+
+              <button
+                onClick={() => playTransition("/Works/Illustration")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                繪圖作品集
+              </button>
+            </div>
+
+            {/* 作品列表 */}
+            <div className="flex flex-col gap-2">
+              <p className="font-bold">作品列表</p>
+
+              <button
+                onClick={() => playTransition("/Works/Eminence")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                Eminence
+              </button>
+
+              <button
+                onClick={() => playTransition("/Works/PathOfGhost")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                Path Of Ghost
+              </button>
+
+              <button
+                onClick={() => playTransition("/Works/Moonwalk")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                Moonwalk
+              </button>
+
+              <button
+                onClick={() => playTransition("/Works/Healter")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                Healter
+              </button>
+
+              <button
+                onClick={() => playTransition("/Works/IKH-TCG")}
+                className="text-left text-zinc-400 transition-colors hover:text-white"
+              >
+                IKH-TCG
+              </button>
+            </div>
+          </div>
         </div>
       </footer>
     </>

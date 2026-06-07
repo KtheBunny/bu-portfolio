@@ -131,7 +131,7 @@ export default function HomeCanvas() {
     <>
       {/* 手機提示 */}
       {showMobileHint && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70">
+        <div className="fixed inset-0 z-[999] ml-14 flex items-center justify-center bg-black/70">
           <div className="mx-4 flex max-w-sm flex-col items-center gap-6 rounded-xl border bg-[#0f0f0f] p-6 text-center shadow-xl">
             <Icon icon="mdi:phone-rotate-landscape" className="h-10 w-10" />
             <p className="text-white">推薦使用電腦或橫向手機觀看網頁。</p>

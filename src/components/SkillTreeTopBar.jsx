@@ -190,15 +190,15 @@ export default function SkillTreeTopBar({
           <div
             ref={refs.setFloating}
             style={floatingStyles}
-            className="fixed z-[60] w-[200px] rounded-xl bg-white p-4 shadow-2xl drop-shadow-lg lg:w-[280px] dark:bg-zinc-900/70"
+            className="fixed z-[60] w-[200px] rounded-xl border bg-[#0f0f0f] p-4 shadow-2xl drop-shadow-lg lg:w-[280px]"
           >
-            <div className="mb-4 text-sm text-zinc-700 dark:text-zinc-200">
+            <div className="mb-4 text-sm text-zinc-200">
               點擊這裡可以查看根據職業種類預設的技能組合。
             </div>
 
             <button
               onClick={handleDismiss}
-              className="w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+              className="hover: w-full rounded-md border bg-[#0f0f0f] px-4 py-2 text-white hover:bg-white hover:text-zinc-700"
             >
               我知道了
             </button>

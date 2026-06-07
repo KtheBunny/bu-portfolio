@@ -391,26 +391,18 @@ export default function SkillTreeCanvas({
                     src={icon}
                   />
                   <div className="mt-[-32px] w-44 rounded border-[1px] border-[rgba(255,255,255,0.5)] bg-[rgba(0,0,0,0.25)] px-3 pb-3 pt-10 text-center shadow-[0_6px_14px_rgba(0,0,0,0.35)]">
-                    <h3 className="font-gugi text-lg text-text-light dark:text-text-dark">
-                      BunnyK
-                    </h3>
-                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                    <h3 className="font-gugi text-lg text-text-dark">BunnyK</h3>
+                    <p className="text-sm text-text-secondary-dark">
                       當前職業：{currentProfession}
                     </p>
-                    <div className="mt-1 font-gugi text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                    <div className="mt-1 font-gugi text-sm text-text-secondary-dark">
                       <div className="flex items-center justify-center space-x-2">
                         <span className="text-cyan-300">{counts.c1}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
-                          /
-                        </span>
+                        <span className="text-text-secondary-dark">/</span>
                         <span className="text-indigo-300">{counts.c3}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
-                          /
-                        </span>
+                        <span className="text-text-secondary-dark">/</span>
                         <span className="text-purple-300">{counts.c2}</span>
-                        <span className="text-text-secondary-light dark:text-text-secondary-dark">
-                          /
-                        </span>
+                        <span className="text-text-secondary-dark">/</span>
                         <span className="text-zinc-300">{counts.c4}</span>
                       </div>
                     </div>

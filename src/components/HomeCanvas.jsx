@@ -42,13 +42,6 @@ export default function HomeCanvas() {
   };
 
   useEffect(() => {
-    // 判斷是否為滑鼠裝置
-    const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-    const canHover = window.matchMedia("(hover: hover)").matches;
-    setShowSeeMore(hasFinePointer && canHover);
-  }, [showSeeMore]);
-
-  useEffect(() => {
     setIsLeaving(false);
 
     if (containerRef.current) {
@@ -121,17 +114,54 @@ export default function HomeCanvas() {
     setShowMobileHint(false);
   };
 
+  //
+  // 首次NAVBAR使用提示
+  //
+  const NAVBAR_HINT_KEY = "navbar-view-hint-dismissed";
+
+  const [showNavbarHint, setShowNavbarHint] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem(NAVBAR_HINT_KEY);
+
+    if (!dismissed) {
+      setShowNavbarHint(true);
+    }
+  }, []);
+
+  const handleNavbarHintDismiss = () => {
+    localStorage.setItem(NAVBAR_HINT_KEY, "true");
+    setShowNavbarHint(false);
+  };
+
   return (
     <>
       {/* 手機提示 */}
       {showMobileHint && (
         <div className="fixed inset-0 z-[999] ml-14 flex items-center justify-center bg-black/70">
-          <div className="mx-4 flex max-w-sm flex-col items-center gap-6 rounded-xl border bg-[#0f0f0f] p-6 text-center shadow-xl">
+          <div className="mx-4 flex max-w-sm flex-col items-center gap-6 rounded-xl border bg-[#0f0f0f] p-8 text-center shadow-xl">
             <Icon icon="mdi:phone-rotate-landscape" className="h-10 w-10" />
             <p className="text-white">推薦使用電腦或橫向手機觀看網頁。</p>
 
             <button
               onClick={handleMobileHintDismiss}
+              className="rounded-md border px-4 py-2 text-white hover:bg-white hover:text-[#0f0f0f]"
+            >
+              我知道了
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 導航提示 */}
+      {showNavbarHint && (
+        <div className="fixed inset-0 z-[888] ml-14 flex items-center justify-start bg-black/70">
+          <div className="mx-4 flex max-w-sm flex-col items-center gap-6 rounded-xl border bg-[#0f0f0f] p-6 text-center shadow-xl">
+            <Icon icon="ix:navigation-left-hide" className="h-10 w-10" />
+            <p className="text-white">您可以透過左側導覽列隨時切換頁面。</p>
+
+            <button
+              onClick={handleNavbarHintDismiss}
               className="rounded-md border px-4 py-2 text-white hover:bg-white hover:text-[#0f0f0f]"
             >
               我知道了

@@ -102,10 +102,10 @@ export default function Footer() {
             </button>
 
             <button
-              onClick={() => playTransition("/Skills")}
+              onClick={() => playTransition("/About")}
               className="text-left text-zinc-400 transition-colors hover:text-white"
             >
-              技能樹
+              關於我
             </button>
 
             <button
@@ -116,10 +116,10 @@ export default function Footer() {
             </button>
 
             <button
-              onClick={() => playTransition("/About")}
+              onClick={() => playTransition("/Skills")}
               className="text-left text-zinc-400 transition-colors hover:text-white"
             >
-              關於我
+              技能樹
             </button>
           </div>
 

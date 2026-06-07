@@ -6,6 +6,7 @@ import {
 } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 import logo from "../assets/logo/Pog-logo.png";
 import bg from "../assets/logo/Pog-bg.png";
@@ -264,7 +265,7 @@ export default function PathOfGhost() {
                   <span className="mb-6 font-gugi text-xl font-bold tracking-wide lg:text-2xl">
                     謝謝觀看，您可能會對這些作品也有興趣
                   </span>
-                  <div className="relative flex w-full items-center justify-around">
+                  <div className="relative mb-14 flex w-full items-center justify-around">
                     <div className="grid w-full grid-cols-1 gap-14 text-black md:grid-cols-2 lg:grid-cols-3">
                       <Link
                         to="/Works/PixelArt"
@@ -339,6 +340,13 @@ export default function PathOfGhost() {
                       </Link>
                     </div>
                   </div>
+                  <Link
+                    to="/Works"
+                    className="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-black p-4 text-center text-base font-semibold text-zinc-800 transition duration-300 hover:bg-zinc-900 hover:text-white"
+                  >
+                    <Icon icon={"icon-park-solid:back"} />
+                    回到作品列表
+                  </Link>
                 </div>
               </FadeUp>
             </div>

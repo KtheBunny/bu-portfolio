@@ -6,6 +6,7 @@ import {
 } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 import logo from "../assets/logo/Healter-logo.webp";
 
@@ -270,7 +271,7 @@ export default function Healter() {
                   <span className="mb-6 font-gugi text-xl font-bold tracking-wide lg:text-2xl">
                     謝謝觀看，您可能會對這些作品也有興趣
                   </span>
-                  <div className="relative flex w-full items-center justify-around">
+                  <div className="relative mb-14 flex w-full items-center justify-around">
                     <div className="grid w-full grid-cols-1 gap-14 text-[#330c00] md:grid-cols-2 lg:grid-cols-3">
                       <Link
                         to="/Works/PixelArt"
@@ -345,6 +346,13 @@ export default function Healter() {
                       </Link>
                     </div>
                   </div>
+                  <Link
+                    to="/Works"
+                    className="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#330c00] p-4 text-center text-base font-semibold text-amber-800 transition duration-300 hover:bg-[#330c00] hover:text-zinc-300"
+                  >
+                    <Icon icon={"icon-park-solid:back"} />
+                    回到作品列表
+                  </Link>
                 </div>
               </FadeUp>
             </div>

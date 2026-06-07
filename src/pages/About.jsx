@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { usePageTransition } from "../components/PageTransitionContext";
@@ -68,6 +68,16 @@ const revealUp = {
 };
 
 export default function ProfilePage() {
+  // 向下scroll
+  const targetRef = useRef(null);
+
+  const handleClick = () => {
+    targetRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   //
   // About Me 轉場
   //
@@ -158,7 +168,7 @@ export default function ProfilePage() {
             ))}
           </motion.div>
 
-          <motion.div
+          <motion.button
             initial={{
               opacity: 0,
             }}
@@ -168,14 +178,15 @@ export default function ProfilePage() {
             transition={{
               delay: 1.8,
             }}
-            className="absolute bottom-20 flex animate-bounce flex-col items-center text-sm text-zinc-500"
+            className="absolute bottom-20 flex animate-bounce flex-col items-center text-sm text-zinc-500 transition duration-75 hover:text-white"
+            onClick={handleClick}
           >
             <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
-          </motion.div>
+          </motion.button>
         </section>
 
         {/* ABOUT */}
-        <section className="mx-auto max-w-6xl px-10 py-32">
+        <section className="mx-auto max-w-6xl px-10 py-32" ref={targetRef}>
           <motion.div
             variants={revealUp}
             initial="hidden"
@@ -189,6 +200,31 @@ export default function ProfilePage() {
               設計等美術能力外，也熟悉 Unity
               與前端開發流程，能從開發者角度思考美術設計與玩家體驗。希望投入遊戲產業美術相關職位，持續創作兼具視覺表現與遊玩體驗的作品。
             </p>
+          </motion.div>
+        </section>
+
+        {/* NAVIGATE */}
+        <section className="mx-auto max-w-6xl px-10 py-32">
+          <motion.div
+            variants={revealUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <button
+              onClick={() => playTransition("/Works")}
+              className="mb-12 flex w-full items-center justify-center gap-2 rounded border p-4 text-center text-lg leading-9 text-zinc-300 transition-colors duration-75 hover:bg-white hover:text-[#0f0f0f]"
+            >
+              <Icon icon={"carbon:portfolio"} />
+              查看作品列表
+            </button>
+            <button
+              onClick={() => playTransition("/Skills")}
+              className="flex w-full items-center justify-center gap-2 rounded border p-4 text-center text-lg leading-9 text-zinc-300 transition-colors duration-75 hover:bg-white hover:text-[#0f0f0f]"
+            >
+              <Icon icon={"jam:branch"} />
+              查看技能樹
+            </button>
           </motion.div>
         </section>
 

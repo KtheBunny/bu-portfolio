@@ -12,10 +12,10 @@ const navItems = [
     label: "主頁",
   },
   {
-    path: "/Skills",
-    fill: "material-symbols:graph-8",
-    outline: "material-symbols:graph-8-outline",
-    label: "技能樹",
+    path: "/About",
+    fill: "iconamoon:profile-fill",
+    outline: "iconamoon:profile-bold",
+    label: "關於我",
   },
   {
     path: "/Works",
@@ -24,10 +24,10 @@ const navItems = [
     label: "作品集",
   },
   {
-    path: "/About",
-    fill: "iconamoon:profile-fill",
-    outline: "iconamoon:profile-bold",
-    label: "關於我",
+    path: "/Skills",
+    fill: "material-symbols:graph-8",
+    outline: "material-symbols:graph-8-outline",
+    label: "技能樹",
   },
 ];
 

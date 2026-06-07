@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
+import { usePageTransition } from "../components/PageTransitionContext";
+
 import svgFolder from "../assets/button/folder.svg";
 import svgPhone from "../assets/button/phone.svg";
 import svgMonitor from "../assets/button/monitor.svg";
@@ -24,6 +26,16 @@ import Footer from "../components/Footer";
 const portfolios = [
   {
     id: 1,
+    title: "繪畫相關作品集",
+    type: "個人及委託的日系繪圖作品",
+    skills: ["2D 繪畫", "插畫繪製", "人物設計"],
+    year: "2025",
+    link: "/Works/Illustration",
+
+    icon: folderArtButton,
+  },
+  {
+    id: 2,
     title: "Pixel Art 作品集",
     type: "像素風遊戲的各種美術素材",
     skills: [
@@ -40,16 +52,7 @@ const portfolios = [
 
     icon: folderPixelButton,
   },
-  {
-    id: 2,
-    title: "繪畫相關作品集",
-    type: "個人及委託的日系繪圖作品",
-    skills: ["2D 繪畫", "插畫繪製", "人物設計"],
-    year: "2025",
-    link: "/Works/Illustration",
 
-    icon: folderArtButton,
-  },
   /*
   {
     id: 3,
@@ -176,7 +179,7 @@ const projects = [
       "UI 設計",
     ],
     year: "2026",
-    link: "/Works",
+    link: "/",
 
     icon: webButton,
   },
@@ -276,6 +279,11 @@ const itemVariants = {
 };
 
 export default function PortfolioList() {
+  //
+  // 轉場
+  //
+  const { playTransition } = usePageTransition();
+
   return (
     <>
       <section className="relative ml-[3.5rem] min-h-screen bg-[#0f0f0f] px-8 text-white">
@@ -426,7 +434,7 @@ export default function PortfolioList() {
 
           {/* 專題列表 */}
           <motion.div
-            className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
+            className="mb-12 grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3"
             variants={containerVariants}
             initial="hidden"
             animate="show"
@@ -489,7 +497,23 @@ export default function PortfolioList() {
               );
             })}
           </motion.div>
-          <div className="mb-16 mt-32 border-b"></div>
+          <div className="my-24 flex w-full flex-col items-center gap-2">
+            <h1 className="mb-1 text-left font-gugi text-5xl font-bold">
+              Skill Tree
+            </h1>
+            <p className="mb-12 text-center text-lg text-zinc-400">
+              探索我的技能樹，了解各項能力的掌握程度與發展方向。
+            </p>
+            <button
+              onClick={() => playTransition("/Skills")}
+              className="flex w-full items-center justify-center gap-2 rounded border p-4 text-center text-lg leading-9 text-zinc-300 transition-colors duration-75 hover:bg-white hover:text-[#0f0f0f]"
+            >
+              <Icon icon={"jam:branch"} />
+              查看技能樹
+            </button>
+          </div>
+
+          <div className="my-16 border-b" />
         </div>
       </section>
       <Footer />

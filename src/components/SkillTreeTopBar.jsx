@@ -362,7 +362,9 @@ export default function SkillTreeTopBar({
                   setBranchOpen(false);
                 }}
               >
-                （無）
+                （無）False Amber (from the Black Bazaar, Or by A Kervan Trader
+                from the Lands Afar, Or Buried Beneath the Shifting Sands That
+                Lead Everywhere but Nowhere)
               </button>
             </div>
           </div>

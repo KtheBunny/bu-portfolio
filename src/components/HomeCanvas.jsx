@@ -28,22 +28,16 @@ export default function HomeCanvas() {
   const rightWidth = useTransform(right, (v) => (1 - v) * containerWidth);
   const centerX = useTransform(leftPx, (v) => `calc(50vw - ${v}px)`);
 
-  const gamedevClicked = () => {
+  const TitleClicked = () => {
     if (!isLeaving) {
       setIsLeaving(true);
-      playTransition("/Works/Eminence");
+      playTransition("/Works");
     }
   };
-  const UIClicked = () => {
+  const BottomClicked = () => {
     if (!isLeaving) {
       setIsLeaving(true);
-      playTransition("/Works/Healter");
-    }
-  };
-  const illustrationClicked = () => {
-    if (!isLeaving) {
-      setIsLeaving(true);
-      playTransition("/Works/Illustration");
+      playTransition("/About");
     }
   };
 
@@ -72,7 +66,7 @@ export default function HomeCanvas() {
       // 往下滾
       if (e.deltaY > 0 && !isLeaving) {
         setIsLeaving(true);
-        playTransition("/Skills");
+        playTransition("/About");
       }
     };
 
@@ -183,29 +177,31 @@ export default function HomeCanvas() {
             }}
           >
             <div
-              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-              onClick={UIClicked}
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center"
+              onClick={TitleClicked}
             >
-              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-500 transition duration-300 group-hover:text-orange-900">
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-orange-600 transition duration-75 group-hover:text-orange-900">
                 {"UI/UX   Design".split("").map((c, i) => (
                   <span key={i}>{c}</span>
                 ))}
               </h2>
-              <h1 className="font-gugi text-4xl font-bold tracking-wide text-orange-500 transition duration-300 group-hover:text-orange-900 lg:text-5xl">
+              <h1 className="border-b border-orange-600 pb-3 font-gugi text-4xl font-bold tracking-wide text-orange-600 transition duration-75 group-hover:border-orange-900 group-hover:text-orange-900 lg:text-5xl">
                 PORTFOLIO
               </h1>
+              <span className="mt-3 font-bold tracking-widest text-orange-600 transition duration-75 group-hover:text-orange-900">
+                查看作品列表
+              </span>
             </div>
 
             {/* Guide */}
-            <div
-              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-500"
-              style={{
-                display: `${showSeeMore ? "block" : "none"}`,
-              }}
-            >
-              <div className="flex animate-bounce flex-col items-center gap-2">
+            <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-orange-600 transition duration-75 hover:text-orange-900">
+              <button
+                className="flex animate-bounce flex-col items-center gap-2"
+                onClick={BottomClicked}
+              >
                 <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
-              </div>
+                <span className="font-bold tracking-widest">關於我</span>
+              </button>
             </div>
 
             <HomeParaUI />
@@ -237,29 +233,31 @@ export default function HomeCanvas() {
             }}
           >
             <div
-              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-              onClick={gamedevClicked}
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center"
+              onClick={TitleClicked}
             >
-              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200 transition duration-300 group-hover:text-emerald-400">
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-bold text-cyan-200 transition duration-75 group-hover:text-emerald-400">
                 {"Game       Dev".split("").map((c, i) => (
                   <span key={i}>{c}</span>
                 ))}
               </h2>
-              <h1 className="font-gugi text-4xl font-bold tracking-wide text-cyan-200 transition duration-300 group-hover:text-emerald-400 lg:text-5xl">
+              <h1 className="border-b border-cyan-200 pb-3 font-gugi text-4xl font-bold tracking-wide text-cyan-200 transition duration-75 group-hover:border-emerald-400 group-hover:text-emerald-400 lg:text-5xl">
                 PORTFOLIO
               </h1>
+              <span className="mt-3 font-bold tracking-widest text-cyan-200 transition duration-75 group-hover:text-emerald-400">
+                查看作品列表
+              </span>
             </div>
 
             {/* Guide */}
-            <div
-              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200"
-              style={{
-                display: `${showSeeMore ? "block" : "none"}`,
-              }}
-            >
-              <div className="flex animate-bounce flex-col items-center gap-2">
+            <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-cyan-200 transition duration-75 hover:text-emerald-400">
+              <button
+                className="flex animate-bounce flex-col items-center gap-2"
+                onClick={BottomClicked}
+              >
                 <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
-              </div>
+                <span className="font-bold tracking-widest">關於我</span>
+              </button>
             </div>
 
             <HomeParaGame />
@@ -289,29 +287,31 @@ export default function HomeCanvas() {
             style={{ width: "calc(100vw - 3.5rem)" }}
           >
             <div
-              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col"
-              onClick={illustrationClicked}
+              className="group absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center"
+              onClick={TitleClicked}
             >
-              <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white transition duration-300 group-hover:text-violet-300">
+              <h2 className="flex w-full justify-between font-gugi text-2xl font-normal text-white transition duration-75 group-hover:text-violet-300">
                 {"Illustration".split("").map((c, i) => (
                   <span key={i}>{c}</span>
                 ))}
               </h2>
-              <h1 className="font-gugi text-4xl font-bold tracking-wide text-white transition duration-300 group-hover:text-violet-300 lg:text-5xl">
+              <h1 className="border-b pb-3 font-gugi text-4xl font-bold tracking-wide text-white transition duration-75 group-hover:border-violet-300 group-hover:text-violet-300 lg:text-5xl">
                 PORTFOLIO
               </h1>
+              <span className="mt-3 font-bold tracking-widest transition duration-75 group-hover:text-violet-300">
+                查看作品列表
+              </span>
             </div>
 
             {/* Guide */}
-            <div
-              className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-white"
-              style={{
-                display: `${showSeeMore ? "block" : "none"}`,
-              }}
-            >
-              <div className="flex animate-bounce flex-col items-center gap-2">
+            <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transition duration-75 hover:text-violet-300">
+              <button
+                className="flex animate-bounce flex-col items-center gap-2"
+                onClick={BottomClicked}
+              >
                 <Icon icon="lineicons:scroll-down-2" className="h-10 w-10" />
-              </div>
+                <span className="font-bold tracking-widest">關於我</span>
+              </button>
             </div>
 
             <HomeParaArt />

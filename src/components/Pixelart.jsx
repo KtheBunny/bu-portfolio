@@ -8,8 +8,6 @@ import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
-import logo from "../assets/logo/Healter-logo.webp";
-
 //
 // Recommended portfolio import
 //
@@ -89,6 +87,7 @@ export default function Pixelart() {
         {/* HERO ANIMATION */}
         <section ref={heroRef} className="relative h-[110vh]">
           <div className="fixed left-14 top-0 min-h-dvh w-[calc(100vw-3.5rem)] overflow-hidden bg-cover bg-center">
+            {/* 中間標題 */}
             <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col">
               <h2 className="flex w-full justify-between font-gugi text-2xl font-normal drop-shadow-lg">
                 {"Pixel    Art".split("").map((c, i) => (
@@ -117,6 +116,7 @@ export default function Pixelart() {
               </div>
             </motion.div>
 
+            {/* 背景動畫 */}
             <div className="absolute left-1/2 top-1/2 flex w-1/2 -translate-x-1/2 -translate-y-1/2 justify-center lg:w-1/3">
               <motion.img
                 src={dn1}

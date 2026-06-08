@@ -7,7 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
 /*
 import Tree from "./pages/Tree";
-import Home from "./pages/Home";
+import Home from "./pages/Home";z
 import About from "./pages/About";
 import Portfolio from "./components/PortfolioList";
 import Eminence from "./components/Eminence";
@@ -44,7 +44,7 @@ function App() {
 
       <Suspense
         fallback={
-          <div className="ml-14 flex items-center justify-center">
+          <div className="ml-14 flex h-screen w-[vh100-3.5rem] items-center justify-center bg-[#0f0f0f] font-gugi">
             Loading...
           </div>
         }

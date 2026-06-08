@@ -14,7 +14,7 @@ export default function Gallery() {
     },
     {
       image: photo1,
-      text: "大學遊戲開發社擔任遊戲美術講師",
+      text: "於國北教大遊戲開發社擔任遊戲美術講師",
     },
   ];
 

@@ -7,6 +7,7 @@ import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 
 import avatar from "../assets/new bu.webp";
+import pixelBun from "../assets/other/pixelBun.webp";
 
 const socials = [
   {
@@ -192,7 +193,10 @@ export default function ProfilePage() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
+            className="flex flex-col items-center"
           >
+            <img src={pixelBun} className="mb-16 w-56" />
+
             <h2 className="mb-8 text-center font-gugi text-5xl">About Me</h2>
 
             <p className="text-center text-lg leading-9 text-zinc-300">

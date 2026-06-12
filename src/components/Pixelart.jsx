@@ -32,6 +32,8 @@ const ppts = Object.entries(
 import dn1 from "../assets/other/dn-1.png";
 import dn2 from "../assets/other/dn-2.png";
 import EminenceAni from "../assets/Eminence/Eminence-CharaAni.png";
+import Parallax1 from "../assets/Eminence/Eminence-Para1.webm";
+import Parallax1Mp4 from "../assets/Eminence/Eminence-Para1.mp4";
 
 import CannonAnimation from "../assets/Moonwalk/CannonAni.png";
 import BlackholeAnimation from "../assets/Moonwalk/BlackholeAni.png";
@@ -143,9 +145,50 @@ export default function Pixelart() {
               <FadeUp>
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[0]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[1]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[2]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[3]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[4]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0">
                     {/* 背景 */}
-                    <img src={ppts[0]} className="h-full w-full object-cover" />
+                    <img src={ppts[5]} className="h-full w-full object-cover" />
 
                     {/* overlay */}
                     <div className="absolute left-1/2 top-1/2 flex w-[61%] -translate-x-1/2 -translate-y-1/2 flex-row transition duration-300 group-hover:scale-[165%]">
@@ -160,7 +203,7 @@ export default function Pixelart() {
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     {/* 背景 */}
-                    <img src={ppts[1]} className="h-full w-full object-cover" />
+                    <img src={ppts[6]} className="h-full w-full object-cover" />
 
                     {/* overlay */}
                     <div className="absolute bottom-[10%] left-1/2 flex h-[80%] flex-row">
@@ -177,7 +220,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[2]} className="h-full w-full object-cover" />
+                    <img src={ppts[7]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>
@@ -185,7 +228,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[3]} className="h-full w-full object-cover" />
+                    <img src={ppts[8]} className="h-full w-full object-cover" />
                     {/* overlay */}
                     <div className="absolute right-[4%] top-[10%] flex h-[80%] w-[10%] flex-col">
                       <img
@@ -224,7 +267,7 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[4]} className="h-full w-full object-cover" />
+                    <img src={ppts[9]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>
@@ -232,16 +275,10 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[5]} className="h-full w-full object-cover" />
-                  </div>
-                </div>
-              </FadeUp>
-
-              <FadeUp>
-                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-                  {/* 整個 scene 一起 scale */}
-                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[6]} className="h-full w-full object-cover" />
+                    <img
+                      src={ppts[10]}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </div>
               </FadeUp>
@@ -250,7 +287,37 @@ export default function Pixelart() {
                 <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
-                    <img src={ppts[7]} className="h-full w-full object-cover" />
+                    {/* 背景 */}
+                    <img
+                      src={ppts[11]}
+                      className="h-full w-full object-cover"
+                    />
+
+                    {/* overlay */}
+                    <div className="absolute bottom-[10%] right-[5.6%] flex w-[41.3%] flex-row">
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="min-h-0 w-auto flex-1 object-cover"
+                      >
+                        <source src={Parallax1} type="video/webm" />
+                        <source src={Parallax1Mp4} type="video/mp4" />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </FadeUp>
+
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img
+                      src={ppts[12]}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </div>
               </FadeUp>

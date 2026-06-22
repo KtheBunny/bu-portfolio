@@ -31,6 +31,7 @@ const Healter = lazy(() => import("./components/Healter"));
 const IKHTCG = lazy(() => import("./components/IKHTCG"));
 const Pixelart = lazy(() => import("./components/Pixelart"));
 const Illustration = lazy(() => import("./components/Illustration"));
+const PortfolioWeb = lazy(() => import("./components/PortfolioWeb"));
 
 import NavSideBar from "./components/NavSideBar";
 
@@ -61,6 +62,7 @@ function App() {
           <Route path="/Works/IKH-TCG" element={<IKHTCG />} />
           <Route path="/Works/PixelArt" element={<Pixelart />} />
           <Route path="/Works/Illustration" element={<Illustration />} />
+          <Route path="/Works/PortfolioWeb" element={<PortfolioWeb />} />
         </Routes>
       </Suspense>
     </TransitionProvider>

@@ -334,7 +334,7 @@ export default function Healter() {
                               伊香保-TCG
                             </h2>
                             <span className="w-full text-base font-semibold text-amber-800 transition duration-300 group-hover:text-zinc-300">
-                              透過死亡和重生來解開重重機關的橫向捲軸解迷遊戲。
+                              收集伊香保人物卡片的網頁小遊戲。
                             </span>
                           </div>
 

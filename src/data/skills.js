@@ -369,6 +369,7 @@ const skills = [
     works: [
       { text: "- [2025] Healter", link: "/Works/Healter" },
       { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
     ],
     mastery: 40,
     masteryDescriptions: [
@@ -389,6 +390,7 @@ const skills = [
     works: [
       { text: "- [2025] Healter", link: "/Works/Healter" },
       { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
     ],
     mastery: 80,
     masteryDescriptions: ["＋有多個網頁製作經驗，包括個人及商業網站專案。"],
@@ -461,6 +463,7 @@ const skills = [
     works: [
       { text: "- [2025] Healter", link: "/Works/Healter" },
       { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
     ],
     mastery: 70,
     masteryDescriptions: [
@@ -482,6 +485,7 @@ const skills = [
     works: [
       { text: "- [2025] Healter", link: "/Works/Healter" },
       { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
     ],
     mastery: 60,
     masteryDescriptions: [
@@ -500,7 +504,10 @@ const skills = [
     type: "被動技能",
     description:
       "具備 HTML 語法應用能力，能建立網頁結構並規劃語意化標籤，作為網站前端開發的基礎。",
-    works: [{ text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" }],
+    works: [
+      { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
+    ],
     mastery: 80,
     masteryDescriptions: [
       "＋具備網站開發實務經驗，熟悉 HTML 基本語法與頁面結構規劃。",
@@ -518,7 +525,10 @@ const skills = [
     type: "被動技能",
     description:
       "具備 JavaScript 程式開發能力，能實作網頁互動效果、資料處理邏輯以及前端功能模組。",
-    works: [{ text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" }],
+    works: [
+      { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
+    ],
     mastery: 60,
     masteryDescriptions: [
       "＋能使用 JavaScript 製作網頁互動效果與資料處理功能。",
@@ -554,7 +564,10 @@ const skills = [
     type: "被動技能",
     description:
       "具備 CSS 樣式設計能力，能控制網頁版面、動畫效果與視覺呈現，打造符合需求的使用者介面。",
-    works: [{ text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" }],
+    works: [
+      { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
+    ],
     mastery: 75,
     masteryDescriptions: [
       "＋熟悉 CSS 樣式設計與版面配置。",
@@ -572,7 +585,10 @@ const skills = [
     type: "被動技能",
     description:
       "理解響應式設計 Responsive Web Design 概念，能針對不同螢幕尺寸調整版面配置，提升跨裝置瀏覽體驗。",
-    works: [{ text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" }],
+    works: [
+      { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      { text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" },
+    ],
     mastery: 75,
     masteryDescriptions: [
       "＋具備多個網站響應式設計經驗，能針對不同裝置調整版面配置，如使用 Media Query 搭配 Flexbox、Grid 等技術完成跨裝置介面設計。",
@@ -589,7 +605,7 @@ const skills = [
     type: "被動技能",
     description:
       "具備 React 開發能力，能以元件化方式建構前端介面，提升程式可維護性與開發效率。",
-    works: [{ text: "- [2026] 作品集網頁", link: null }],
+    works: [{ text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" }],
     mastery: 60,
     masteryDescriptions: [
       "＋具備 React 開發能力，熟悉 useState、useEffect、useRef 等 Hooks，以及 Router 等常見應用。",
@@ -606,7 +622,7 @@ const skills = [
     type: "被動技能",
     description:
       "熟悉 TailwindCSS 的工具類別設計方式，能快速建立一致且易於維護的前端介面樣式。",
-    works: [{ text: "- [2026] 作品集網頁", link: null }],
+    works: [{ text: "- [2026] 作品集網頁", link: "/Works/PortfolioWeb" }],
     mastery: 50,
     masteryDescriptions: [
       "＋具備 TailwindCSS 開發經驗，曾客製 Config 字體、色彩等主題設定，並實作元件化設計。",

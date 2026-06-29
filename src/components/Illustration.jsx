@@ -13,6 +13,7 @@ import bg1 from "../assets/other/bg-1.webp";
 import bg2 from "../assets/other/bg-2.webp";
 import bg3 from "../assets/other/bg-3.webp";
 import bg4 from "../assets/other/bg-4.webp";
+import bg5 from "../assets/other/bg-5.webp";
 
 //
 // Recommended portfolio import
@@ -83,21 +84,31 @@ export default function Illustration() {
   const hintsFilter = useMotionTemplate`blur(${hintsBlur}px)`;
 
   // bg相關
-  const bg1Opacity = useTransform(scrollPageProgress, [0, 0.1, 0.2], [1, 1, 0]);
+  const bg1Opacity = useTransform(
+    scrollPageProgress,
+    [0, 0.07, 0.1],
+    [1, 1, 0],
+  );
 
   const bg2Opacity = useTransform(
     scrollPageProgress,
-    [0.1, 0.2, 0.3, 0.4],
+    [0.07, 0.1, 0.25, 0.28],
     [0, 1, 1, 0],
   );
 
   const bg3Opacity = useTransform(
     scrollPageProgress,
-    [0.3, 0.4, 0.5, 0.6],
+    [0.25, 0.28, 0.5, 0.55],
     [0, 1, 1, 0],
   );
 
-  const bg4Opacity = useTransform(scrollPageProgress, [0.5, 0.6], [0, 1]);
+  const bg4Opacity = useTransform(
+    scrollPageProgress,
+    [0.5, 0.55, 0.7, 0.73],
+    [0, 1, 1, 0],
+  );
+
+  const bg5Opacity = useTransform(scrollPageProgress, [0.7, 0.73], [0, 1]);
 
   const bgBlur = useTransform(
     scrollPageProgress,
@@ -108,7 +119,7 @@ export default function Illustration() {
 
   return (
     <>
-      <div className="relative ml-[3.5rem] overflow-hidden bg-white text-blue-950">
+      <div className="relative ml-[3.5rem] overflow-hidden bg-white text-white">
         {/* HERO ANIMATION */}
         <section ref={heroRef} className="relative h-[110vh]">
           <div className="fixed left-14 top-0 min-h-dvh w-[calc(100vw-3.5rem)] overflow-hidden bg-cover bg-center">
@@ -177,6 +188,12 @@ export default function Illustration() {
                 style={{ opacity: bg4Opacity }}
                 className="absolute inset-0 h-full w-full object-cover"
               />
+
+              <motion.img
+                src={bg5}
+                style={{ opacity: bg5Opacity }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </motion.div>
           </div>
         </section>
@@ -218,6 +235,14 @@ export default function Illustration() {
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     <img src={ppts[3]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[4]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>

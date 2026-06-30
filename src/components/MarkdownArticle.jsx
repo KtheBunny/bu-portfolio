@@ -148,9 +148,9 @@ export default function MarkdownArticle({ article, headings = [] }) {
       id={article.id}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto w-full max-w-3xl rounded-[2rem] border border-white/10 bg-[#111111]/90 p-8 shadow-2xl shadow-black/20 sm:p-10 lg:p-12"
+      className="mx-auto w-full max-w-3xl rounded-[2rem] border border-white bg-[#111111]/90 p-8 shadow-2xl shadow-black/20 sm:p-10 lg:p-12"
     >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}

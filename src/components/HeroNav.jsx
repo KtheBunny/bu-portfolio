@@ -24,8 +24,6 @@ export default function HeroNav({ articles, onSelectArticle, onScrollDown }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * index + 0.3, duration: 0.5 }}
-              whileHover={{ scale: 1.03, y: -4, opacity: 1 }}
-              whileTap={{ scale: 0.97 }}
               onClick={() => onSelectArticle(article.id)}
               className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-medium tracking-[0.18em] text-zinc-200 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/10"
             >

@@ -55,22 +55,22 @@ export const articles = [
   },
   {
     id: "flow-theory",
-    title: "Flow Theory",
+    title: "遊戲輸入判定閾值探討",
     content: flowTheory,
   },
   {
     id: "game-feel",
-    title: "Game Feel",
+    title: "GGJ 2021 作品的遊戲設計",
     content: gameFeel,
   },
   {
     id: "feedback",
-    title: "Feedback",
+    title: "Case Study: Team Fortress 2",
     content: feedback,
   },
   {
     id: "tutorial",
-    title: "Tutorial",
+    title: "Case Study: 龍之谷",
     content: tutorial,
   },
 ];

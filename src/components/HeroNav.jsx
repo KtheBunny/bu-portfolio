@@ -14,7 +14,7 @@ export default function HeroNav({ articles, onSelectArticle, onScrollDown }) {
           Game Design Notes
         </h1>
         <p className="mx-auto mt-8 max-w-2xl text-lg leading-9 text-zinc-400 sm:text-xl">
-          分享遊戲設計、UX、認知心理學與遊戲開發相關筆記，建立一個更清晰的設計思考脈絡。
+          分享遊戲設計、遊戲開發、UX、認知心理學等相關筆記
         </p>
 
         <div className="mt-12 flex flex-wrap justify-center gap-3">

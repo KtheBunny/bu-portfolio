@@ -3,6 +3,7 @@ import { articles, extractHeadings } from "../data/articles";
 import HeroNav from "../components/HeroNav";
 import Sidebar from "../components/Sidebar";
 import MarkdownArticle from "../components/MarkdownArticle";
+import Footer from "../components/Footer";
 import useActiveArticle from "../hooks/useActiveArticle";
 import useActiveHeading from "../hooks/useActiveHeading";
 
@@ -124,6 +125,9 @@ export default function Articles() {
           ))}
         </div>
       </section>
+      <section className="mx-auto max-w-6xl px-10 pb-24 text-center"><div className="border-b max-w-6xl border-white" /></section>
+      
+      <Footer/>
     </main>
   );
 }

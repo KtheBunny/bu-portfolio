@@ -11,7 +11,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className="hidden lg:block lg:w-[280px] lg:shrink-0">
-      <div className="sticky top-24 rounded-2xl border border-white p-5">
+      <div className="sticky top-12 rounded-2xl border border-white p-5">
         <p className="mb-5 text-sm uppercase tracking-widest text-zinc-300">
           文章總覽
         </p>

@@ -86,7 +86,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <main className="min-h-scree ml-14 overflow-x-clip bg-[#0f0f0f] text-white">
+      <main className="min-h-screen ml-14 overflow-x-clip bg-[#0f0f0f] text-white">
         {/* HERO */}
         <section className="relative flex h-screen flex-col items-center justify-center overflow-hidden">
           {/*  */}
@@ -202,7 +202,7 @@ export default function ProfilePage() {
             <p className="text-center text-lg leading-9 text-zinc-300">
               袁浩軒，熱愛遊戲以及與遊戲相關的創作，擁有遊戲美術與程式開發的跨領域背景。除了具備像素藝術、角色設計、場景設計、UI/UX
               設計等美術能力外，也熟悉 Unity
-              與前端開發流程，能從開發者角度思考美術設計與玩家體驗。希望投入遊戲產業美術相關職位，持續創作兼具視覺表現與遊玩體驗的作品。
+              與前端開發流程，能從開發者角度思考美術設計與玩家體驗。希望投身遊戲產業，持續創作兼具視覺表現與遊玩體驗的作品。
             </p>
           </motion.div>
         </section>
@@ -257,13 +257,6 @@ export default function ProfilePage() {
               <p className="text-zinc-400">理學士（創意媒體）</p>
 
               <p className="text-zinc-500">2020 - 2022</p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-semibold">香港理工大學</h3>
-
-              <p className="text-zinc-400">電子及資訊工程學高級文憑</p>
-
-              <p className="text-zinc-500">2018 - 2020</p>
             </div>
           </motion.div>
         </section>

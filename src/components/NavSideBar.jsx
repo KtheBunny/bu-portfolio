@@ -18,6 +18,12 @@ const navItems = [
     label: "關於我",
   },
   {
+    path: "/Articles",
+    fill: "material-symbols:article-rounded",
+    outline: "material-symbols:article-outline-rounded",
+    label: "筆記",
+  },
+  {
     path: "/Works",
     fill: "dashicons:portfolio",
     outline: "carbon:portfolio",
@@ -35,7 +41,7 @@ const navItems = [
 const ITEM_HEIGHT = 56;
 // 4個項目的總高度 = 4 * 56 = 224px
 // 從 nav 頂部到第一個項目的偏移量 (居中計算)
-const FIRST_ITEM_OFFSET = -84; // = 84px from top
+const FIRST_ITEM_OFFSET = -112; // = 84px from top
 
 export default function NavSideBar() {
   const { playTransition } = usePageTransition();

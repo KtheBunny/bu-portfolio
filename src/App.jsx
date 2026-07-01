@@ -22,6 +22,7 @@ import Illustration from "./components/Illustration";
 const Home = lazy(() => import("./pages/Home"));
 const Tree = lazy(() => import("./pages/Tree"));
 const About = lazy(() => import("./pages/About"));
+const Articles = lazy(() => import("./pages/Articles"));
 const Portfolio = lazy(() => import("./components/PortfolioList"));
 
 const Eminence = lazy(() => import("./components/Eminence"));
@@ -53,6 +54,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Articles" element={<Articles />} />
           <Route path="/Skills" element={<Tree />} />
           <Route path="/Works" element={<Portfolio />} />
           <Route path="/Works/Eminence" element={<Eminence />} />

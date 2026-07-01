@@ -109,6 +109,13 @@ export default function Footer() {
             </button>
 
             <button
+              onClick={() => playTransition("/Articles")}
+              className="text-left text-zinc-400 transition-colors hover:text-white"
+            >
+              筆記
+            </button>
+
+            <button
               onClick={() => playTransition("/Portfolio")}
               className="text-left text-zinc-400 transition-colors hover:text-white"
             >
@@ -179,6 +186,13 @@ export default function Footer() {
               className="text-left text-zinc-400 transition-colors hover:text-white"
             >
               IKH-TCG
+            </button>
+
+            <button
+              onClick={() => playTransition("/Works/PortfolioWeb")}
+              className="text-left text-zinc-400 transition-colors hover:text-white"
+            >
+              本網頁
             </button>
           </div>
         </div>

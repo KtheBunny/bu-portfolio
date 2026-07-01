@@ -6,8 +6,7 @@ import { visit } from "unist-util-visit";
 import hicksLaw from "../assets/md/hicks-law.md?raw";
 import master from "../assets/md/master.md?raw";
 import ggj from "../assets/md/ggj.md?raw";
-import feedback from "../assets/md/feedback.md?raw";
-import tutorial from "../assets/md/tutorial.md?raw";
+import eminence from "../assets/md/eminence.md?raw";
 import { createHeadingId } from "../utils/slugify";
 
 export function extractHeadings(markdown, articleId) {
@@ -49,18 +48,25 @@ export function extractHeadings(markdown, articleId) {
 
 export const articles = [
   {
-    id: "master",
-    title: "遊戲輸入判定閾值探討",
-    content: master,
-  },
-  {
     id: "ggj",
     title: "GGJ 2021 作品的設計思路",
     content: ggj,
+  },
+  {
+    id: "master",
+    title: "遊戲輸入判定閾值探討",
+    content: master,
   },
   {
     id: "hicks-law",
     title: "Hick's Law 如何影響遊戲入門難度",
     content: hicksLaw,
   },
+  /*
+  {
+    id: "eminence",
+    title: "《Eminence》遊戲設計文件記錄",
+    content: eminence,
+  },
+  */
 ];

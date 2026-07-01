@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 
 import hicksLaw from "../assets/md/hicks-law.md?raw";
-import flowTheory from "../assets/md/flow.md?raw";
+import master from "../assets/md/master.md?raw";
 import gameFeel from "../assets/md/game-feel.md?raw";
 import feedback from "../assets/md/feedback.md?raw";
 import tutorial from "../assets/md/tutorial.md?raw";
@@ -54,23 +54,13 @@ export const articles = [
     content: hicksLaw,
   },
   {
-    id: "flow-theory",
+    id: "master",
     title: "遊戲輸入判定閾值探討",
-    content: flowTheory,
+    content: master,
   },
   {
     id: "game-feel",
     title: "GGJ 2021 作品的遊戲設計",
     content: gameFeel,
-  },
-  {
-    id: "feedback",
-    title: "Case Study: Team Fortress 2",
-    content: feedback,
-  },
-  {
-    id: "tutorial",
-    title: "Case Study: 龍之谷",
-    content: tutorial,
   },
 ];

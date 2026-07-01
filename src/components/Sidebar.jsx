@@ -11,7 +11,7 @@ export default function Sidebar({
 }) {
   return (
     <aside className="hidden lg:block lg:w-[280px] lg:shrink-0">
-      <div className="sticky top-24 rounded-3xl border border-white p-5 backdrop-blur-xl">
+      <div className="sticky top-24 rounded-2xl border border-white p-5">
         <p className="mb-5 text-sm uppercase tracking-widest text-zinc-300">
           文章總覽
         </p>
@@ -25,11 +25,11 @@ export default function Sidebar({
             return (
               <div
                 key={article.id}
-                className="rounded-2xl border border-white/10"
+                className="rounded border border-white/10"
               >
                 <button
                   onClick={() => onArticleSelect(article.id)}
-                  className={`flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left transition ${isActive ? "bg-white/10 text-white" : "text-zinc-400 hover:bg-white/5 hover:text-white"}`}
+                  className={`flex w-full items-center justify-between rounded px-4 py-3 text-left transition ${isActive ? "bg-white/10 text-white" : "text-zinc-400 hover:bg-white/5 hover:text-white"}`}
                 >
                   <span className="text-sm font-medium">{article.title}</span>
                 </button>
@@ -50,7 +50,7 @@ export default function Sidebar({
                             onClick={() =>
                               onHeadingSelect(article.id, heading.id)
                             }
-                            className={`mb-2 flex w-full items-center rounded-xl px-3 py-2 text-left text-sm transition ${isHeadingActive ? "bg-white/15 text-white" : "text-zinc-400 hover:bg-white/10 hover:text-white"}`}
+                            className={`mb-2 flex w-full items-center rounded px-3 py-2 text-left text-sm transition ${isHeadingActive ? "bg-white/15 text-white" : "text-zinc-400 hover:bg-white/10 hover:text-white"}`}
                           >
                             <span
                               className={`mr-2 mt-1 h-1 w-1 -translate-y-1/2 shrink-0 rounded-full ${isHeadingActive ? "bg-white" : "bg-zinc-600"}`}

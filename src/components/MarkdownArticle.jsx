@@ -208,18 +208,18 @@ export default function MarkdownArticle({ article, headings = [] }) {
         "mb-4 mt-8 scroll-mt-24 text-xl font-semibold text-white",
       ),
       p: ({ children, ...props }) => (
-        <p className="mb-6 text-base leading-8 text-zinc-300" {...props}>
+        <p className="mb-6 break-words text-base leading-8 text-zinc-300" {...props}>
           {children}
         </p>
       ),
       ul: ({ children, ...props }) => (
-        <ul className="mb-6 list-disc space-y-2 pl-6 text-zinc-300" {...props}>
+        <ul className="mb-6 list-disc space-y-2 break-words pl-6 text-zinc-300" {...props}>
           {children}
         </ul>
       ),
       ol: ({ children, ...props }) => (
         <ol
-          className="mb-6 list-decimal space-y-2 pl-6 text-zinc-300"
+          className="mb-6 list-decimal space-y-2 break-words pl-6 text-zinc-300"
           {...props}
         >
           {children}
@@ -227,7 +227,7 @@ export default function MarkdownArticle({ article, headings = [] }) {
       ),
       blockquote: ({ children, ...props }) => (
         <blockquote
-          className="my-8 border-l-2 border-white/40 bg-white/20 px-5 py-4 italic text-zinc-300"
+          className="my-8 break-words border-l-2 border-white/40 bg-white/20 px-5 py-4 italic text-zinc-300"
           {...props}
         >
           {children}
@@ -247,7 +247,7 @@ export default function MarkdownArticle({ article, headings = [] }) {
             style={oneDark}
             language={language}
             PreTag="div"
-            className="mb-6 overflow-hidden rounded-2xl border border-white/10"
+            className="mb-6 max-w-full overflow-x-auto rounded-2xl border border-white/10"
             {...props}
           >
             {content}
@@ -263,14 +263,14 @@ export default function MarkdownArticle({ article, headings = [] }) {
       },
       img: ({ ...props }) => (
         <img
-          className="max-h-[600px] object-contain my-8 w-full"
+          className="my-8 h-auto max-h-[600px] w-full max-w-full object-contain"
           {...props}
         />
       ),
       table: ({ children, ...props }) => (
-        <div className="mb-8 overflow-hidden rounded-2xl border border-white/10">
+        <div className="mb-8 max-w-full overflow-x-auto rounded-2xl border border-white/10">
           <table
-            className="min-w-full divide-y divide-white/10 text-sm text-zinc-300"
+            className="min-w-full max-w-full divide-y divide-white/10 text-sm text-zinc-300"
             {...props}
           >
             {children}
@@ -283,19 +283,19 @@ export default function MarkdownArticle({ article, headings = [] }) {
         </thead>
       ),
       th: ({ children, ...props }) => (
-        <th className="px-4 py-3 text-left font-semibold text-white" {...props}>
+        <th className="break-words px-4 py-3 text-left font-semibold text-white" {...props}>
           {children}
         </th>
       ),
       td: ({ children, ...props }) => (
-        <td className="border-t border-white/10 px-4 py-3" {...props}>
+        <td className="break-words border-t border-white/10 px-4 py-3" {...props}>
           {children}
         </td>
       ),
       a: ({ children, href, ...props }) => (
         <a
           href={href}
-          className="text-cyan-400 underline-offset-4 hover:underline"
+          className="break-words text-cyan-400 underline-offset-4 hover:underline"
           {...props}
         >
           {children}
@@ -311,15 +311,17 @@ export default function MarkdownArticle({ article, headings = [] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto w-full max-w-3xl rounded-2xl border border-white bg-[#111111]/90 p-8 shadow-2xl shadow-black/20 sm:p-10 lg:p-12"
+      className="w-full min-w-0 max-w-full rounded-2xl border border-white bg-[#111111]/90 p-8 shadow-2xl shadow-black/20 sm:p-10 lg:p-12"
     >
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={markdownComponents}
-        skipHtml
-      >
-        {content}
-      </ReactMarkdown>
+      <div className="w-full min-w-0 max-w-full">
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          components={markdownComponents}
+          skipHtml
+        >
+          {content}
+        </ReactMarkdown>
+      </div>
     </motion.article>
   );
 }

@@ -114,7 +114,7 @@ export default function Articles() {
           onHeadingSelect={handleSelectHeading}
         />
 
-        <div className="flex-1 space-y-8">
+        <div className="min-w-0 flex-1 space-y-8">
           {articles.map((article) => (
             <div key={article.id}>
               <MarkdownArticle

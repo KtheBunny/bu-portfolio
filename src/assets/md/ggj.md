@@ -119,4 +119,6 @@
 
 最後形成了《Path of Ghost》的人鬼雙形態解謎玩法，也讓 Global Game Jam 的主題融入了遊戲機制，而不只是停留在背景設定。
 
+---
+
 遊戲宣傳片，以及作品集內容可以到此觀看：https://bu-portfolio-kappa.vercel.app/Works/PathOfGhost

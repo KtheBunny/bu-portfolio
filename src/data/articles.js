@@ -48,11 +48,6 @@ export function extractHeadings(markdown, articleId) {
 
 export const articles = [
   {
-    id: "ggj",
-    title: "GGJ 2021 作品的設計思路",
-    content: ggj,
-  },
-  {
     id: "master",
     title: "遊戲輸入判定閾值探討",
     content: master,
@@ -62,11 +57,15 @@ export const articles = [
     title: "Hick's Law 如何影響遊戲入門難度",
     content: hicksLaw,
   },
-  /*
+  {
+    id: "ggj",
+    title: "GGJ 2021 作品的設計思路",
+    content: ggj,
+  },
   {
     id: "eminence",
     title: "《Eminence》遊戲設計文件記錄",
     content: eminence,
   },
-  */
+
 ];

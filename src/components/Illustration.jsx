@@ -9,11 +9,12 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 import logo from "../assets/logo/Healter-logo.webp";
-import bg1 from "../assets/other/bg-1.webp";
-import bg2 from "../assets/other/bg-2.webp";
-import bg3 from "../assets/other/bg-3.webp";
-import bg4 from "../assets/other/bg-4.webp";
-import bg5 from "../assets/other/bg-5.webp";
+import bg1 from "../assets/other/bg-1-1.webp";
+import bg2 from "../assets/other/bg-1-2.webp";
+import bg3 from "../assets/other/bg-2.webp";
+import bg4 from "../assets/other/bg-3.webp";
+import bg5 from "../assets/other/bg-4.webp";
+import bg6 from "../assets/other/bg-5.webp";
 
 //
 // Recommended portfolio import
@@ -98,17 +99,23 @@ export default function Illustration() {
 
   const bg3Opacity = useTransform(
     scrollPageProgress,
-    [0.25, 0.28, 0.5, 0.55],
+    [0.25, 0.28, 0.47, 0.5],
     [0, 1, 1, 0],
   );
 
   const bg4Opacity = useTransform(
     scrollPageProgress,
-    [0.5, 0.55, 0.7, 0.73],
+    [0.47, 0.5, 0.62, 0.65],
     [0, 1, 1, 0],
   );
 
-  const bg5Opacity = useTransform(scrollPageProgress, [0.7, 0.73], [0, 1]);
+  const bg5Opacity = useTransform(
+    scrollPageProgress,
+    [0.62, 0.65, 0.77, 0.8],
+    [0, 1, 1, 0],
+  );
+
+  const bg6Opacity = useTransform(scrollPageProgress, [0.77, 0.8], [0, 1]);
 
   const bgBlur = useTransform(
     scrollPageProgress,
@@ -194,6 +201,12 @@ export default function Illustration() {
                 style={{ opacity: bg5Opacity }}
                 className="absolute inset-0 h-full w-full object-cover"
               />
+
+              <motion.img
+                src={bg6}
+                style={{ opacity: bg6Opacity }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </motion.div>
           </div>
         </section>
@@ -243,6 +256,14 @@ export default function Illustration() {
                   {/* 整個 scene 一起 scale */}
                   <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
                     <img src={ppts[4]} className="h-full w-full object-cover" />
+                  </div>
+                </div>
+              </FadeUp>
+              <FadeUp>
+                <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+                  {/* 整個 scene 一起 scale */}
+                  <div className="absolute inset-0 transition duration-300 group-hover:scale-110">
+                    <img src={ppts[5]} className="h-full w-full object-cover" />
                   </div>
                 </div>
               </FadeUp>

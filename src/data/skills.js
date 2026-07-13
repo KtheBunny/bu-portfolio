@@ -108,16 +108,15 @@ const skills = [
     x: 500,
     y: -100,
     icon: "material-symbols:article-outline-rounded",
-    title: "企劃能力",
+    title: "遊戲企劃思維",
     type: "被動技能",
     description:
-      "擁有設計和發想遊戲的核心玩法、回饋機制等 Game Loop 元素的能力。",
-    works: [
-      { text: "- [2021] Path of Ghost", link: "/Works/PathOfGhost" },
-      { text: "- [2025] 伊香保-TCG", link: "/Works/IKH-TCG" },
+      "能夠拆解遊戲系統、核心循環與玩家體驗，分析設計背後的目的、玩家心理及設計取捨，並提出具合理性的改善方向。",
+    works: [{ text: "- [2026] 遊戲設計筆記", link: "/Articles" }],
+    mastery: 70,
+    masteryDescriptions: [
+      "＋透過研究、Game Jam 與遊戲分析文章，持續累積遊戲企劃思維，並嘗試將認知科學與玩家體驗研究應用於遊戲設計分析。",
     ],
-    mastery: 55,
-    masteryDescriptions: ["＋具備相關觀念，並在參與的GameJam活動中實踐。"],
     prerequisites: [1],
     polyline: "374,-200 450,-200 450,-100 476,-100",
   },

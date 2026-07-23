@@ -7,6 +7,8 @@ import hicksLaw from "../assets/md/hicks-law.md?raw";
 import master from "../assets/md/master.md?raw";
 import ggj from "../assets/md/ggj.md?raw";
 import eminence from "../assets/md/eminence.md?raw";
+import mariokart from "../assets/md/mariokart.md?raw";
+import deadcell from "../assets/md/deadcell.md?raw";
 import { createHeadingId } from "../utils/slugify";
 
 export function extractHeadings(markdown, articleId) {
@@ -58,6 +60,16 @@ export const articles = [
     content: hicksLaw,
   },
   {
+    id: "deadcell",
+    title: "分析 Dead Cells 並嘗試在 Minecraft 中重現關卡生成設計",
+    content: deadcell,
+  },
+  {
+    id: "mariokart",
+    title: "從 Mario Kart 分析如何平衡操作深度與學習曲線",
+    content: mariokart,
+  },
+  {
     id: "ggj",
     title: "GGJ 2021 作品的設計思路",
     content: ggj,
@@ -67,5 +79,4 @@ export const articles = [
     title: "《Eminence》遊戲設計文件記錄",
     content: eminence,
   },
-
 ];

@@ -329,8 +329,9 @@ export default function SkillTreeCanvas({
                 width={canvasWidth}
                 height={canvasHeight}
                 style={{
-                  left: `-${canvasWidth / 2}`,
-                  top: `-${canvasHeight / 2}`,
+                  position: "absolute",
+                  left: `-${canvasWidth / 2}px`,
+                  top: `-${canvasHeight / 2}px`,
                   pointerEvents: "none",
                 }}
               >
